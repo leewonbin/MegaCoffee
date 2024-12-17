@@ -28,6 +28,16 @@ public class AdminController {
 		return "/admin/adminLogin";
 	}
 
+	@GetMapping("/moveMenu")
+	public String moveMenu() throws Exception {
+		return "/admin/menuList";
+	}
+
+	@GetMapping("/moveBoard")
+	public String moveBoard() throws Exception {
+		return "/admin/boardList";
+	}
+
 	@PostMapping("/login")
 	public String loginProcess(@RequestParam("admin_id") String admin_id, @RequestParam("admin_pw") String admin_pw,
 			RedirectAttributes rttr) throws Exception {
