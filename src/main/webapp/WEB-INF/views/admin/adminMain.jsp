@@ -5,32 +5,74 @@
 <%@include file="header.jsp"%>
 <head>
 <style>
-.topbar {
+/* 전체 레이아웃 */
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+}
+
+.content {
+	margin-left: 260px; 
+	padding: 20px;
+}
+
+table {
 	width: 100%;
-	height: 80px;
-	display: flex;
-	border-bottom: 1px solid #ddd;
-	justify-content: space-between;
-	align-items: center;
+	border-collapse: collapse;
+	margin-top: 20px;
+	text-align: left;
 }
 
-.topbar .nickName {
-	margin-right : 80px;
+th, td {
+	padding: 10px;
+	border: 1px solid #ddd;
 }
 
-.topbar .logo {
-	width: 230px;
-	margin-left: 12px;
+th {
+	background-color: #f4f4f4;
+	font-weight: bold;
 }
 </style>
 </head>
 <body>
 	<div class="topbar">
-		<img class="logo" src="/img/logo.png">
-		<p class="nickName">asfdsdf</p>
+		<%@include file="topbar.jsp"%>
 	</div>
 	<nav>
 		<%@include file="sidebar.jsp"%>
 	</nav>
+	<div class="content">
+		<h2 id="content-title">상품 관리</h2>
+		<hr>
+		<div id="content-table">
+			<table>
+				<tr>
+					<th>상품 ID</th>
+					<th>상품 이름</th>
+					<th>가격</th>
+					<th>재고</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>예제 상품 1</td>
+					<td>10,000원</td>
+					<td>50개</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>예제 상품 2</td>
+					<td>20,000원</td>
+					<td>30개</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>예제 상품 3</td>
+					<td>15,000원</td>
+					<td>20개</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </body>
 </html>
