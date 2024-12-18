@@ -66,6 +66,16 @@ public class MenuController {
 		model.addAttribute("menuList", menuList);
 		return "menu/menu";
 	}
+	
+	@GetMapping("/menu")
+	public String getMenuByCategory(@RequestParam(value = "category_id", required = false) Integer categoryId,
+	                                @RequestParam(value = "type_id", required = false) Integer typeId,
+	                                Model model) {
+	    List<MenuDto> menuList = menuService.getMenuByCategory(categoryId, typeId);
+	    model.addAttribute("menuList", menuList);
+	    return "menu/menu";
+	}
+
 
 
 }

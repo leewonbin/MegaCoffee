@@ -50,4 +50,15 @@ from nutrient where menu_id = #{menu_id}
 select a.all_id, a.all_name from allergen a join menu_allergen ma on a.all_id = ma.all_id where ma.menu_id = #{menu_id}
 </select> -->
 
+
+<select id="getMenuByCategory" resultType="com.mega.menu.dto.MenuDto">
+select * from menu where menu_del = 'N'
+<if test="categoryId != null">
+and category_id = #{categoryId}
+</if>
+<if test="typeId != null">
+and menu_id in (select menu_id from menu_type where type_id = #{typeId})
+</if>
+</select>
+
 </mapper>

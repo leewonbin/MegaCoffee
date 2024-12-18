@@ -358,7 +358,7 @@ ng\:form {
 									class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1"
 									style="display: none;">
 									<ul>
-										<li><a
+										<!-- <li><a
 											href="/menu/?menu_category1=1&amp;menu_category2=1"> 음료 </a>
 										</li>
 										<li><a
@@ -366,7 +366,13 @@ ng\:form {
 										</li>
 										<li><a
 											href="/menu/?menu_category1=3&amp;menu_category2=3"> 상품 </a>
-										</li>
+										</li> -->
+										<li><a href="/menu/?category_id=1&amp;type_id=1"> 음료
+										</a></li>
+										<li><a href="/menu/?category_id=2&amp;type_id=2"> 푸드
+										</a></li>
+										<li><a href="/menu/?category_id=3&amp;type_id=3"> 상품
+										</a></li>
 									</ul>
 								</div></li>
 							<li><a href="/store/find/" class="pc"> 매장 </a> <a
@@ -526,7 +532,8 @@ ng\:form {
 						<div class="cont_text_wrap text_center">
 							<div class="cont_text_info">※메뉴 이미지는 연출컷이라 실물과 다를 수 있습니다.</div>
 						</div>
-						<div class="cont_text_wrap list_checkbox_wrap">		<!-- 메뉴소개로 들어가면 비활성화 시켜야됨111111111111111111111111111111111111111 -->
+						<div class="cont_text_wrap list_checkbox_wrap">
+							<!-- 메뉴소개로 들어가면 비활성화 시켜야됨111111111111111111111111111111111111111 -->
 							<div class="cont_text cont_text_title">
 								<b>분류보기</b>
 							</div>
@@ -727,7 +734,7 @@ ng\:form {
 															<div class="cont_text cont_text_info">알레르기 성분 :</div>
 															<!--${menu.menu_allergen}-->
 														</div>--%>
-														<%-- <div
+															<%-- <div
 															class="cont_list cont_list2 cont_list_small cont_list_small2">
 															<ul>
 																<li>포화지방 ${menu.menu_saturated}g</li>
@@ -737,7 +744,7 @@ ng\:form {
 																<li>카페인 ${menu.menu_caffeine}mg</li>
 															</ul>
 														</div>  --%>
-													</div></li>
+														</div></li>
 											</c:forEach>
 										</ul>
 
@@ -745,9 +752,7 @@ ng\:form {
 
 									</div>
 									<div class="board_page_wrap">
-										<div class="board_page">
-										
-										</div>
+										<div class="board_page"></div>
 									</div>
 								</ul>
 							</div>
@@ -759,14 +764,25 @@ ng\:form {
 		</div>
 		<script>
 			var category_change = "";
-			$(document).on("click","[name='list_checkbox_all']",function() {
+			$(document).on(
+					"click",
+					"[name='list_checkbox_all']",
+					function() {
 						if ($(this).prop("checked") == true) {
-							$(this).parents(".list_checkbox_wrap").find(".list_checkbox").find(":checkbox").prop("checked", false).change();
+							$(this).parents(".list_checkbox_wrap").find(
+									".list_checkbox").find(":checkbox").prop(
+									"checked", false).change();
 						}
 						menu();
 					});
-			$(document).on("click","[name='list_checkbox']",function() {
-								$(this).parents(".list_checkbox_wrap").find("[name='list_checkbox_all']").prop("checked", false).change();
+			$(document)
+					.on(
+							"click",
+							"[name='list_checkbox']",
+							function() {
+								$(this).parents(".list_checkbox_wrap").find(
+										"[name='list_checkbox_all']").prop(
+										"checked", false).change();
 								if ($(this).parents(".list_checkbox_wrap")
 										.find("[name='list_checkbox']").length == $(
 										this).parents(".list_checkbox").find(
@@ -1052,7 +1068,7 @@ ng\:form {
 	<script src="js/common/page.js"></script>
 	<script>
 		$(function() {
-			createPaging(".board_page","#menu_list > li");
+			createPaging(".board_page", "#menu_list > li");
 		})
 	</script>
 </body>

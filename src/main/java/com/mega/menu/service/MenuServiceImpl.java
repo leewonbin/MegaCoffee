@@ -35,5 +35,10 @@ public class MenuServiceImpl implements MenuService {
 //    public List<AllergenDto> getAllergen(int menu_id) throws Exception {
 //        return menuMapper.getAllergen(menu_id);
 //    }
+	
+	@Override
+    public List<MenuDto> getMenuByCategory(Integer categoryId, Integer typeId) {
+        return menuMapper.getMenuByCategory(categoryId, typeId);
+    }
 
 }
