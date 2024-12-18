@@ -4,7 +4,8 @@
 	<insert id="saveBoard" parameterType="com.mega.board.dto.BoardDto">
 		INSERT INTO BOARD (BOARD_ID,TITLE,CONTENT,SEPARATION,UPLOAD_AT,DELETE_AT,DEL_YN,HITS,ADMIN_NUM,CATEGORY_ID)
 		VALUES(BOARD_NUM.NEXTVAL,#{title},#{content},#{separation},SYSDATE,#{deleteAt},#{delYN},#{hits},#{admin_num},#{category_id})
-	</insert>	
+	</insert>
+		
 	 <select id="boardList" resultType="com.mega.board.dto.BoardDto">
     	SELECT * FROM BOARD WHERE DEL_YN = 'N'
 	</select>

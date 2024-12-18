@@ -648,16 +648,26 @@
 										</thead>
 										<tbody>
 										<!-- 게시물 리스트 반복문 -->
-								<%--        <c:forEach var="board" items="${boardList}">
+								        <c:forEach var="board" items="${boardList}">
 								                <tr>
-								                    <td>${board.boardId}</td>  <!-- 작성자 -->
-								                    <td><a href="${path}/detail?id=${board.boardId}">${board.title}</a></td>
-								                    <td>${board.writer}</td>  <!-- 작성자 -->
-								                    <td>${board.uploadAT}</td>  <!-- 작성일 -->
-								                    <td>${board.hits }</td>  <!-- 조회수 -->
+								                    <td class=board_pc>${board.boardId}</td>  <!-- 작성자 -->
+								                    <td>
+									                    <div class="text_wrap">								                    
+															<div class="text">
+															<a href="${path}/detail?id=${board.boardId}">
+																  <em>
+																	${board.title}
+																  </em>
+															  </a>
+															</div>
+														</div>		
+								                    </td>
+								                    <td class=board_pc>${board.writer}</td>  <!-- 작성자 -->
+								                    <td>${board.uploadAt}</td>  <!-- 작성일 -->
+								                    <td class=board_pc>${board.hits }</td>  <!-- 조회수 -->
 								                </tr>
 								            </c:forEach>
- --%>												<tr>
+ 												<tr>
 													<td class="board_pc">공지</td> <!-- 번호 및 공지 -->
 													<td>
 														<div class="text_wrap">

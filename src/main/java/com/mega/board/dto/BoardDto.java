@@ -6,7 +6,7 @@ public class BoardDto {
 	private int boardId;
 	private String title;
 	private String content;
-	//private String writer;
+	private String writer;
 	private String separation;
 	private LocalDate uploadAt;
 	private LocalDate deleteAt;
@@ -20,7 +20,7 @@ public class BoardDto {
 	}
 	
 	public BoardDto(int boardId, String title, String content, String separation, LocalDate uploadAt,
-			LocalDate deleteAt, String delYN, int hits, int admin_num, int category_id) {
+			LocalDate deleteAt, String delYN, int hits, int admin_num, int category_id,String writer) {
 		super();
 		this.boardId = boardId;
 		this.title = title;
@@ -32,6 +32,7 @@ public class BoardDto {
 		this.hits = hits;
 		this.admin_num = admin_num;
 		this.category_id = category_id;
+		this.writer = writer;
 	}
 
 	public int getBoardId() {
@@ -93,6 +94,14 @@ public class BoardDto {
 	}
 	public void setCategory_id(int category_id) {
 		this.category_id = category_id;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 	
 	

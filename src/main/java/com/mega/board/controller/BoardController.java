@@ -38,13 +38,13 @@ public class BoardController {
 		pageDto = new PageDto(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging", pageDto);
 		model.addAttribute("boardList",boardService.boardList(pageDto));
-		return "board";
+		return "board/board";
 	}
 	
 	//게시글 작성 페이지 이동
 	@GetMapping("/boardwrite")
 	public String boardWrite() {
-		return "boardwrite";
+		return "board/boardwrite";
 	}
 	
 	//게시글 작성 
