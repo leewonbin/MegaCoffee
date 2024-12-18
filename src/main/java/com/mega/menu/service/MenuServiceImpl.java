@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mega.menu.dto.AllergenDto;
 import com.mega.menu.dto.MenuDto;
-import com.mega.menu.dto.MenuInfoDto;
 import com.mega.menu.dto.NutrientDto;
 import com.mega.menu.mapper.MenuMapper;
 
@@ -25,7 +25,6 @@ public class MenuServiceImpl implements MenuService {
 	public MenuDto menuRead(int menu_id) throws Exception {
 		return menuMapper.menuRead(menu_id);
 	}
-
 
 	@Override
 	public NutrientDto getNutrient(int menu_id) throws Exception {

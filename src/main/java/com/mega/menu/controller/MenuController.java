@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mega.menu.dto.AllergenDto;
-import com.mega.menu.dto.MenuInfoDto;
 import com.mega.menu.dto.MenuDto;
+import com.mega.menu.dto.MenuInfoDto;
+import com.mega.menu.dto.NutrientDto;
 import com.mega.menu.service.MenuService;
 
 @Controller
