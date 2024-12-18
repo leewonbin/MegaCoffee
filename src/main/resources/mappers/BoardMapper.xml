@@ -2,13 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mega.board.mappers.BoardMapper">
 	<insert id="saveBoard" parameterType="com.mega.board.dto.BoardDto">
-		INSERT INTO BOARD (BOARD_ID,TITLE,CONTENT,SEPARATION,UPLOAD_AT,DELETE_AT,DEL_YN,HITS,ADMIN_NUM,CATEGORY_ID)
-		VALUES(BOARD_NUM.NEXTVAL,#{title},#{content},#{separation},SYSDATE,#{deleteAt},#{delYN},#{hits},#{admin_num},#{category_id})
-	</insert>
-		
-	 <select id="boardList" resultType="com.mega.board.dto.BoardDto">
-    	SELECT * FROM BOARD WHERE DEL_YN = 'N'
-	</select>
+		INSERT INTO BOARD (BOARD_ID,TITLE,CONTENT,SEPARATION,WRITER,UPLOAD_AT,DELETE_AT,DEL_YN,HITS,ADMIN_NUM,CATEGORY_ID)
+		VALUES(BOARD_NUM.NEXTVAL,#{title},#{content},#{separation},#{writer},SYSDATE,#{delete_at},#{del_yn},#{hits},#{admin_num},#{category_id})
+	</insert>		
 	
 	<!-- 게시글 갯수 -->
 	 <select id="countBoard" resultType="int">
@@ -16,23 +12,46 @@
     </select>
     
     <!-- 게시글 리스트 조회(페이징 처리 후) -->
-     <!-- <select id="boardList" resultType="com.mega.board.dto.BoardDto">
+      <select id="boardList" resultType="com.mega.board.dto.BoardDto">
     SELECT * FROM (
         SELECT 
-            w.BOARD_ID, 
-            w.TITLE, 
-            w.CONTENT,  
-            w.USER_ID, 
-            w.UPLOAD_AT, 
-            m.NICKNAME AS writer,
-            (SELECT COUNT(*) 
-             FROM REPLY r 
-             WHERE r.WRITE_ID = w.WRITE_ID) AS replyCount,
-            ROW_NUMBER() OVER (ORDER BY w.UPLOAD_AT DESC) AS RNM 
-        FROM WRITE w 
-        JOIN MEMBER m ON w.USER_ID = m.USER_ID 
-        WHERE w.DEL_YN = 'N'
+            b.BOARD_ID, 
+            b.TITLE, 
+            b.CONTENT,  
+            b.ADMIN_NUM , 
+            b.UPLOAD_AT, 
+            b.HITS,
+            a.ADMIN_NAME AS writer,
+            ROW_NUMBER() OVER (ORDER BY b.UPLOAD_AT DESC) AS RNM 
+        FROM BOARD b 
+        JOIN ADMIN a ON a.ADMIN_NUM = b.ADMIN_NUM 
+        WHERE b.DEL_YN = 'N'
     ) t
     WHERE RNM BETWEEN #{start} AND #{end}
-    </select> -->
+    </select> 
+    
+    <!-- 게시글 상세 -->
+    <select id="boardDetail" parameterType="int" resultType="com.mega.board.dto.BoardDto">
+    SELECT * FROM(
+    	SELECT 
+	    	b.ADMIN_NUM,
+	    	b.TITLE, 
+	    	b.CONTENT, 
+	    	b.BOARD_ID,
+	    	b.SEPARATION,
+	    	b.UPLOAD_AT,
+	    	b.HITS, 
+	    	b.CATEGORY_ID,
+	    	a.ADMIN_NAME AS writer
+    	FROM BOARD b 
+        JOIN ADMIN a ON a.ADMIN_NUM = b.ADMIN_NUM    	 
+    ) t
+    WHERE BOARD_ID = #{BOARD_ID}      
+    </select>
+    
+    <update id="boardHit" parameterType="int">
+    	UPDATE BOARD SET
+    	HITS = HITS+1
+    	WHERE BOARD_ID = #{BOARD_ID}
+    </update>
 </mapper>

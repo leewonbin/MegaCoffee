@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mega.menu.dto.AllergenDto;
+import com.mega.menu.dto.MenuInfoDto;
 import com.mega.menu.dto.MenuDto;
 import com.mega.menu.service.MenuService;
 
@@ -32,27 +34,34 @@ public class MenuController {
 //		return "menu";
 //	}
 
+//	@ResponseBody
+//	@GetMapping("/read")
+//	public MenuDto menuRead(@RequestParam int menu_id) throws Exception {
+//	    return menuService.menuRead(menu_id);
+//	}
+
 	@ResponseBody
 	@GetMapping("/read")
-	public MenuDto menuRead(@RequestParam int menu_id) throws Exception {
-		return menuService.menuRead(menu_id);
+	public MenuInfoDto menuInfo(@RequestParam int menu_id) throws Exception {
+		MenuDto menu = menuService.menuRead(menu_id);
+		NutrientDto nutrient = menuService.getNutrient(menu_id);
+		return new MenuInfoDto(menu, nutrient);
 	}
 
 //	@ResponseBody
 //    @GetMapping("/read")
-//    public MenuDetailDto menuDetail(@RequestParam int menu_id) throws Exception {
+//    public MenuInfoDto menuInfo(@RequestParam int menu_id) throws Exception {
 //        MenuDto menu = menuService.menuRead(menu_id);
 //        NutrientDto nutrient = menuService.getNutrient(menu_id);
 //        List<AllergenDto> allergens = menuService.getAllergens(menu_id);
 //
-//        return new MenuDetailDto(menu, nutrient, allergens);
+//        return new MenuInfoDto(menu, nutrient, allergens);
 //    }
-
-	@GetMapping("/main")
+	@GetMapping("/main") // 카테고리 페이지 비동기 전환...통합
 	public String list(Model model) throws Exception {
 		List<MenuDto> menuList = menuService.menuList();
 		System.out.println(menuList.size());
 		model.addAttribute("menuList", menuList);
-		return "menu";
+		return "menu/menu";
 	}
 }
