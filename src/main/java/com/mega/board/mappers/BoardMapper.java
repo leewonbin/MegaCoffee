@@ -14,8 +14,13 @@ public interface BoardMapper {
 	
 	//페이징 처리 게시글 조회
 	public List<BoardDto> boardList(PageDto pageDto);
-	
-	
+		
 	//게시글 총 갯수
 	public int countBoard();
+	
+	//게시글 상세 페이지
+	public BoardDto boardDetail(int boardId);
+	
+	//조회수
+	public void boardHit(int hits);
 }
