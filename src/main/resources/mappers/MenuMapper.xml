@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mega.menu.mapper.MenuMapper">
+
+<!--<select id="menuList" resultType="com.mega.menu.dto.MenuDto">
+select * from menu
+</select>-->
+
+<select id="menuRead" resultType="com.mega.menu.dto.MenuDto">
+<!-- select * from menu where munu_id = #{menu_id} -->
+select m.menu_id, m.menu_title, m.menu_eng_title, m.menu_content, m.menu_ice_hot, m.menu_onesize, c.category_name, a.admin_id 
+from menu m join category c on m.category_id = c.category_id join admin a on m.admin_num = a.admin_num
+where m.menu_id = #{menu_id} and m.menu_del = 'N'
+</select>
+
+
+<select id="menuList" resultType="com.mega.menu.dto.MenuDto">
+select m.menu_id, m.menu_title, m.menu_eng_title, m.menu_content, m.menu_ice_hot, m.menu_onesize, c.category_name, a.admin_id from menu m 
+join category c on m.category_id = c.category_id join admin a on m.admin_num = a.admin_num where m.menu_del = 'N'
+</select>
+
+<!--<select id="menuRead" parameterType="int" resultType="com.mega.menu.dto.MenuDto">
+select m.menu_id, m.menu_title, m.menu_eng_title, m.menu_content, m.menu_ice_hot, m.menu_onesize,
+c.category_name, a.admin_id from menu m join category c on m.category_id = c.category_id
+join admin a on m.admin_num = a.admin_num where m.menu_id = #{menu_id} and m.menu_del = 'N'
+</select>-->
+
+
+<select id="getNutrient" parameterType="int" resultType="com.mega.menu.dto.NutrientDto">
+select nut_id, nut_saturated, nut_sugar, nut_sodium, nut_protein, nut_caffeine, nut_calorie, nut_high_caffeine, nut_size, nut_unit
+from nutrient where menu_id = #{menu_id}
+</select>
+
+<select id="getAllergens" parameterType="int" resultType="com.mega.menu.dto.AllergenDto">
+select a.all_id, a.all_name from allergen a join menu_allergen ma on a.all_id = ma.all_id where ma.menu_id = #{menu_id}
+</select>
+
+</mapper>
