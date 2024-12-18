@@ -21,19 +21,21 @@
 					<th>알레르기 ID</th>
 					<th>알레르기 이름</th>
 				</tr>
-				<tr>
-					<td>1</td>
-					<td>예제 상품 1</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>예제 상품 2</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>예제 상품 3</td>
-				</tr>
+				<c:choose>
+					<c:when test="${allergenList ne null }">
+						<c:forEach items="${allergenList }" var="all">
+							<tr>
+								<td>${all.all_id }</td>
+								<td>${all.all_name }</td>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<p>알레르기 없음</p>
+					</c:otherwise>
+				</c:choose>
 			</table>
+			<button type="button" class="addButton">알레르기 추가</button>
 		</div>
 	</div>
 </body>

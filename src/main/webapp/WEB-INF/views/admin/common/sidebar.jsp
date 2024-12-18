@@ -30,6 +30,7 @@ ul, .menu {
 
 .menu .childrenMenu {
 	/* background-color : #ddd; */
+	
 }
 
 .menu li:hover {
@@ -39,13 +40,12 @@ ul, .menu {
 div.childrenMenu a {
 	margin-left: 15px;
 	text-decoration-line: none;
-	color : black;
+	color: black;
 }
 
 .active {
-	background-color : #FAD000;
+	background-color: #FAD000;
 }
-
 </style>
 </head>
 <body>
@@ -73,10 +73,10 @@ div.childrenMenu a {
 	    console.log("${param.category}")
 	    let cateElement = $('li[data-category="'+"${param.category}"+'"]')
 	    if(cateElement != null) {
-	    let sameMenu = cateElement.closest("div");		// 형제 메뉴 모두 표시
-	    sameMenu.toggle();
-	    sameMenu.prev().addClass("active");
-	    cateElement.addClass("active");
+	  		let sameMenu = cateElement.closest("div");		// 형제 메뉴 모두 표시
+	 	    sameMenu.toggle();
+		    sameMenu.prev().addClass("active");
+		    cateElement.addClass("active");
 	    }
 	})
 	
@@ -86,9 +86,14 @@ div.childrenMenu a {
 	})
 	
 	$(".parentMenu").on("click",function(e) {
-	    console.log(e.target.style.backgroundColor)
-	    e.target.style.backgroundColor = e.target.style.backgroundColor == "" ? "#FAD000": "";
-	    $(e.target).next().slideToggle(300);
+	    let element = $(e.target); 
+	    let toggleColor = element.next().css("display") == "none" ? "white" : "#FAD000";
+	    
+	    element.next().slideToggle();
+	    element.css('background-color',toggleColor);
+	    element.siblings("li.parentMenu").css('background-color',"white");
+	    element.siblings("li.parentMenu").next().hide();
+
 	})
     </script>
 </body>

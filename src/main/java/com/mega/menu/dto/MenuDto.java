@@ -15,7 +15,7 @@ public class MenuDto {
 	private String menu_onesize = "N";
 	private int menu_file_id;
 	private int admin_num;
-	private int category_id; 
+	private int category_id;
 
 	public MenuDto() {
 	}

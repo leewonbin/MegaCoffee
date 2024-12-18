@@ -12,10 +12,10 @@ import com.mega.menu.mapper.MenuMapper;
 
 @Service
 public class MenuServiceImpl implements MenuService {
-	
+
 	@Autowired
 	private MenuMapper menuMapper;
-	
+
 	@Override
 	public List<MenuDto> menuList() throws Exception {
 		return menuMapper.menuList();
@@ -25,15 +25,21 @@ public class MenuServiceImpl implements MenuService {
 	public MenuDto menuRead(int menu_id) throws Exception {
 		return menuMapper.menuRead(menu_id);
 	}
-	
-	@Override
-    public NutrientDto getNutrient(int menu_id) throws Exception {
-        return menuMapper.getNutrient(menu_id);
-    }
 
-    @Override
-    public List<AllergenDto> getAllergens(int menu_id) throws Exception {
-        return menuMapper.getAllergens(menu_id);
-    }
+	@Override
+	public NutrientDto getNutrient(int menu_id) throws Exception {
+		return menuMapper.getNutrient(menu_id);
+	}
+
+	@Override
+	public List<AllergenDto> getAllergens(int menu_id) throws Exception {
+		return menuMapper.getAllergens(menu_id);
+	}
+
+	@Override
+	public List<AllergenDto> getAllegenList() throws Exception {
+		// TODO Auto-generated method stub
+		return menuMapper.getAllegenList();
+	}
 
 }

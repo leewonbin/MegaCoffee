@@ -10,12 +10,14 @@ import com.mega.menu.dto.NutrientDto;
 
 @Mapper
 public interface MenuMapper {
-	
+
 	public List<MenuDto> menuList() throws Exception;
-	
+
 	public MenuDto menuRead(int menu_id) throws Exception;
-	
+
 	public NutrientDto getNutrient(int menu_id) throws Exception;
 
-    public List<AllergenDto> getAllergens(int menu_id) throws Exception;
+	public List<AllergenDto> getAllergens(int menu_id) throws Exception;
+
+	public List<AllergenDto> getAllegenList() throws Exception;
 }

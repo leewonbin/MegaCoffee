@@ -16,7 +16,7 @@ where m.menu_id = #{menu_id} and m.menu_del = 'N'
 
 
 <select id="menuList" resultType="com.mega.menu.dto.MenuDto">
-select m.menu_id, m.menu_title, m.menu_eng_title, m.menu_content, m.menu_ice_hot, m.menu_onesize, c.category_name, a.admin_id from menu m 
+select m.menu_id, m.menu_title, m.menu_eng_title, m.menu_content, m.menu_ice_hot,m.menu_date,m.menu_update, m.menu_onesize, c.category_name, a.admin_id from menu m 
 join category c on m.category_id = c.category_id join admin a on m.admin_num = a.admin_num where m.menu_del = 'N'
 </select>
 
@@ -34,6 +34,10 @@ from nutrient where menu_id = #{menu_id}
 
 <select id="getAllergens" parameterType="int" resultType="com.mega.menu.dto.AllergenDto">
 select a.all_id, a.all_name from allergen a join menu_allergen ma on a.all_id = ma.all_id where ma.menu_id = #{menu_id}
+</select>
+
+<select id="getAllegenList" resultType="com.mega.menu.dto.AllergenDto">
+	select * from allergen
 </select>
 
 </mapper>

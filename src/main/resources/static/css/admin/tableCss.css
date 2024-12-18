@@ -1,13 +1,15 @@
 @charset "UTF-8";
+
 /* 전체 레이아웃 */
-html, body {
+html,
+body {
 	margin: 0;
 	padding: 0;
 	font-family: Arial, sans-serif;
 }
 
 .content {
-	margin-left: 260px; 
+	margin-left: 260px;
 	padding: 20px;
 }
 
@@ -18,7 +20,8 @@ table {
 	text-align: left;
 }
 
-th, td {
+th,
+td {
 	padding: 10px;
 	border: 1px solid #ddd;
 }
@@ -26,4 +29,26 @@ th, td {
 th {
 	background-color: #f4f4f4;
 	font-weight: bold;
+}
+
+.addButton {
+	background-color: black;
+	border: 0;
+	color: white;
+	border-radius: 5px;
+	width: 120px;
+	height: 35px;
+	font-size: 15px;
+	font-weight: bold;
+	margin-top: 15px;
+	float: right;
+}
+
+tr:hover {
+	font-weight: bold;
+}
+
+.addButton:hover {
+	background-color : #FAD000;
+	color : black;
 }
