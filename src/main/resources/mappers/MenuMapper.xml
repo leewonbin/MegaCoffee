@@ -7,24 +7,38 @@
 select * from menu
 </select>-->
 
+<!-- <select id="menuRead" resultType="com.mega.menu.dto.MenuDto"> -->
 <select id="menuRead" resultType="com.mega.menu.dto.MenuDto">
 <!-- select * from menu where munu_id = #{menu_id} -->
-select m.menu_id, m.menu_title, m.menu_eng_title, m.menu_content, m.menu_ice_hot, m.menu_onesize, c.category_name, a.admin_id 
+<!-- select m.menu_id, m.menu_title, m.menu_eng_title, m.menu_content, m.menu_ice_hot, m.menu_onesize, c.category_name, a.admin_id 
 from menu m join category c on m.category_id = c.category_id join admin a on m.admin_num = a.admin_num
-where m.menu_id = #{menu_id} and m.menu_del = 'N'
+where m.menu_id = #{menu_id} and m.menu_del = 'N' -->
+select m.menu_id, m.menu_title, m.menu_eng_title, m.menu_content, m.menu_ice_hot, m.menu_onesize, m.menu_date, n.nut_saturated, 
+n.nut_sugar, n.nut_sodium, n.nut_protein, n.nut_caffeine, n.nut_calorie, n.nut_high_caffeine, n.nut_size, n.nut_unit
+from menu m join nutrient n on m.menu_id = n.menu_id where m.menu_id = #{menu_id} and m.menu_del = 'N'
 </select>
 
-
+<!--
 <select id="menuList" resultType="com.mega.menu.dto.MenuDto">
-select m.menu_id, m.menu_title, m.menu_eng_title, m.menu_content, m.menu_ice_hot, m.menu_onesize, c.category_name, a.admin_id from menu m 
-join category c on m.category_id = c.category_id join admin a on m.admin_num = a.admin_num where m.menu_del = 'N'
+select * from menu where menu_del = 'N'
 </select>
-
-<!--<select id="menuRead" parameterType="int" resultType="com.mega.menu.dto.MenuDto">
-select m.menu_id, m.menu_title, m.menu_eng_title, m.menu_content, m.menu_ice_hot, m.menu_onesize,
-c.category_name, a.admin_id from menu m join category c on m.category_id = c.category_id
-join admin a on m.admin_num = a.admin_num where m.menu_id = #{menu_id} and m.menu_del = 'N'
-</select>-->
+ -->
+<!-- 카테고리 메뉴 항목을 눌렀을때 카테고리별로 상품 출력 -->
+<select id="menuList" resultType="com.mega.menu.dto.MenuDto">
+select m.* from menu m
+<choose>
+<when test = "category_id != null">
+,category c
+where m.category_id = c.category_id
+and
+m.category_id = #{category_id}
+</when>
+<otherwise>
+where 1=1
+</otherwise>
+</choose>
+and m.menu_del = 'N'
+</select>
 
 
 <select id="getNutrient" parameterType="int" resultType="com.mega.menu.dto.NutrientDto">
@@ -32,8 +46,8 @@ select nut_id, nut_saturated, nut_sugar, nut_sodium, nut_protein, nut_caffeine, 
 from nutrient where menu_id = #{menu_id}
 </select>
 
-<select id="getAllergens" parameterType="int" resultType="com.mega.menu.dto.AllergenDto">
+<!-- <select id="getAllergens" parameterType="int" resultType="com.mega.menu.dto.AllergenDto">
 select a.all_id, a.all_name from allergen a join menu_allergen ma on a.all_id = ma.all_id where ma.menu_id = #{menu_id}
-</select>
+</select> -->
 
 </mapper>

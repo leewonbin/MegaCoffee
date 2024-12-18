@@ -526,7 +526,7 @@ ng\:form {
 						<div class="cont_text_wrap text_center">
 							<div class="cont_text_info">※메뉴 이미지는 연출컷이라 실물과 다를 수 있습니다.</div>
 						</div>
-						<div class="cont_text_wrap list_checkbox_wrap">
+						<div class="cont_text_wrap list_checkbox_wrap">		<!-- 메뉴소개로 들어가면 비활성화 시켜야됨111111111111111111111111111111111111111 -->
 							<div class="cont_text cont_text_title">
 								<b>분류보기</b>
 							</div>
@@ -719,15 +719,15 @@ ng\:form {
 																	<div class="close"></div>
 																</div>
 															</div>
-															 <%-- <div class="cont_text">
+															<%-- <div class="cont_text">
 																<div class="cont_text_inner">${menu.menu_size}</div>
 																<div class="cont_text_inner">${menu.menu_calories}</div>
 															</div>
-															<div class="cont_text">${menu.menu_content}</div> 
-															<div class="cont_text cont_text_info">알레르기 성분 :
-																${menu.menu_allergen}</div>
-														</div>
-														<div
+															<div class="cont_text">${menu.menu_content}</div>
+															<div class="cont_text cont_text_info">알레르기 성분 :</div>
+															<!--${menu.menu_allergen}-->
+														</div>--%>
+														<%-- <div
 															class="cont_list cont_list2 cont_list_small cont_list_small2">
 															<ul>
 																<li>포화지방 ${menu.menu_saturated}g</li>
@@ -736,7 +736,7 @@ ng\:form {
 																<li>단백질 ${menu.menu_protein}g</li>
 																<li>카페인 ${menu.menu_caffeine}mg</li>
 															</ul>
-														</div> --%>
+														</div>  --%>
 													</div></li>
 											</c:forEach>
 										</ul>
@@ -746,27 +746,12 @@ ng\:form {
 									</div>
 									<div class="board_page_wrap">
 										<div class="board_page">
-											<ul id="board_page">
-												<li class="board_page_first"><a><span>처음</span></a></li>
-												<li class="board_page_check"><a><span>1</span></a></li>
-												<li><a class="board_page_link" data-page="2"><span>2</span></a></li>
-												<li><a class="board_page_link" data-page="3"><span>3</span></a></li>
-												<li><a class="board_page_link" data-page="4"><span>4</span></a></li>
-												<li><a class="board_page_next board_page_link"
-													data-page="2"><span>다음</span></a></li>
-												<li><a class="board_page_last board_page_link"
-													data-page="8"><span>마지막</span></a></li>
-											</ul>
+										
 										</div>
 									</div>
 								</ul>
 							</div>
-							<div class="board_page_wrap">
-								<div class="board_page">
-									<ul id="board_page">
-									</ul>
-								</div>
-							</div>
+
 						</div>
 					</div>
 				</div>
@@ -774,25 +759,14 @@ ng\:form {
 		</div>
 		<script>
 			var category_change = "";
-			$(document).on(
-					"click",
-					"[name='list_checkbox_all']",
-					function() {
+			$(document).on("click","[name='list_checkbox_all']",function() {
 						if ($(this).prop("checked") == true) {
-							$(this).parents(".list_checkbox_wrap").find(
-									".list_checkbox").find(":checkbox").prop(
-									"checked", false).change();
+							$(this).parents(".list_checkbox_wrap").find(".list_checkbox").find(":checkbox").prop("checked", false).change();
 						}
 						menu();
 					});
-			$(document)
-					.on(
-							"click",
-							"[name='list_checkbox']",
-							function() {
-								$(this).parents(".list_checkbox_wrap").find(
-										"[name='list_checkbox_all']").prop(
-										"checked", false).change();
+			$(document).on("click","[name='list_checkbox']",function() {
+								$(this).parents(".list_checkbox_wrap").find("[name='list_checkbox_all']").prop("checked", false).change();
 								if ($(this).parents(".list_checkbox_wrap")
 										.find("[name='list_checkbox']").length == $(
 										this).parents(".list_checkbox").find(
@@ -1075,5 +1049,11 @@ ng\:form {
 		});
 	</script>
 	<script src="js/menu.js"></script>
+	<script src="js/common/page.js"></script>
+	<script>
+		$(function() {
+			createPaging(".board_page","#menu_list > li");
+		})
+	</script>
 </body>
 </html>
