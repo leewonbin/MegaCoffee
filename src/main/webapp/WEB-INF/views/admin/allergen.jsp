@@ -13,33 +13,25 @@
 		<%@include file="./common/sidebar.jsp"%>
 	</nav>
 	<div class="content">
-		<h2 id="content-title">상품 관리</h2>
+		<h2 id="content-title">알레르기 관리</h2>
 		<hr>
 		<div id="content-table">
 			<table>
 				<tr>
-					<th>상품 ID</th>
-					<th>상품 이름</th>
-					<th>가격</th>
-					<th>재고</th>
+					<th>알레르기 ID</th>
+					<th>알레르기 이름</th>
 				</tr>
 				<tr>
 					<td>1</td>
 					<td>예제 상품 1</td>
-					<td>10,000원</td>
-					<td>50개</td>
 				</tr>
 				<tr>
 					<td>2</td>
 					<td>예제 상품 2</td>
-					<td>20,000원</td>
-					<td>30개</td>
 				</tr>
 				<tr>
 					<td>3</td>
 					<td>예제 상품 3</td>
-					<td>15,000원</td>
-					<td>20개</td>
 				</tr>
 			</table>
 		</div>

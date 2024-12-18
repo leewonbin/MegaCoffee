@@ -29,13 +29,8 @@ public class AdminController {
 	}
 
 	@GetMapping("/moveMenu")
-	public String moveMenu() throws Exception {
-		return "/admin/menuList";
-	}
-
-	@GetMapping("/moveBoard")
-	public String moveBoard() throws Exception {
-		return "/admin/boardList";
+	public String moveMenu(@RequestParam("category") String category) throws Exception {
+		return "/admin/" + category;
 	}
 
 	@PostMapping("/login")

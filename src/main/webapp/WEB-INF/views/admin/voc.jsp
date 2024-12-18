@@ -13,15 +13,18 @@
 		<%@include file="./common/sidebar.jsp"%>
 	</nav>
 	<div class="content">
-		<h2 id="content-title">상품 관리</h2>
+		<h2 id="content-title">고객 소리 관리</h2>
 		<hr>
 		<div id="content-table">
 			<table>
 				<tr>
 					<th>상품 ID</th>
-					<th>상품 이름</th>
-					<th>가격</th>
-					<th>재고</th>
+					<th>상품 이름(K)</th>
+					<th>상품 이름(E)</th>
+					<th>카테고리</th>
+					<th>생성 일자</th>
+					<th>수정 일자</th>
+					<th>활성 여부</th>
 				</tr>
 				<tr>
 					<td>1</td>
