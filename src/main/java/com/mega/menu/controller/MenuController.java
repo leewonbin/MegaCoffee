@@ -20,10 +20,10 @@ public class MenuController {
 	@Autowired
 	private MenuService menuService;
 
-//	@GetMapping("/main")
-//	public String main() {
-//		return "menu";
-//	}
+	@GetMapping("/")
+	public String main() {
+		return "redirect:/main";
+	}
 
 //	@GetMapping("/read")
 //	public String menuRead(@RequestParam int menu_id, Model model) throws Exception {

@@ -28,7 +28,7 @@
 				<c:choose>
 					<c:when test="${menuList ne null }">
 						<c:forEach items="${menuList }" var="menu">
-							<tr>
+							<tr onclick='location.href="/admin/productDetail?menu_id=${menu.menu_id }"'>
 								<td>${menu.menu_id }</td>
 								<td>${menu.menu_title }</td>
 								<td>${menu.menu_eng_title }</td>
