@@ -3,10 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-<style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}
-</style>
+<html lang="ko"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
 	<title>메가MGC커피</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -53,32 +50,32 @@
 	<link rel="stylesheet" type="text/css" href="https://img.79plus.co.kr/megahp/common/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" type="text/css" href="/common/css/simple-line-icons.min.css">
-	<link rel="stylesheet" type="text/css" href="/common/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/common/css/style.css?ver=202404010905">
 	<link rel="stylesheet" type="text/css" href="https://img.79plus.co.kr/megahp/common/css/animate.css">
-	<link rel="stylesheet" type="text/css" href="/common/css/aos.css">
+	<link rel="stylesheet" type="text/css" href="/common/css/aos.css?ver=202307100845">
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
 	<script type="text/javascript" src="https://img.79plus.co.kr/megahp/common/js/bootstrap.js"></script>
 	<script type="text/javascript" src="https://img.79plus.co.kr/megahp/common/js/jquery.flexslider.js"></script>
 	<script type="text/javascript" src="https://img.79plus.co.kr/megahp/common/js/jquery.bxslider.js"></script>
-	<script type="text/javascript" src="/common/js/common.js"></script>
+	<script type="text/javascript" src="/common/js/common.js?ver=202307100845"></script>
 
 	<!-- daterangepicker -->
 	<link rel="stylesheet" type="text/css" href="/common/css/daterangepicker.min.css">
 	<script type="text/javascript" src="https://img.79plus.co.kr/megahp/common/js/angular.min.js"></script>
 	<script type="text/javascript" src="https://img.79plus.co.kr/megahp/common/js/angular-messages.min.js"></script>
 	<script type="text/javascript" src="https://img.79plus.co.kr/megahp/common/js/moment.min.js"></script>
-	<script type="text/javascript" src="/common/js/daterangepicker.min.js"></script>
+	<script type="text/javascript" src="/common/js/daterangepicker.min.js?ver=202307100845"></script>
 	<script type="text/javascript" src="/common/js/angular-daterangepicker.min.js"></script>
 	<!-- datemdpicker -->
-	<link rel="stylesheet" type="text/css" href="/common/css/mdtimepicker.css">
-	<script type="text/javascript" src="/common/js/mdtimepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="/common/css/mdtimepicker.css?ver=202307100845">
+	<script type="text/javascript" src="/common/js/mdtimepicker.js?ver=202307100845"></script>
 
 	<!-- fullPage -->
 	<script type="text/javascript" src="https://img.79plus.co.kr/megahp/common/js/jquery.fullPage.js"></script>
 
 	<!-- swiper -->
-	<link rel="stylesheet" type="text/css" href="/common/css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="/common/css/swiper.min.css?ver=202307100845">
 	<script type="text/javascript" src="https://img.79plus.co.kr/megahp/common/js/swiper.min.js"></script>
 
 	<script>
@@ -190,69 +187,60 @@
 		<div class="nav_wrap">
 			<div class="nav">
 				<ul>
-					<li>
-						<a href="/customer/?db_category=2">
-						   <div class="table0">
-							 <div class="cell">
-								<div class="cont_text">
-								    창업상담										
-								</div>
+											<li>
+																<a href="/customer/?db_category=2">
+															<div class="table0">
+									<div class="cell">
+										<div class="cont_text">
+											창업상담										</div>
 										<div class="cont_text cont_text_title robo">
-												1588-<br>0656										
-										</div>
+											1588-<br>0656										</div>
 									</div>
 								</div>
 							</a>
 						</li>
-						<li>
-							<a href="/customer/?db_category=7">
-								<div class="table0">
+											<li>
+																<a href="/customer/?db_category=7">
+															<div class="table0">
 									<div class="cell">
 										<div class="cont_text">
-											가맹점										
-										</div>
+											가맹점										</div>
 										<div class="cont_text cont_text_title robo">
-											인수 상담										
-										</div>
+											인수 상담										</div>
 									</div>
 								</div>
 							</a>
 						</li>
-						<li>
-							<a href="/news/voc/">
-									<div class="table0">
+											<li>
+																<a href="/news/voc/">
+															<div class="table0">
 									<div class="cell">
 										<div class="cont_text">
-											고객센터										
-										</div>
+											고객센터										</div>
 										<div class="cont_text cont_text_title robo">
-											문의/접수										
-										</div>
+											문의/접수										</div>
 									</div>
 								</div>
 							</a>
 						</li>
-						<li>
-							<a href="/news/voc/">
-								<div class="table0">
+											<li>
+																<a href="/news/voc/">
+															<div class="table0">
 									<div class="cell">
 										<div class="cont_text">
-											고객센터										
-										</div>
+											고객센터										</div>
 										<div class="cont_text cont_text_title robo">
-											1588-<br>8298										
-										</div>
+											1588-<br>8298										</div>
 									</div>
 								</div>
 							</a>
 						</li>
-						<li>
-							<a href="/store/find">
-								<div class="table0">
+											<li>
+																<a href="/store/find">
+															<div class="table0">
 									<div class="cell">
 										<div class="cont_text">
-											(24.12.12)누적										
-										</div>
+											(24.12.12)누적										</div>
 										<div class="cont_text cont_text_title robo">
 											3,387호<br>
 오픈										</div>
@@ -260,7 +248,7 @@
 								</div>
 							</a>
 						</li>
-					</ul>
+									</ul>
 			</div>
 			<button type="button" onclick="quick(this);" class="nav_quick">
 				<div class="table0">
@@ -291,97 +279,80 @@
 					</div>
 					<div class="head_menu">
 						<ul>
-							<li class="">
-									<a href="/about/brand/" class="pc">
-										메가 스토리										
-									</a>
-									<a class="m head_menu_down">
-										메가 스토리										
-									</a>
-										<div class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1" style="display: none; height: 120px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
+							<li>
+																		<a href="/about/brand/" class="pc">
+											메가 스토리										</a>
+										<a class="m head_menu_down">
+											메가 스토리										</a>
+																<div class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1" style="display: none; height: 120px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
 									<ul>
-										<li>
-											<a href="/about/brand/">
-												브랜드													
-											</a>
-										</li>
-										<li>
-											<a href="/about/bi/">
-												BI													
-											</a>
-										</li>
-										<li>
-											<a href="/about/map/">
-												오시는 길													
-											</a>
-										</li>		
-									</ul>
-								</div>
-							</li>
-							<li class="">
-								<a href="/menu/" class="pc">
-										메뉴소개										
-								</a>
-									<a class="m head_menu_down">
-											메뉴소개										
-									</a>
-									<div class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1" style="display: none; height: 120px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
-										<ul>
-											<li>
-												<a href="/menu/?menu_category1=1&amp;menu_category2=1">
-														음료													
-												</a>
-											</li>
-											<li>
-												<a href="/menu/?menu_category1=2&amp;menu_category2=2">
-														푸드													
-												</a>
-											</li>
-											<li>
-												<a href="/menu/?menu_category1=3&amp;menu_category2=3">
-														상품													
-												</a>
-											</li>
-										</ul>
-								</div>
-							</li>
-							<li class="">
-								<a href="/store/find/" class="pc">
-									매장										
-								</a>
-								<a class="m head_menu_down">
-									매장										
-								</a>
-									<div class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1" style="display: none; height: 60px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
-									<ul>
-										<li>
-											<a href="/store/find/">
-												매장찾기													
-											</a>
-										</li>																													
-									</ul>
+																						<li>
+													<a href="/about/brand/">
+														브랜드													</a>
+												</li>
+																						<li>
+													<a href="/about/bi/">
+														BI													</a>
+												</li>
+																						<li>
+													<a href="/about/map/">
+														오시는 길													</a>
+												</li>
+																													</ul>
 								</div>
 							</li>
 							<li>
-								<a href="/startup/cost" class="pc">
-										창업안내										
-								</a>
-								<a class="m head_menu_down">
-										창업안내										
-								</a>
-									<div class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1" style="display: none; height: 181px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
+																		<a href="/menu/" class="pc">
+											메뉴소개										</a>
+										<a class="m head_menu_down">
+											메뉴소개										</a>
+																<div class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1" style="display: none; height: 120px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
 									<ul>
-										<li>
-											<a href="/startup/cost/">
-												개설비용												
-											</a>
-										</li>
-										<li>
-											<a href="/startup/interior/">
-												인테리어												
-											</a>
-										</li>
-										<li>
+																						<li>
+													<a href="/menu/?menu_category1=1&amp;menu_category2=1">
+														음료													</a>
+												</li>
+																						<li>
+													<a href="/menu/?menu_category1=2&amp;menu_category2=2">
+														푸드													</a>
+												</li>
+																						<li>
+													<a href="/menu/?menu_category1=3&amp;menu_category2=3">
+														상품													</a>
+												</li>
+																																							</ul>
+								</div>
+							</li>
+							<li>
+																		<a href="/store/find/" class="pc">
+											매장										</a>
+										<a class="m head_menu_down">
+											매장										</a>
+																<div class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1" style="display: none; height: 60px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
+									<ul>
+																						<li>
+													<a href="/store/find/">
+														매장찾기													</a>
+												</li>
+																													</ul>
+								</div>
+							</li>
+							<li class="">
+																		<a href="/startup/cost" class="pc">
+											창업안내										</a>
+										<a class="m head_menu_down">
+											창업안내										</a>
+																<div class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1" style="display: none; height: 181px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
+									<ul>
+																					<li>
+												<a href="/startup/cost/">
+													개설비용												</a>
+											</li>
+																				<li>
+												<a href="/startup/interior/">
+													인테리어												</a>
+											</li>
+																			<li>
 											<a href="/customer/?db_category=2">
 												창업문의
 											</a>
@@ -391,61 +362,51 @@
 												가맹점 인수
 											</a>
 										</li>
-										<li>
-											<a href="/bbs/?bbs_category=7">
-												창업뉴스													
-											</a>
-										</li>
-									</ul>
+																						<li>
+													<a href="/bbs/?bbs_category=7">
+														창업뉴스													</a>
+												</li>
+																			</ul>
 								</div>
 							</li>
 							<li class="">
-									<a href="/bbs/?bbs_category=4" class="pc">
-										메가소식										
-									</a>
-									<a class="m head_menu_down">
-										메가소식										
-									</a>
-										<div class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1" style="display: none; height: 151px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
+																		<a href="/bbs/?bbs_category=4" class="pc">
+											메가소식										</a>
+										<a class="m head_menu_down">
+											메가소식										</a>
+																<div class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1" style="display: none; height: 151px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
 									<ul>
-										<li>
-											<a href="/bbs/?bbs_category=1">
-												공지사항												
-											</a>
-										</li>
-										<li>
-											<a href="/bbs/?bbs_category=3">
-												이벤트											
-											</a>
-										</li>
-										<li>
-											<a href="/bbs/?bbs_category=4">
-												FAQ												
-											</a>
-										</li>
-										<li>
-											<a href="/news/voc/">
-												고객의 소리													
-											</a>
-										</li>
-									</ul>
+																					<li>
+												<a href="/bbs/?bbs_category=1">
+													공지사항												</a>
+											</li>
+																					<li>
+												<a href="/bbs/?bbs_category=3">
+													이벤트												</a>
+											</li>
+																					<li>
+												<a href="/bbs/?bbs_category=4">
+													FAQ												</a>
+											</li>
+																																<li>
+													<a href="/news/voc/">
+														고객의 소리													</a>
+												</li>
+																			</ul>
 								</div>
 							</li>
 							<li class="">
-									<a href="/recruit/job/" class="pc">
-										채용										
-									</a>
-									<a class="m head_menu_down">
-										채용										
-									</a>
-										<div class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1" style="display: none; height: 60px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
+																		<a href="/recruit/job/" class="pc">
+											채용										</a>
+										<a class="m head_menu_down">
+											채용										</a>
+																<div class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1" style="display: none; height: 60px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
 									<ul>
-										<li>
-											<a href="/recruit/job/">
-													채용안내													
-											</a>
-										</li>
-									</ul>
+																						<li>
+													<a href="/recruit/job/">
+														채용안내													</a>
+												</li>
+																													</ul>
 								</div>
 							</li>
 						</ul>
@@ -489,14 +450,7 @@
 					</div>
 				</div>
 			</div>
-		</div>	
-	</div>
-		<script>
-		$(document).ready(function(){
-								$(".cont_tab ul li").eq(0).addClass("check");
-					})
-	</script>
-	<div class="cont_wrap bbs_wrap">
+		</div>	<div class="cont_wrap best_wrap">
 		<div class="cont">
 			<div class="cont_box cont_head">
 				<div class="cont_boxs">
@@ -523,182 +477,61 @@
 				</div>
 			</div>
 			<div class="cont_box brand01">
-				<div class="cont_boxs text_center">
-					<div class="cont_title_wrap">
-														<div class="cont_title">
-									<b>자주하는 질문
-</b>
-								</div>
-											</div>
-												<div class="cont_text_wrap">
-								<div class="cont_text">
-									궁금하신 내용을 검색해 주세요.
-								</div>
-							</div>
-										<div class="cont_text_wrap">
-														<div class="cont_tab">
-									<ul>
-										<li class="check">
-											<a href="/">
-												전체
-											</a>
-										</li>
-										<li class="cont_tab5">
-											<a href="?bbs_category=4&amp;bbs_detail_category=1">
-												가맹문의												
-											</a>
-										</li>
-										<li class="cont_tab6">
-											<a href="?bbs_category=4&amp;bbs_detail_category=6">
-												매장정보												
-											</a>
-										</li>
-										<li class="cont_tab7">
-											<a href="?bbs_category=4&amp;bbs_detail_category=7">
-												스탬프												
-											</a>
-										</li>
-										<li class="cont_tab8">
-											<a href="?bbs_category=4&amp;bbs_detail_category=8">
-												무료쿠폰												
-											</a>
-										</li>
-										<li class="cont_tab9">
-											<a href="?bbs_category=4&amp;bbs_detail_category=9">
-												모바일쿠폰												
-											</a>
-										</li>
-										<li class="cont_tab10">
-											<a href="?bbs_category=4&amp;bbs_detail_category=10">
-												고객센터												
-											</a>
-										</li>
-									</ul>
-								</div>
-												<div class="cont_list cont_list_content cont_list_content_search">
-							<ul>
-								<li>
-									<div class="board_search_wrap">
-										<div class="board_search">
-											<form>
-												<input type="hidden" name="bbs_category" id="bbs_category" value="4">
-												<input type="hidden" name="bbs_detail_category" id="bbs_detail_category" value="">
-												<ul>
-													<li class="board_search_select">
-														<div class="input_select_wrap input_wrap2">
-															<select name="bbs_search_category" id="bbs_search_category">
-																<option value="bbs_tbl_title">제목</option>
-																<option value="bbs_tbl_content">내용</option>
-																<option value="bbs_tbl_name">작성자</option>
-															</select>
-														</div>
-													</li>
-													<li>
-														<div class="input_text_wrap input_wrap2">
-															<label>
-																<input type="text" name="bbs_search" id="bbs_search" class="" value="" placeholder="검색어를 입력하세요" required="required">
-															</label>
-														</div>
-													</li>
-													<li class="board_search_btn">
-														<div class="input_btn_wrap input_wrap2">
-															<input type="submit" value="검색" class="btn btn1" id="">
-														</div>
-													</li>
-												</ul>
-											</form>
-											
-										</div>
-									</div>
-								</li>
-								<li style="text-align:right">
-								<a href="/boardwrite"><button
-                      			type="button"
-                      			class="input_btn_wrap input_wrap2"
-                      			style="background-color: #FDD000; color:black; font-weight: 600;"                    
-                    			>
-			                      게시글 작성
-			                    </button></a>
-								</li>
-							</ul>
-						</div>
-					</div>
+				<div class="cont_boxs">
 					<div class="cont_text_wrap">
-							<div class="board_list">
-									<table>
-										<colgroup>
-											<col class="board_w75 board_pc">
-											<col>
-											<col class="board_w150 board_pc">
-											<col class="board_w100 board_pc">
-											<col class="board_w100 board_pc">
-										</colgroup>
-										<thead>
-											<tr>
-												<th class="board_pc">
-													번호
-												</th>
-												<th>
-													제목
-												</th>
-												<th class="board_pc">
-													글쓴이
-												</th>
-												<th>
-													날짜
-												</th>
-												<th class="board_pc">
-													조회
-												</th>
-											</tr>
-										</thead>
-										<tbody>
-										<!-- 게시물 리스트 반복문 -->
-								        <c:forEach var="board" items="${boardList}">
-								                <tr>
-								                    <!-- 번호 -->
-								                    <td class=board_pc>${board.boardId}</td>  
-								                    <td>
-									                    <div class="text_wrap">								                    
-															<div class="text">
-															<a href="${path}/boardDetail?id=${board.boardId}">
-																  <em>
-																	${board.title}
-																  </em>
-															  </a>
-															</div>
-														</div>		
-								                    </td>
-								                    <!-- 작성자 -->
-								                    <td class=board_pc>${board.writer}</td>  
-								                    <!-- 작성일 -->
-								                    <td>${board.upload_at}</td>   
-								                     <!-- 조회수 -->
-								                    <td class=board_pc>${board.hits}</td> 
-								                </tr>
-								         </c:forEach> 												
-										</tbody>											
-									</table>
+						<div class="board_detail">
+							<div class="board_detail_title">
+								<h1>
+									${boardDetail.title}<br>
+								</h1>
+								<div class="board_detail_title_info">
+									<div class="float_right">
+										<span>
+											구분
+											${boardDetail.separation}										</span>
+										<span>
+											작성자 ${boardDetail.writer}										</span>
+										<span>
+											${boardDetail.upload_at}										</span>
+										<span>
+											${boardDetail.hits}										</span>
+									</div>
 								</div>
-								
-						<div class="col-sm-12 col-md-7">
-							<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-								<ul class="pagination justify-content-end">
-										<li class="paginate_button page-item previous <c:if test='${paging.startPage == 1}'>disabled</c:if>" id="dataTable_previous">
-											<a href="/tables?nowPage=${paging.startPage-6}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
-										</li>
-									<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p"> <!--  -->
-										<li class="paginate_button page-item <c:if test='${p == paging.nowPage }'>active</c:if>"><a href="/tables?nowPage=${p}&cntPerPage=${paging.cntPerPage}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">${p}</a></li>
-										
-									</c:forEach>
-									<li class="paginate_button page-item next <c:if test='${paging.endPage>=paging.lastPage }'>disabled</c:if>" id="dataTable_next"><a href="/tables?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
-								</ul>
 							</div>
-						</div>
+							<div class="board_detail_text_wrap">
+																<div class="board_detail_text">
+									${boardDetail.content}								</div>
+							</div>
+							<div class="board_detail_prev_next">
+								<ul class="prev-next-box">
+																			<li>
+											<span>다음글</span>
+											<span>
+												<a href="../detail/?bbs_idx=181&amp;bbs_category=4&amp;bbs_detail_category=&amp;bbs_page=1">
+													[고객센터] 9월 1일부터 인상되는 디저트 가격이 어떻게 되나요?												</a>
+											</span>
+										</li>
+																												<li>
+											<span>이전글</span>
+											<span>
+												<a href="../detail/?bbs_idx=176&amp;bbs_category=4&amp;bbs_detail_category=&amp;bbs_page=1">
+													[고객센터] 고객의 소리 접수는 어떻게 하나요?												</a>
+											</span>
+										</li>
+																	</ul>
+							</div>
+															<div class="cont_btn">
+									<a href="/bbs/?bbs_category=4&amp;bbs_detail_category=&amp;bbs_page=1">
+										<div class="input_btn_wrap input_wrap3 input_width">
+											<input type="button" value="목록으로" class="btn btn1 btn_ani" id="">
+										</div>
+									</a>
+								</div>
+													</div>
 					</div>
 				</div>
 			</div>
-		</div>
+					</div>
 	</div>
 				<div class="foot_menu_wrap">
 			<div class="foot_menu">

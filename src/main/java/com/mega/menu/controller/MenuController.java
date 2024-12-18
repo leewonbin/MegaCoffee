@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mega.menu.dto.AllergenDto;
-import com.mega.menu.dto.MenuInfoDto;
 import com.mega.menu.dto.MenuDto;
+import com.mega.menu.dto.MenuInfoDto;
 import com.mega.menu.dto.NutrientDto;
 import com.mega.menu.service.MenuService;
 
@@ -21,10 +20,10 @@ public class MenuController {
 	@Autowired
 	private MenuService menuService;
 
-//	@GetMapping("/main")
-//	public String main() {
-//		return "menu";
-//	}
+	@GetMapping("/")
+	public String main() {
+		return "redirect:/main";
+	}
 
 //	@GetMapping("/read")
 //	public String menuRead(@RequestParam int menu_id, Model model) throws Exception {
@@ -58,7 +57,6 @@ public class MenuController {
 //
 //        return new MenuInfoDto(menu, nutrient, allergens);
 //    }
-
 	@GetMapping("/main") // 카테고리 페이지 비동기 전환...통합
 	public String list(Model model) throws Exception {
 		List<MenuDto> menuList = menuService.menuList();
@@ -66,7 +64,6 @@ public class MenuController {
 		model.addAttribute("menuList", menuList);
 		return "menu/menu";
 	}
-	
 	@GetMapping("/menu")
 	public String getMenuByCategory(@RequestParam(value = "category_id", required = false) Integer categoryId,
 	                                @RequestParam(value = "type_id", required = false) Integer typeId,
@@ -75,7 +72,6 @@ public class MenuController {
 	    model.addAttribute("menuList", menuList);
 	    return "menu/menu";
 	}
-
 
 
 }

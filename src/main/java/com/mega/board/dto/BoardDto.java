@@ -3,14 +3,14 @@ package com.mega.board.dto;
 import java.time.LocalDate;
 
 public class BoardDto {
-	private int boardId;
+	private int board_id;
 	private String title;
 	private String content;
 	private String writer;
 	private String separation;
-	private LocalDate uploadAt;
-	private LocalDate deleteAt;
-	private String delYN;
+	private LocalDate upload_at;
+	private LocalDate delete_at;
+	private String del_yn;
 	private int hits;
 	private int admin_num;
 	private int category_id;
@@ -19,16 +19,16 @@ public class BoardDto {
 		
 	}
 	
-	public BoardDto(int boardId, String title, String content, String separation, LocalDate uploadAt,
-			LocalDate deleteAt, String delYN, int hits, int admin_num, int category_id,String writer) {
+	public BoardDto(int board_id, String title, String content, String separation, LocalDate upload_at,
+			LocalDate delete_at, String del_yn, int hits, int admin_num, int category_id,String writer) {
 		super();
-		this.boardId = boardId;
+		this.board_id = board_id;
 		this.title = title;
 		this.content = content;
 		this.separation = separation;
-		this.uploadAt = uploadAt;
-		this.deleteAt = deleteAt;
-		this.delYN = delYN;
+		this.upload_at = upload_at;
+		this.delete_at = delete_at;
+		this.del_yn = del_yn;
 		this.hits = hits;
 		this.admin_num = admin_num;
 		this.category_id = category_id;
@@ -36,10 +36,10 @@ public class BoardDto {
 	}
 
 	public int getBoardId() {
-		return boardId;
+		return board_id;
 	}
-	public void setBoardId(int boardId) {
-		this.boardId = boardId;
+	public void setBoardId(int board_id) {
+		this.board_id = board_id;
 	}
 	public String getTitle() {
 		return title;
@@ -59,23 +59,24 @@ public class BoardDto {
 	public void setSeparation(String separation) {
 		this.separation = separation;
 	}
-	public LocalDate getUploadAt() {
-		return uploadAt;
+	public LocalDate getUpload_at() {
+	    return upload_at;
 	}
-	public void setUploadAt(LocalDate uploadAt) {
-		this.uploadAt = uploadAt;
+
+	public void setUpload_at(LocalDate upload_at) {
+	    this.upload_at = upload_at;
 	}
 	public LocalDate getDeleteAt() {
-		return deleteAt;
+		return delete_at;
 	}
-	public void setDeleteAt(LocalDate deleteAt) {
-		this.deleteAt = deleteAt;
+	public void setDeleteAt(LocalDate delete_at) {
+		this.delete_at = delete_at;
 	}
 	public String getDelYN() {
-		return delYN;
+		return del_yn;
 	}
-	public void setDelYN(String delYN) {
-		this.delYN = delYN;
+	public void setDelYN(String del_yn) {
+		this.del_yn = del_yn;
 	}
 	public int getHits() {
 		return hits;

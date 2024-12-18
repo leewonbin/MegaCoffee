@@ -1,7 +1,10 @@
 package com.mega.admin.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +13,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mega.admin.dto.AdminDto;
 import com.mega.admin.service.AdminService;
+import com.mega.menu.dto.AllergenDto;
+import com.mega.menu.dto.MenuDto;
+import com.mega.menu.service.MenuService;
 
 @Controller
 @RequestMapping("/admin")
@@ -17,6 +23,9 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
+
+	@Autowired
+	private MenuService menuService;
 
 	@GetMapping("/main")
 	public String moveAdminPage() throws Exception {
@@ -29,13 +38,28 @@ public class AdminController {
 	}
 
 	@GetMapping("/moveMenu")
-	public String moveMenu() throws Exception {
-		return "/admin/menuList";
+	public String moveMenu(@RequestParam("category") String category) throws Exception {
+		return "redirect:/admin/" + category;
 	}
 
-	@GetMapping("/moveBoard")
-	public String moveBoard() throws Exception {
-		return "/admin/boardList";
+	@GetMapping("/product")
+	public String moveProduct(Model model) throws Exception {
+		List<MenuDto> menuList = menuService.menuList();
+		model.addAttribute("menuList", menuList);
+		return "/admin/product";
+	}
+
+	@GetMapping("/allergen")
+	public String moveallergen(Model model) throws Exception {
+		List<AllergenDto> allergenList = menuService.getAllegenList();
+		model.addAttribute("allergenList", allergenList);
+		return "/admin/allergen";
+	}
+
+	@GetMapping("/productDetail")
+	public String movePDetail(@RequestParam("menu_id") int menu_id, Model model) throws Exception {
+
+		return "/admin/productDetail";
 	}
 
 	@PostMapping("/login")
