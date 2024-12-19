@@ -1,5 +1,7 @@
 package com.mega.board.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,31 +21,62 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	//메인화면
 	@GetMapping("/tables")
-	public String boardList(PageDto pageDto
-							,Model model
-							,@RequestParam(value="nowPage",required = false)String nowPage
-							,@RequestParam(value="cntPerPage",required = false)String cntPerPage
-							,@RequestParam(defaultValue = "title")String bbs_search_category
-							,@RequestParam(defaultValue = "")String bbs_search) {
-		int total = boardService.countBoard();
-		
-		if (nowPage == null && cntPerPage == null) {
-    		nowPage = "1";
-    		cntPerPage = "10";
-    	} else if (nowPage == null) {
-    		nowPage = "1";
-    	} else if (cntPerPage == null) { 
-    		cntPerPage = "10";
-    	}
-		pageDto = new PageDto(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		System.out.println("시작: "+pageDto.getStartPage());
-    	System.out.println("끝: "+pageDto.getEndPage());
-		model.addAttribute("paging", pageDto);
-		model.addAttribute("boardList",boardService.boardList(pageDto));
-		return "board/board";
+	public String boardList(PageDto pageDto,
+	                        Model model,
+	                        @RequestParam(value = "nowPage", required = false) String nowPage,
+	                        @RequestParam(value = "cntPerPage", required = false) String cntPerPage,
+	                        @RequestParam(value = "CATEGORY_ID", required = false) Integer category_id) {
+	    int total;
+
+	    if (category_id != null) {
+	        // 카테고리별 게시글 총 개수
+	        total = boardService.countBoardByCategory(category_id);
+	    } else {
+	        // 전체 게시글 총 개수
+	        total = boardService.countBoard();
+	    }
+
+	    // 기본값 설정
+	    if (nowPage == null && cntPerPage == null) {
+	        nowPage = "1";
+	        cntPerPage = "10";
+	    } else if (nowPage == null) {
+	        nowPage = "1";
+	    } else if (cntPerPage == null) {
+	        cntPerPage = "10";
+	    }
+
+	    // 페이지 정보 설정
+	    pageDto = new PageDto(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+
+	    // start와 end 계산 (MyBatis에서 필요)
+	    int start = (Integer.parseInt(nowPage) - 1) * Integer.parseInt(cntPerPage) + 1;
+	    int end = Integer.parseInt(nowPage) * Integer.parseInt(cntPerPage);
+
+	    // PageDto에 start와 end 설정
+	    pageDto.setStart(start);
+	    pageDto.setEnd(end);
+
+	    List<BoardDto> boardList;
+	    if (category_id != null) {
+	        // 카테고리별 게시글 조회
+	        boardList = boardService.boardListByCategory(pageDto, category_id);
+	        System.out.println("cid: "+category_id);
+	    } else {
+	        // 전체 게시글 조회
+	        boardList = boardService.boardList(pageDto);
+	    }
+
+	    // 모델에 데이터 추가
+	    model.addAttribute("paging", pageDto);
+	    model.addAttribute("boardList", boardList);
+	    model.addAttribute("CATEGORY_ID", category_id); // 현재 카테고리 전달
+	    return "board/board";
 	}
+
+
+
 	
 	//게시글 작성 페이지 이동
 	@GetMapping("/boardwrite")

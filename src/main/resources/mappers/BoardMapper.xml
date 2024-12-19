@@ -30,6 +30,36 @@
     WHERE RNM BETWEEN #{start} AND #{end}
     </select> 
     
+    <select id="countBoardByCategory" parameterType="int" resultType="int">
+    SELECT COUNT(*) 
+    FROM BOARD
+    WHERE CATEGORY_ID = #{categoryId}
+      AND DEL_YN = 'N'
+</select>
+
+<select id="boardListByCategory" resultType="com.mega.board.dto.BoardDto">
+    SELECT * 
+    FROM (
+        SELECT 
+            b.BOARD_ID, 
+            b.TITLE, 
+            b.CONTENT,  
+            b.ADMIN_NUM, 
+            b.UPLOAD_AT, 
+            b.HITS,
+            a.ADMIN_NAME AS writer,
+            ROW_NUMBER() OVER (ORDER BY b.UPLOAD_AT DESC) AS RNM
+        FROM BOARD b
+        JOIN ADMIN a ON a.ADMIN_NUM = b.ADMIN_NUM
+        WHERE b.CATEGORY_ID = #{category_id}
+          AND b.DEL_YN = 'N'
+    ) g
+    WHERE RNM BETWEEN #{pageDto.start} AND #{pageDto.end}
+</select>
+
+
+
+    
     <!-- 게시글 상세 -->
     <select id="boardDetail" parameterType="int" resultType="com.mega.board.dto.BoardDto">
     SELECT * FROM(
