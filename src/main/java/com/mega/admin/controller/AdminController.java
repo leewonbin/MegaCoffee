@@ -15,6 +15,8 @@ import com.mega.admin.dto.AdminDto;
 import com.mega.admin.service.AdminService;
 import com.mega.menu.dto.AllergenDto;
 import com.mega.menu.dto.MenuDto;
+import com.mega.menu.dto.MenuNutrientDto;
+import com.mega.menu.dto.TypeDto;
 import com.mega.menu.service.MenuService;
 
 @Controller
@@ -63,7 +65,15 @@ public class AdminController {
 
 	@GetMapping("/productDetail")
 	public String movePDetail(@RequestParam("menu_id") int menu_id, Model model) throws Exception {
-
+		MenuNutrientDto mnDto = menuService.getMenuNutrient(menu_id);
+		List<TypeDto> typeList = menuService.getType(menu_id);
+		List<AllergenDto> allergenList = menuService.getAllergen(menu_id);
+		System.out.println(mnDto);
+		System.out.println("typeList.size : " + typeList.size());
+		System.out.println("allergenList.size : " + allergenList.size());
+		model.addAttribute("mnDto", mnDto);
+		model.addAttribute("typeList", typeList);
+		model.addAttribute("allergenList", allergenList);
 		return "/admin/productDetail";
 	}
 

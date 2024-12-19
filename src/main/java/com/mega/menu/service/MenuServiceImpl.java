@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.mega.menu.dto.AllergenDto;
 import com.mega.menu.dto.MenuDto;
+import com.mega.menu.dto.MenuNutrientDto;
 import com.mega.menu.dto.NutrientDto;
+import com.mega.menu.dto.TypeDto;
 import com.mega.menu.mapper.MenuMapper;
 
 @Service
@@ -41,10 +43,28 @@ public class MenuServiceImpl implements MenuService {
 //    public List<AllergenDto> getAllergen(int menu_id) throws Exception {
 //        return menuMapper.getAllergen(menu_id);
 //    }
-	
+
 	@Override
-    public List<MenuDto> menuList(Integer category_id) {
-        return menuMapper.menuList(category_id);
-    }
+	public List<MenuDto> menuList(Integer category_id) {
+		return menuMapper.menuList(category_id);
+	}
+
+	@Override
+	public MenuNutrientDto getMenuNutrient(int menu_id) throws Exception {
+		// TODO Auto-generated method stub
+		return menuMapper.getMenuNutrient(menu_id);
+	}
+
+	@Override
+	public List<TypeDto> getType(int menu_id) throws Exception {
+		// TODO Auto-generated method stub
+		return menuMapper.getType(menu_id);
+	}
+
+	@Override
+	public List<AllergenDto> getAllergen(int menu_id) throws Exception {
+		// TODO Auto-generated method stub
+		return menuMapper.getAllergen(menu_id);
+	}
 
 }

@@ -35,7 +35,6 @@ h2.pageInfo {
 }
 
 .iceOrHot {
-	background-color: #007eff;
 	position: absolute;
 	right: 10px;
 	bottom: 10px;
@@ -44,6 +43,14 @@ h2.pageInfo {
 	border-radius: 100px;
 	position: absolute;
 	color: #fff;
+}
+
+.HOT {
+	background-color : #ff5a5a;
+}
+
+.ICE {
+	background-color : #007eff;
 }
 /* 상품 정보 컨테이너 */
 .product-container {
@@ -161,18 +168,18 @@ h2.pageInfo {
 		<h2 class="pageInfo">상품 정보</h2>
 		<div class="product-container">
 			<div class="img-wrap">
-				<img class="product-image" src="/img/20240610132459_1717993499610_KiXcTR2q5P.jpg" />
-				<div class="iceOrHot">ICE</div>
+				<img class="product-image" src="/img/${mnDto.menu_file_id }" />
+				<div class="iceOrHot ${mnDto.menu_ice_hot}">${mnDto.menu_ice_hot }</div>
 			</div>
 			<!-- 상품 이미지 -->
 			<!-- 상품 상세 정보 -->
 			<div class="product-details">
 				<div class="details-header">
 					<div>
-						<h2 class="menuKName">라떼</h2>
-						<p class="menuEName">latte [oneSize]</p>
+						<h2 class="menuKName">${mnDto.menu_title }</h2>
+						<p class="menuEName">${mnDto.menu_eng_title }${mnDto.menu_onesize != 'N' ? '[OneSize]' : ''}</p>
 					</div>
-					<p>피스타치오 숲 속 산타가 좋아하는 은은한 향의 피스타치오 라떼에 쌉싸름한 블렌딩 커피를 추가해 더욱 고소하게 즐길 수 있는 따뜻한 라떼</p>
+					<p>${mnDto.menu_content }</p>
 				</div>
 				<div class="details-center">
 					<p>영양 성분</p>
@@ -180,19 +187,19 @@ h2.pageInfo {
 						<li>
 							<dl>
 								<dt>1회 제공량(kcal)</dt>
-								<dd>80</dd>
+								<dd>${mnDto.nut_calorie }</dd>
 							</dl>
 						</li>
 						<li>
 							<dl>
 								<dt>포화지방(g)</dt>
-								<dd>80</dd>
+								<dd>${mnDto.nut_saturated }</dd>
 							</dl>
 						</li>
 						<li>
 							<dl>
 								<dt>당류(g)</dt>
-								<dd>80</dd>
+								<dd>${mnDto.nut_sugar }</dd>
 							</dl>
 						</li>
 					</ul>
@@ -201,27 +208,52 @@ h2.pageInfo {
 						<li>
 							<dl>
 								<dt>나트륨(mg)</dt>
-								<dd>80</dd>
+								<dd>${mnDto.nut_sodium }</dd>
 							</dl>
 						</li>
 						<li>
 							<dl>
 								<dt>단백질(g)</dt>
-								<dd>80</dd>
+								<dd>${mnDto.nut_protein }</dd>
 							</dl>
 						</li>
 						<li>
 							<dl>
 								<dt>카페인(mg)</dt>
-								<dd>80</dd>
+								<dd>${mnDto.nut_caffeine }</dd>
 							</dl>
 						</li>
 					</ul>
-					<label>알레르기 성분:</label> <span class="value">알레르기</span> <br>
-					<label>고카페인 함유</label>
+					<label>알레르기 성분:</label> <span class="value"> <c:if test="${allergenList ne null }">
+							<c:forEach var="all" items="${allergenList}" varStatus="status">
+								<c:choose>
+									<c:when test="${status.last}">
+										${all.all_name}
+									</c:when>
+									<c:otherwise>
+										${all.all_name}, 
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</c:if></span> <br>
+					<c:if test="${nDto.nut_high_caffeine eq 'Y' }">
+						<label>고카페인 함유</label>
+					</c:if>
 				</div>
 				<div class="details-bottom">
-					<label>분류 : </label> <span class="value">커피, 디카페인</span><br> 
+					<label>분류 : </label> <span class="value"> <c:if test="${typeList ne null }">
+							<c:forEach items="${typeList }" var="type" varStatus="status">
+								<c:choose>
+									<c:when test="${status.last}">
+										${type.type_name }
+									</c:when>
+									<c:otherwise>
+										${type.type_name }, 
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</c:if>
+					</span><br>
 					<div style="float: right">
 						<button>수정</button>
 						<button>삭제</button>
