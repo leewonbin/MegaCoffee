@@ -19,6 +19,9 @@ public interface MenuService {
 	public List<MenuDto> menuList(Integer category_id);
 
 	public List<AllergenDto> getAllegenList() throws Exception;
+
+	public List<MenuDto> filterType(List<Integer> type_id) throws Exception;
+	
 	
 	// public List<AllergenDto> getAllergen(int menu_id) throws Exception;
 

@@ -537,7 +537,7 @@ ng\:form {
 							<div class="cont_text cont_text_title">
 								<b>분류보기</b>
 							</div>
-							<div class="checkbox_wrap">
+							<!-- <div class="checkbox_wrap">
 								<label class="checkbox"> <input type="checkbox" id=""
 									name="list_checkbox_all" value="all" checked=""> <span
 									class="check_mark"></span>
@@ -592,7 +592,71 @@ ng\:form {
 									class="check_mark"></span>
 									<div class="checkbox_text">신상품</div>
 								</label>
+							</div> -->
+							<div class="checkbox_wrap">
+								<label class="checkbox"> <input type="checkbox"
+									id="list_checkbox_all" name="list_checkbox_all" value="all"
+									checked=""> <span class="check_mark"></span>
+									<div class="checkbox_text">전체 상품보기</div>
+								</label>
 							</div>
+
+							<div class="checkbox_wrap list_checkbox">
+								<label class="checkbox"> <input type="checkbox"
+									name="list_checkbox" value="1"> <span
+									class="check_mark"></span>
+									<div class="checkbox_text">커피</div>
+								</label>
+							</div>
+
+							<div class="checkbox_wrap list_checkbox">
+								<label class="checkbox"> <input type="checkbox"
+									name="list_checkbox" value="2"> <span
+									class="check_mark"></span>
+									<div class="checkbox_text">티</div>
+								</label>
+							</div>
+
+							<div class="checkbox_wrap list_checkbox">
+								<label class="checkbox"> <input type="checkbox"
+									name="list_checkbox" value="3"> <span
+									class="check_mark"></span>
+									<div class="checkbox_text">에이드&amp;주스</div>
+								</label>
+							</div>
+
+							<div class="checkbox_wrap list_checkbox">
+								<label class="checkbox"> <input type="checkbox"
+									name="list_checkbox" value="4"> <span
+									class="check_mark"></span>
+									<div class="checkbox_text">스무디&amp;프라페</div>
+								</label>
+							</div>
+
+							<div class="checkbox_wrap list_checkbox">
+								<label class="checkbox"> <input type="checkbox"
+									name="list_checkbox" value="5"> <span
+									class="check_mark"></span>
+									<div class="checkbox_text">디카페인</div>
+								</label>
+							</div>
+
+							<div class="checkbox_wrap list_checkbox">
+								<label class="checkbox"> <input type="checkbox"
+									name="list_checkbox" value="6"> <span
+									class="check_mark"></span>
+									<div class="checkbox_text">음료</div>
+								</label>
+							</div>
+
+							<div class="checkbox_wrap list_checkbox">
+								<label class="checkbox"> <input type="checkbox"
+									name="list_checkbox" value="9"> <span
+									class="check_mark"></span>
+									<div class="checkbox_text">신상품</div>
+								</label>
+							</div>
+
 						</div>
 						<div class="cont_text_wrap">
 							<div

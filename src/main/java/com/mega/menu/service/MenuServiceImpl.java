@@ -46,5 +46,10 @@ public class MenuServiceImpl implements MenuService {
     public List<MenuDto> menuList(Integer category_id) {
         return menuMapper.menuList(category_id);
     }
+	
+	@Override
+	public List<MenuDto> filterType(List<Integer> type_id) throws Exception {
+	    return menuMapper.filterType(type_id);
+	}
 
 }

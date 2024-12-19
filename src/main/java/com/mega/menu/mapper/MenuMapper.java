@@ -23,6 +23,8 @@ public interface MenuMapper {
 	
 	public List<AllergenDto> getAllegenList() throws Exception;
 
+	public List<MenuDto> filterType(List<Integer> type_id) throws Exception;
+	
 	// public List<AllergenDto> getAllergen(int menu_id) throws Exception;
 
 }
