@@ -491,10 +491,13 @@
 			</div>
 		</div>	
 	</div>
-		<script>
+	<!-- 게시판 카페고리 색 변경 -->
+	<script>
 		$(document).ready(function(){
-								$(".cont_tab ul li").eq(0).addClass("check");
-					})
+			$(".cont_tab ul li").eq(0).addClass("check");
+		});
+		var checked = document.querySelectorAll('.check');
+		
 	</script>
 	<div class="cont_wrap bbs_wrap">
 		<div class="cont">
@@ -502,7 +505,8 @@
 				<div class="cont_boxs">
 					<div class="cont_title_wrap">
 						<div class="cont_title_info">
-							MEGA NEWS						</div>
+							MEGA NEWS						
+						</div>
 						<div class="cont_title robo color">
 							<h2>FAQ</h2>
 						</div>
@@ -514,9 +518,11 @@
 									홈
 								</li>
 								<li>
-									메가소식								</li>
+									메가소식								
+								</li>
 								<li>
-									FAQ								</li>
+									FAQ								
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -535,11 +541,11 @@
 									궁금하신 내용을 검색해 주세요.
 								</div>
 							</div>
-										<div class="cont_text_wrap">
-														<div class="cont_tab">
+						<div class="cont_text_wrap">
+								<div class="cont_tab">
 									<ul>
-										<li class="check">
-											<a href="/">
+										<li>
+											<a href="/tables" class="menu-item">
 												전체
 											</a>
 										</li>
@@ -575,7 +581,7 @@
 										</li>
 									</ul>
 								</div>
-												<div class="cont_list cont_list_content cont_list_content_search">
+						<div class="cont_list cont_list_content cont_list_content_search">
 							<ul>
 								<li>
 									<div class="board_search_wrap">
@@ -681,17 +687,25 @@
 									</table>
 								</div>
 								
-						<div class="col-sm-12 col-md-7">
-							<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-								<ul class="pagination justify-content-end">
-										<li class="paginate_button page-item previous <c:if test='${paging.startPage == 1}'>disabled</c:if>" id="dataTable_previous">
-											<a href="/tables?nowPage=${paging.startPage-6}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
-										</li>
+						<div class="board_page_wrap">
+							<div class="board_page" >
+								<ul class="boardPagination">
+								   <li class="fo_re"><a href="/tables?nowPage=1"><span>처음</span></a></li>
+								   <li class="board_page_link <c:if test='${paging.startPage == 1}'>disabled</c:if>" id="dataTable_previous">
+										<c:if test='${paging.nowPage != 1 }'>
+											<a href="/tables?nowPage=${paging.nowPage-1}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="board_page_link">이전</a>
+										</c:if>	
+									</li>
 									<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p"> <!--  -->
-										<li class="paginate_button page-item <c:if test='${p == paging.nowPage }'>active</c:if>"><a href="/tables?nowPage=${p}&cntPerPage=${paging.cntPerPage}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">${p}</a></li>
-										
+										<li class="board_page_check  <c:if test='${p == paging.nowPage}'>active</c:if>"><a href="/tables?nowPage=${p}&cntPerPage=${paging.cntPerPage}"  >
+											<span>${p}</span>
+											</a>
+										</li>										
 									</c:forEach>
-									<li class="paginate_button page-item next <c:if test='${paging.endPage>=paging.lastPage }'>disabled</c:if>" id="dataTable_next"><a href="/tables?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+									<c:if test='${paging.nowPage!=paging.lastPage}'>
+										<li class="paginate_button page-item next" id="dataTable_next"><a href="/tables?nowPage=${paging.nowPage+1 }&cntPerPage=${paging.cntPerPage}" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">다음</a></li>
+									</c:if>
+									<li class="fo_re"><a href="/tables?nowPage=${paging.lastPage}"><span>마지막</span></a></li>
 								</ul>
 							</div>
 						</div>
