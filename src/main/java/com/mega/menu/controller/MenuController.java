@@ -25,21 +25,6 @@ public class MenuController {
 		return "redirect:/main";
 	}
 
-//	@GetMapping("/read")
-//	public String menuRead(@RequestParam int menu_id, Model model) throws Exception {
-//		MenuDto menu = menuService.menuRead(menu_id);
-//		
-//		model.addAttribute("menu", menu);
-//		
-//		return "menu";
-//	}
-
-//	@ResponseBody
-//	@GetMapping("/read")
-//	public MenuDto menuRead(@RequestParam int menu_id) throws Exception {
-//	    return menuService.menuRead(menu_id);
-//	}
-
 	@ResponseBody
 	@GetMapping("/read")
 	public MenuInfoDto menuInfo(@RequestParam int menu_id) throws Exception {
@@ -57,18 +42,26 @@ public class MenuController {
 //
 //        return new MenuInfoDto(menu, nutrient, allergens);
 //    }
-	@GetMapping("/main") // 카테고리 페이지 비동기 전환...통합
+	
+	@GetMapping("/main")
 	public String list(Model model) throws Exception {
 		List<MenuDto> menuList = menuService.menuList();
 		System.out.println(menuList.size());
 		model.addAttribute("menuList", menuList);
 		return "menu/menu";
 	}
-	@GetMapping("/menu")
-	public String getMenuByCategory(@RequestParam(value = "category_id", required = false) Integer categoryId,
-	                                @RequestParam(value = "type_id", required = false) Integer typeId,
-	                                Model model) {
-	    List<MenuDto> menuList = menuService.getMenuByCategory(categoryId, typeId);
+	
+//	@GetMapping("/menu")
+//	public String getCategory(@RequestParam(required = false) Integer category_id, 
+//			@RequestParam(required = false) Integer type_id, Model model) {
+//	    List<MenuDto> menuList = menuService.getCategory(category_id, type_id);
+//	    model.addAttribute("menuList", menuList);
+//	    return "menu/menu";
+//	}
+	
+	@GetMapping("/menu")			//int는 null로 변환 불가능
+	public String getCategory(@RequestParam(required = false) Integer category_id, Model model) {
+	    List<MenuDto> menuList = menuService.menuList(category_id);
 	    model.addAttribute("menuList", menuList);
 	    return "menu/menu";
 	}

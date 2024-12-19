@@ -690,9 +690,7 @@ ng\:form {
 																		<div class="default">${menu.menu_ice_hot}</div>
 																	</c:otherwise>
 																</c:choose>
-
-																<img
-																	src="https://img.79plus.co.kr/megahp/manager/upload/menu/20241106233407_1730903647569_24XqTsoIe9.jpg">
+																<img src="/img/${menu.menu_file_id}">
 															</div>
 															<!-- 여기가 이미지 나오는 부분 -->
 															<div class="cont_text_box">

@@ -24,6 +24,7 @@ from menu m join nutrient n on m.menu_id = n.menu_id where m.menu_id = #{menu_id
 select * from menu where menu_del = 'N'
 </select>
  -->
+ 
 <!-- 카테고리 메뉴 항목을 눌렀을때 카테고리별로 상품 출력 -->
 <select id="menuList" resultType="com.mega.menu.dto.MenuDto">
 select m.* from menu m
@@ -52,14 +53,6 @@ select a.all_id, a.all_name from allergen a join menu_allergen ma on a.all_id = 
 </select> -->
 
 
-<select id="getMenuByCategory" resultType="com.mega.menu.dto.MenuDto">
-select * from menu where menu_del = 'N'
-<if test="categoryId != null">
-and category_id = #{categoryId}
-</if>
-<if test="typeId != null">
-and menu_id in (select menu_id from menu_type where type_id = #{typeId})
-</if>
 
 <select id="getAllegenList" resultType="com.mega.menu.dto.AllergenDto">
 	select * from allergen

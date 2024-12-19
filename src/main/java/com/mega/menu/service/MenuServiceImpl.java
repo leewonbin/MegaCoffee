@@ -43,8 +43,8 @@ public class MenuServiceImpl implements MenuService {
 //    }
 	
 	@Override
-    public List<MenuDto> getMenuByCategory(Integer categoryId, Integer typeId) {
-        return menuMapper.getMenuByCategory(categoryId, typeId);
+    public List<MenuDto> menuList(Integer category_id) {
+        return menuMapper.menuList(category_id);
     }
 
 }
