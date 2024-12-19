@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mega.board.dto.BoardDto;
+import com.mega.board.dto.PageDto;
 import com.mega.board.mappers.BoardMapper;
-import com.mega.page.dto.PageDto;
 
 @Service
 public class BoardService {

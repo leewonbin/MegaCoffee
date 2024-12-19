@@ -1,4 +1,4 @@
-package com.mega.page.dto;
+package com.mega.board.dto;
 
 
 public class PageDto {
@@ -11,7 +11,7 @@ public class PageDto {
 	 private int total; //게시글 총 갯수
 	 private boolean prev; 
 	 private boolean next;
-	 private int displayPage = 6; //보여줄 페이지의 갯수
+	 private int displayPage = 4; //보여줄 페이지의 갯수
 	 //쿼리에 쓸 start,end
 	 private int start;
 	 private int end;
