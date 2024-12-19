@@ -23,12 +23,13 @@
 .topbar .logo {
 	width: 230px;
 	margin-left: 12px;
+	cursor: pointer;
 }
 </style>
 </head>
 <body>
 	<div class="topbar">
-		<img class="logo" src="/img/logo.png">
+		<img class="logo" src="/img/logo.png" onclick="location.href='/admin/main'">
 		<p class="nickName">관리자 닉네임</p>
 	</div>
 </body>

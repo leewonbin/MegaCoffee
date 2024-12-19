@@ -13,7 +13,7 @@ public class MenuDto {
 	private String menu_del = "N";
 	private String menu_ice_hot;
 	private String menu_onesize = "N";
-	private int menu_file_id;
+	private String menu_file_id;
 	private int admin_num;
 	private int category_id;
 
@@ -92,11 +92,11 @@ public class MenuDto {
 		this.menu_onesize = menu_onesize;
 	}
 
-	public int getMenu_file_id() {
+	public String getMenu_file_id() {
 		return menu_file_id;
 	}
 
-	public void setMenu_file_id(int menu_file_id) {
+	public void setMenu_file_id(String menu_file_id) {
 		this.menu_file_id = menu_file_id;
 	}
 
@@ -117,7 +117,7 @@ public class MenuDto {
 	}
 
 	public MenuDto(int menu_id, String menu_title, String menu_eng_title, String menu_content, LocalDate menu_date,
-			LocalDate menu_update, String menu_del, String menu_ice_hot, String menu_onesize, int menu_file_id,
+			LocalDate menu_update, String menu_del, String menu_ice_hot, String menu_onesize, String menu_file_id,
 			int admin_num, int category_id) {
 		super();
 		this.menu_id = menu_id;

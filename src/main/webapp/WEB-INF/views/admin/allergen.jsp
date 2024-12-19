@@ -14,9 +14,8 @@
 	</nav>
 	<div class="content">
 		<h2 id="content-title">알레르기 관리</h2>
-		<hr>
 		<div id="content-table">
-			<table>
+			<table class="list">
 				<tr>
 					<th>알레르기 ID</th>
 					<th>알레르기 이름</th>

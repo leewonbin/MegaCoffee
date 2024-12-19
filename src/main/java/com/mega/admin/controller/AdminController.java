@@ -29,12 +29,17 @@ public class AdminController {
 
 	@GetMapping("/main")
 	public String moveAdminPage() throws Exception {
-		return "/admin/adminMain";
+		return "redirect:/admin/product";
 	}
 
 	@GetMapping("/moveLogin")
 	public String moveLoginPage() throws Exception {
 		return "/admin/adminLogin";
+	}
+
+	@GetMapping("/moveInsert")
+	public String moveInsert() throws Exception {
+		return "/admin/productInsert";
 	}
 
 	@GetMapping("/moveMenu")
