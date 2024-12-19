@@ -17,7 +17,12 @@ public interface MenuMapper {
 
 	public NutrientDto getNutrient(int menu_id) throws Exception;
 
+    //public List<AllergenDto> getAllergen(int menu_id) throws Exception; 
+
+	public List<MenuDto> menuList(Integer category_id);
+	
 	public List<AllergenDto> getAllegenList() throws Exception;
 
 	// public List<AllergenDto> getAllergen(int menu_id) throws Exception;
+
 }

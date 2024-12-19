@@ -4,15 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mega.board.dto.BoardDto;
+import com.mega.board.dto.PageDto;
 import com.mega.board.service.BoardService;
-import com.mega.page.dto.PageDto;
 
 @Controller
 public class BoardController {
@@ -25,7 +24,9 @@ public class BoardController {
 	public String boardList(PageDto pageDto
 							,Model model
 							,@RequestParam(value="nowPage",required = false)String nowPage
-							,@RequestParam(value="cntPerPage",required = false)String cntPerPage) {
+							,@RequestParam(value="cntPerPage",required = false)String cntPerPage
+							,@RequestParam(defaultValue = "title")String bbs_search_category
+							,@RequestParam(defaultValue = "")String bbs_search) {
 		int total = boardService.countBoard();
 		
 		if (nowPage == null && cntPerPage == null) {

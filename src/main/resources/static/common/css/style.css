@@ -245,7 +245,7 @@
 				.modal-backdrop.show{opacity:0.5;}
 
 			.modal_box{padding:20px;}
-			.modal_box textarea{width:100%; font-size:12px; height:max-height:40vh; line-height:1.8; font-family:'NanumBarunGothic', sans-serif;}
+			.modal_box textarea{width:100%; font-size:12px; max-height:40vh; line-height:1.8; font-family:'NanumBarunGothic', sans-serif;}
 			.modal_tab_box{border-top:1px solid #e0e0e0;}
 				.modal_box_scroll{position:relative; overflow:auto; height:50vh; border:1px solid #e0e0e0; padding:20px;}
 
@@ -1067,7 +1067,21 @@
 				.board_page_wrap .board_page ul li:hover{background:#f4f6f8;}
 				.board_page_wrap .board_page ul li a{cursor:auto; padding:8px 16px; display:block;}
 				.board_page_wrap .board_page ul li a.board_page_link{cursor:pointer;}
-				.board_page_wrap .board_page .board_page_check{background:#fdd000 !important; border:1px solid #fdd000;}
+				
+				
+				.boardPagination>.active>a,.pagination>.active>span,.boardPagination>.active>a:hover,.boardPagination>.active>span:hover,.boardPagination>.active>a:focus,.boardPagination>.active>span:focus {
+					z-index:2;
+					color:#fff;
+					cursor:default;
+					background-color:#fdd000;
+					border-color:#fdd000;
+				}
+				.boardPagination>.disabled>a,.boardPagination>.disabled>span,.boardPagination>.disabled>a:hover,.boardPagination>.disabled>span:hover,.boardPagination>.disabled>a:focus,.boardPagination>.disabled>span:focus {
+					z-index:2;
+					cursor:default;
+					background-color:#fff;
+					border-color:#fff;					
+				}
 
 
 /* board_detail */
