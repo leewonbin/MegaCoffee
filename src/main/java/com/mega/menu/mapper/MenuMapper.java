@@ -31,5 +31,9 @@ public interface MenuMapper {
 	
 	public List<MenuDto> filterType(int category_id, String typeIdStr) throws Exception;
 
+	public List<TypeDto> getTypeList() throws Exception;
+
+	// public List<AllergenDto> getAllergen(int menu_id) throws Exception;
+
 
 }

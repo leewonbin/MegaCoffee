@@ -46,11 +46,11 @@ h2.pageInfo {
 }
 
 .HOT {
-	background-color : #ff5a5a;
+	background-color: #ff5a5a;
 }
 
 .ICE {
-	background-color : #007eff;
+	background-color: #007eff;
 }
 /* 상품 정보 컨테이너 */
 .product-container {
@@ -129,6 +129,13 @@ h2.pageInfo {
 	margin-left: 0px;
 }
 
+.otherNutrient {
+	margin-top: 34px;
+	margin-left: 265px;
+	position: absolute;
+	width: 200px;
+}
+
 .details-bottom {
 	line-height: 30px;
 	width: 500px;
@@ -169,7 +176,9 @@ h2.pageInfo {
 		<div class="product-container">
 			<div class="img-wrap">
 				<img class="product-image" src="/img/${mnDto.menu_file_id }" />
-				<div class="iceOrHot ${mnDto.menu_ice_hot}">${mnDto.menu_ice_hot }</div>
+				<c:if test="${mnDto.menu_ice_hot ne null }">
+					<div class="iceOrHot ${mnDto.menu_ice_hot}">${mnDto.menu_ice_hot }</div>
+				</c:if>
 			</div>
 			<!-- 상품 이미지 -->
 			<!-- 상품 상세 정보 -->
@@ -202,9 +211,6 @@ h2.pageInfo {
 								<dd>${mnDto.nut_sugar }</dd>
 							</dl>
 						</li>
-					</ul>
-
-					<ul>
 						<li>
 							<dl>
 								<dt>나트륨(mg)</dt>
@@ -224,23 +230,27 @@ h2.pageInfo {
 							</dl>
 						</li>
 					</ul>
-					<label>알레르기 성분:</label> <span class="value"> <c:if test="${allergenList ne null }">
-							<c:forEach var="all" items="${allergenList}" varStatus="status">
-								<c:choose>
-									<c:when test="${status.last}">
+					<div class="otherNutrient">
+						<label>알레르기 성분:</label> <span class="value"> <c:if test="${allergenList ne null }">
+								<c:forEach var="all" items="${allergenList}" varStatus="status">
+									<c:choose>
+										<c:when test="${status.last}">
 										${all.all_name}
 									</c:when>
-									<c:otherwise>
+										<c:otherwise>
 										${all.all_name}, 
 									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-						</c:if></span> <br>
+									</c:choose>
+								</c:forEach>
+							</c:if></span>
+					</div>
+					<br>
 					<c:if test="${nDto.nut_high_caffeine eq 'Y' }">
 						<label>고카페인 함유</label>
 					</c:if>
 				</div>
 				<div class="details-bottom">
+
 					<label>분류 : </label> <span class="value"> <c:if test="${typeList ne null }">
 							<c:forEach items="${typeList }" var="type" varStatus="status">
 								<c:choose>
@@ -255,8 +265,8 @@ h2.pageInfo {
 						</c:if>
 					</span><br>
 					<div style="float: right">
-						<button>수정</button>
-						<button>삭제</button>
+						<button type="button" onclick="location.href='/admin/moveModify?menu_id=${mnDto.menu_id}'">수정</button>
+						<button type="button">삭제</button>
 					</div>
 				</div>
 			</div>
