@@ -60,5 +60,9 @@ and m.menu_id = #{menu_id}
 		resultType="com.mega.menu.dto.AllergenDto">
 		select * from allergen
 	</select>
+	
+	<select id="getTypeList" resultType="com.mega.menu.dto.TypeDto">
+		select * from type
+	</select>
 
 </mapper>

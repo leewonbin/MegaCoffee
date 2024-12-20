@@ -83,7 +83,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 }
 
 input[type=number] {
-	width: 30px;
+	width: 40px;
 	text-align: right;
 	-moz-appearance: textfield;
 }
@@ -97,16 +97,18 @@ input[type=number] {
 		<%@include file="./common/sidebar.jsp"%>
 	</nav>
 	<div class="content">
-		<h2 id="content-title">상품 추가</h2>
+		<h2 id="content-title">상품 수정</h2>
 		<div class="product-info info-wrap">
 			<span class="wrap-Info"> 상품 정보 </span>
+
+			<input type="hidden" name="menu_id" value="${mnDto.menu_id }" />
 			<table>
 				<tr>
 					<td>카테고리</td>
 					<td>
-						<input type="radio" name="category_id" value='1' checked />
+						<input type="radio" name="category_id" value='1' ${mnDto.category_id == 1 ? 'checked="checked"' : '' } />
 						<label>음료</label>
-						<input type="radio" name="category_id" value='2' />
+						<input type="radio" name="category_id" value='2' ${mnDto.category_id == 2 ? 'checked="checked"' : '' } />
 						<label>푸드</label>
 					</td>
 				</tr>
@@ -114,7 +116,21 @@ input[type=number] {
 					<td>분류</td>
 					<td>
 						<c:forEach var="type" items="${typeList }" varStatus="status">
-							<input type="checkbox" name="type_id" value="${type.type_id }" />
+							<c:set var="loop_flag" value="true" />
+							<c:forEach var="selectType" items="${selectTypeList }">
+								<c:if test="${loop_flag}">
+									<c:choose>
+										<c:when test="${type.type_id == selectType.type_id }">
+											<c:set var="check" value='checked' />
+											<c:set var="loop_flag" value="false" />
+										</c:when>
+										<c:otherwise>
+											<c:set var="check" value='' />
+										</c:otherwise>
+									</c:choose>
+								</c:if>
+							</c:forEach>
+							<input type="checkbox" name="type_id" value="${type.type_id }" ${check } />
 							<label>${type.type_name }</label>
 							<c:if test="${status.count % 4 == 0 }">
 								<br>
@@ -125,42 +141,42 @@ input[type=number] {
 				<tr>
 					<td>메뉴 제목(K)</td>
 					<td>
-						<input type="text" name="menu_title" />
+						<input type="text" name="menu_title" value="${mnDto.menu_title }" />
 					</td>
 				</tr>
 				<tr>
 					<td>메뉴 제목(E)</td>
 					<td>
-						<input type="text" name="menu_eng_title" />
+						<input type="text" name="menu_eng_title" value="${mnDto.menu_eng_title }" />
 					</td>
 				</tr>
 				<tr>
 					<td>메뉴 내용</td>
 					<td>
-						<textarea cols="50" rows="4" name="menu_content"></textarea>
+						<textarea cols="50" rows="4" name="menu_content">${mnDto.menu_content }</textarea>
 					</td>
 				</tr>
 				<tr>
 					<td>냉온 여부</td>
 					<td>
-						<input type="radio" name="menu_ice_hot" value="ICE" />
+						<input type="radio" name="menu_ice_hot" value="ICE" ${mnDto.menu_ice_hot == 'ICE' ? 'checked="checked"' : '' }/>
 						<label>ICE</label>
-						<input type="radio" name="menu_ice_hot" value="HOT" />
+						<input type="radio" name="menu_ice_hot" value="HOT" ${mnDto.menu_ice_hot == 'ICE' ? 'checked="checked"' : '' }/>
 						<label>HOT</label>
-						<input type="radio" name="menu_ice_hot" value="null" checked />
+						<input type="radio" name="menu_ice_hot" value="null" ${mnDto.menu_ice_hot == 'ICE' ? 'checked="checked"' : '' }/>
 						<label>선택안함</label>
 					</td>
 				</tr>
 				<tr>
 					<td>원사이즈 여부</td>
 					<td>
-						<input type="checkbox" name="menu_onesize" value="Y" />
+						<input type="checkbox" name="menu_onesize" value="Y" ${mnDto.menu_onesize == 'Y' ? 'checked="checked"' : '' } />
 					</td>
 				</tr>
 				<tr>
 					<td>이미지</td>
 					<td>
-						<input type="file" name="menu_file_id">
+						<input type="file" name="menu_file_id" value="${mnDto.menu_file_id }">
 					</td>
 				</tr>
 			</table>
@@ -171,24 +187,38 @@ input[type=number] {
 				<tr>
 					<td>용량 / 단위</td>
 					<td>
-						<input type="number" name="nut_size" />
+						<input type="number" name="nut_size" value="${mnDto.nut_size }" />
 						<select name="nut_unit">
-							<option value="oz">oz</option>
-							<option value="g">g</option>
+							<option value="oz" ${mnDto.nut_unit == 'oz' ? 'selected="selected"' : '' }>oz</option>
+							<option value="g" ${mnDto.nut_unit == 'g' ? 'selected="selected"' : '' }>g</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td>고카페인 여부</td>
 					<td>
-						<input type="checkbox" name="nut_high_caffeine" value="Y" />
+						<input type="checkbox" name="nut_high_caffeine" value="Y" ${mnDto.nut_high_caffeine == 'Y' ? 'checked="checked"' : '' } />
 					</td>
 				</tr>
 				<tr>
 					<td>알레르기</td>
 					<td>
 						<c:forEach var="all" items="${allergenList }" varStatus="status">
-							<input type="checkbox" name="all_id" value="${all.all_id }" />
+							<c:set var="loop_flag" value="true" />
+							<c:forEach var="selectAllergen" items="${selectAllergenList }">
+								<c:if test="${loop_flag }">
+									<c:choose>
+										<c:when test="${all.all_id == selectAllergen.all_id }">
+											<c:set var="check" value="checked" />
+											<c:set var="loop_flag" value="false" />
+										</c:when>
+										<c:otherwise>
+											<c:set var="check" value='' />
+										</c:otherwise>
+									</c:choose>
+								</c:if>
+							</c:forEach>
+							<input type="checkbox" name="all_id" value="${all.all_id }" ${check } />
 							<label>${all.all_name }</label>
 							<c:if test="${status.count % 4 == 0 }">
 								<br>
@@ -199,12 +229,12 @@ input[type=number] {
 				<tr>
 					<td>영양 성분</td>
 					<td>
-						<ul class="nutritional" style="border-right: 1px solid #ddd">
+						<ul class="nutritional">
 							<li>
 								<dl>
 									<dt>1회 제공량(kcal)</dt>
 									<dd>
-										<input type="number" name="nut_calorie" step="0.01" />
+										<input type="number" name="nut_calorie" step="0.01" value="${mnDto.nut_calorie }" />
 									</dd>
 								</dl>
 							</li>
@@ -212,7 +242,7 @@ input[type=number] {
 								<dl>
 									<dt>포화지방(g)</dt>
 									<dd>
-										<input type="number" name="nut_saturated" step="0.01" />
+										<input type="number" name="nut_saturated" step="0.01" value="${mnDto.nut_saturated}" />
 									</dd>
 								</dl>
 							</li>
@@ -220,18 +250,18 @@ input[type=number] {
 								<dl>
 									<dt>당류(g)</dt>
 									<dd>
-										<input type="number" name="nut_sugar" step="0.01" />
+										<input type="number" name="nut_sugar" step="0.01" value="${mnDto.nut_sugar }" />
 									</dd>
 								</dl>
 							</li>
 						</ul>
 
-						<ul class="nutritional">
+						<ul class="nutritional" style="border-left: 1px solid #ddd; margin-left: 15px;">
 							<li>
 								<dl>
 									<dt>나트륨(mg)</dt>
 									<dd>
-										<input type="number" name="nut_sodium" step="0.01" />
+										<input type="number" name="nut_sodium" step="0.01" value="${mnDto.nut_sodium }" />
 									</dd>
 								</dl>
 							</li>
@@ -239,7 +269,7 @@ input[type=number] {
 								<dl>
 									<dt>단백질(g)</dt>
 									<dd>
-										<input type="number" name="nut_protein" step="0.01" />
+										<input type="number" name="nut_protein" step="0.01" value="${mnDto.nut_protein }" />
 									</dd>
 								</dl>
 							</li>
@@ -247,7 +277,7 @@ input[type=number] {
 								<dl>
 									<dt>카페인(mg)</dt>
 									<dd>
-										<input type="number" name="nut_caffeine" step="0.01" />
+										<input type="number" name="nut_caffeine" step="0.01" value="${mnDto.nut_caffeine }" />
 									</dd>
 								</dl>
 							</li>
@@ -257,7 +287,7 @@ input[type=number] {
 			</table>
 		</div>
 		<div class="buttonsDiv">
-			<input type="submit" form="menuForm" value="추가" />
+			<button>수정</button>
 			<button>취소</button>
 		</div>
 	</div>

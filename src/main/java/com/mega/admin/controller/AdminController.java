@@ -40,8 +40,25 @@ public class AdminController {
 	}
 
 	@GetMapping("/moveInsert")
-	public String moveInsert() throws Exception {
+	public String moveInsert(Model model) throws Exception {
+		model.addAttribute("typeList", menuService.getTypeList());
+		model.addAttribute("allergenList", menuService.getAllegenList());
 		return "/admin/productInsert";
+	}
+
+	@GetMapping("/moveModify")
+	public String moveModify(@RequestParam("menu_id") int menu_id, Model model) throws Exception {
+		MenuNutrientDto mnDto = menuService.getMenuNutrient(menu_id);
+		List<TypeDto> typeList = menuService.getType(menu_id);
+		List<AllergenDto> allergenList = menuService.getAllergen(menu_id);
+
+		model.addAttribute("mnDto", mnDto);
+		model.addAttribute("selectTypeList", typeList);
+		model.addAttribute("selectAllergenList", allergenList);
+
+		model.addAttribute("typeList", menuService.getTypeList());
+		model.addAttribute("allergenList", menuService.getAllegenList());
+		return "/admin/productModify";
 	}
 
 	@GetMapping("/moveMenu")
@@ -68,9 +85,6 @@ public class AdminController {
 		MenuNutrientDto mnDto = menuService.getMenuNutrient(menu_id);
 		List<TypeDto> typeList = menuService.getType(menu_id);
 		List<AllergenDto> allergenList = menuService.getAllergen(menu_id);
-		System.out.println(mnDto);
-		System.out.println("typeList.size : " + typeList.size());
-		System.out.println("allergenList.size : " + allergenList.size());
 		model.addAttribute("mnDto", mnDto);
 		model.addAttribute("typeList", typeList);
 		model.addAttribute("allergenList", allergenList);
@@ -87,5 +101,13 @@ public class AdminController {
 
 		rttr.addFlashAttribute("msg", msg);
 		return redirectUrl;
+	}
+
+	@PostMapping("/productInsert")
+	public String productInsert(MenuNutrientDto mnDto) throws Exception {
+		System.out.println(mnDto);
+		System.out.println(mnDto.getType_id().toString());
+		System.out.println(mnDto.getAll_id().toString());
+		return "redirect:/amdin/main";
 	}
 }

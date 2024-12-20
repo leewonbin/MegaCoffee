@@ -28,6 +28,8 @@ public interface MenuService {
 
 	public List<AllergenDto> getAllegenList() throws Exception;
 
+	public List<TypeDto> getTypeList() throws Exception;
+
 	// public List<AllergenDto> getAllergen(int menu_id) throws Exception;
 
 }

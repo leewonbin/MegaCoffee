@@ -1,5 +1,7 @@
 package com.mega.menu.dto;
 
+import java.util.List;
+
 public class MenuNutrientDto {
 	private int menu_id;
 	private String menu_title;
@@ -9,24 +11,27 @@ public class MenuNutrientDto {
 	private String menu_ice_hot;
 	private String menu_onesize;
 	private String menu_file_id;
+	private int category_id;
 	private double nut_saturated;
 	private double nut_sugar;
 	private double nut_sodium;
 	private double nut_protein;
 	private double nut_caffeine;
 	private double nut_calorie;
-	private String nut_hight_caffeine;
+	private String nut_high_caffeine;
 	private int nut_size;
 	private String nut_unit;
+	private List<TypeDto> type_id;
+	private List<AllergenDto> all_id;
 
 	public MenuNutrientDto() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public MenuNutrientDto(int menu_id, String menu_title, String menu_eng_title, String menu_content, String menu_del,
-			String menu_ice_hot, String menu_onesize, String menu_file_id, double nut_saturated, double nut_sugar,
-			double nut_sodium, double nut_protein, double nut_caffeine, double nut_calorie, String nut_hight_caffeine,
-			int nut_size, String nut_unit) {
+			String menu_ice_hot, String menu_onesize, String menu_file_id, int category_id, double nut_saturated,
+			double nut_sugar, double nut_sodium, double nut_protein, double nut_caffeine, double nut_calorie,
+			String nut_high_caffeine, int nut_size, String nut_unit) {
 		super();
 		this.menu_id = menu_id;
 		this.menu_title = menu_title;
@@ -36,26 +41,43 @@ public class MenuNutrientDto {
 		this.menu_ice_hot = menu_ice_hot;
 		this.menu_onesize = menu_onesize;
 		this.menu_file_id = menu_file_id;
+		this.category_id = category_id;
 		this.nut_saturated = nut_saturated;
 		this.nut_sugar = nut_sugar;
 		this.nut_sodium = nut_sodium;
 		this.nut_protein = nut_protein;
 		this.nut_caffeine = nut_caffeine;
 		this.nut_calorie = nut_calorie;
-		this.nut_hight_caffeine = nut_hight_caffeine;
+		this.nut_high_caffeine = nut_high_caffeine;
 		this.nut_size = nut_size;
 		this.nut_unit = nut_unit;
 	}
 
-	@Override
-	public String toString() {
-		return "MenuNutrientDto [menu_id=" + menu_id + ", menu_title=" + menu_title + ", menu_eng_title="
-				+ menu_eng_title + ", menu_content=" + menu_content + ", menu_del=" + menu_del + ", menu_ice_hot="
-				+ menu_ice_hot + ", menu_onesize=" + menu_onesize + ", menu_file_id=" + menu_file_id
-				+ ", nut_saturated=" + nut_saturated + ", nut_sugar=" + nut_sugar + ", nut_sodium=" + nut_sodium
-				+ ", nut_protein=" + nut_protein + ", nut_caffeine=" + nut_caffeine + ", nut_calorie=" + nut_calorie
-				+ ", nut_hight_caffeine=" + nut_hight_caffeine + ", nut_size=" + nut_size + ", nut_unit=" + nut_unit
-				+ "]";
+	public MenuNutrientDto(int menu_id, String menu_title, String menu_eng_title, String menu_content, String menu_del,
+			String menu_ice_hot, String menu_onesize, String menu_file_id, int category_id, double nut_saturated,
+			double nut_sugar, double nut_sodium, double nut_protein, double nut_caffeine, double nut_calorie,
+			String nut_high_caffeine, int nut_size, String nut_unit, List<TypeDto> type_id, List<AllergenDto> all_id) {
+		super();
+		this.menu_id = menu_id;
+		this.menu_title = menu_title;
+		this.menu_eng_title = menu_eng_title;
+		this.menu_content = menu_content;
+		this.menu_del = menu_del;
+		this.menu_ice_hot = menu_ice_hot;
+		this.menu_onesize = menu_onesize;
+		this.menu_file_id = menu_file_id;
+		this.category_id = category_id;
+		this.nut_saturated = nut_saturated;
+		this.nut_sugar = nut_sugar;
+		this.nut_sodium = nut_sodium;
+		this.nut_protein = nut_protein;
+		this.nut_caffeine = nut_caffeine;
+		this.nut_calorie = nut_calorie;
+		this.nut_high_caffeine = nut_high_caffeine;
+		this.nut_size = nut_size;
+		this.nut_unit = nut_unit;
+		this.type_id = type_id;
+		this.all_id = all_id;
 	}
 
 	public int getMenu_id() {
@@ -122,6 +144,14 @@ public class MenuNutrientDto {
 		this.menu_file_id = menu_file_id;
 	}
 
+	public int getCategory_id() {
+		return category_id;
+	}
+
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
+	}
+
 	public double getNut_saturated() {
 		return nut_saturated;
 	}
@@ -170,12 +200,12 @@ public class MenuNutrientDto {
 		this.nut_calorie = nut_calorie;
 	}
 
-	public String getNut_hight_caffeine() {
-		return nut_hight_caffeine;
+	public String getNut_high_caffeine() {
+		return nut_high_caffeine;
 	}
 
-	public void setNut_hight_caffeine(String nut_hight_caffeine) {
-		this.nut_hight_caffeine = nut_hight_caffeine;
+	public void setNut_high_caffeine(String nut_high_caffeine) {
+		this.nut_high_caffeine = nut_high_caffeine;
 	}
 
 	public int getNut_size() {
@@ -194,4 +224,30 @@ public class MenuNutrientDto {
 		this.nut_unit = nut_unit;
 	}
 
+	public List<TypeDto> getType_id() {
+		return type_id;
+	}
+
+	public void setType_id(List<TypeDto> type_id) {
+		this.type_id = type_id;
+	}
+
+	public List<AllergenDto> getAll_id() {
+		return all_id;
+	}
+
+	public void setAll_id(List<AllergenDto> all_id) {
+		this.all_id = all_id;
+	}
+
+	@Override
+	public String toString() {
+		return "MenuNutrientDto [menu_id=" + menu_id + ", menu_title=" + menu_title + ", menu_eng_title="
+				+ menu_eng_title + ", menu_content=" + menu_content + ", menu_del=" + menu_del + ", menu_ice_hot="
+				+ menu_ice_hot + ", menu_onesize=" + menu_onesize + ", menu_file_id=" + menu_file_id + ", category_id="
+				+ category_id + ", nut_saturated=" + nut_saturated + ", nut_sugar=" + nut_sugar + ", nut_sodium="
+				+ nut_sodium + ", nut_protein=" + nut_protein + ", nut_caffeine=" + nut_caffeine + ", nut_calorie="
+				+ nut_calorie + ", nut_high_caffeine=" + nut_high_caffeine + ", nut_size=" + nut_size + ", nut_unit="
+				+ nut_unit + ", type_id=" + type_id + ", all_id=" + all_id + "]";
+	}
 }

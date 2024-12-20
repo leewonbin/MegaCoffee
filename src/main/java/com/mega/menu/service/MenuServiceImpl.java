@@ -67,4 +67,10 @@ public class MenuServiceImpl implements MenuService {
 		return menuMapper.getAllergen(menu_id);
 	}
 
+	@Override
+	public List<TypeDto> getTypeList() throws Exception {
+		// TODO Auto-generated method stub
+		return menuMapper.getTypeList();
+	}
+
 }
