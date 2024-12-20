@@ -496,7 +496,7 @@
 		$(document).ready(function(){
 			$(".cont_tab ul li").eq(0).addClass("check");
 		});
-		var checked = document.querySelectorAll('.check');
+		
 		
 	</script>
 	<div class="cont_wrap bbs_wrap">
@@ -549,11 +549,9 @@
 												전체
 											</a>
 										</li>
-										<li class="cont_tab5">
-											<a href="?bbs_category=4&amp;bbs_detail_category=1">
-												가맹문의												
-											</a>
-										</li>
+										<li class="cont_tab5 ${CATEGORY_ID == 1 ? 'check' : ''}">
+            <a href="/tables?CATEGORY_ID=1">가맹문의</a>
+        </li>
 										<li class="cont_tab6">
 											<a href="?bbs_category=4&amp;bbs_detail_category=6">
 												매장정보												
@@ -688,27 +686,32 @@
 								</div>
 								
 						<div class="board_page_wrap">
-							<div class="board_page" >
-								<ul class="boardPagination">
-								   <li class="fo_re"><a href="/tables?nowPage=1"><span>처음</span></a></li>
-								   <li class="board_page_link <c:if test='${paging.startPage == 1}'>disabled</c:if>" id="dataTable_previous">
-										<c:if test='${paging.nowPage != 1 }'>
-											<a href="/tables?nowPage=${paging.nowPage-1}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="board_page_link">이전</a>
-										</c:if>	
-									</li>
-									<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p"> <!--  -->
-										<li class="board_page_check  <c:if test='${p == paging.nowPage}'>active</c:if>"><a href="/tables?nowPage=${p}&cntPerPage=${paging.cntPerPage}"  >
-											<span>${p}</span>
-											</a>
-										</li>										
-									</c:forEach>
-									<c:if test='${paging.nowPage!=paging.lastPage}'>
-										<li class="paginate_button page-item next" id="dataTable_next"><a href="/tables?nowPage=${paging.nowPage+1 }&cntPerPage=${paging.cntPerPage}" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">다음</a></li>
-									</c:if>
-									<li class="fo_re"><a href="/tables?nowPage=${paging.lastPage}"><span>마지막</span></a></li>
-								</ul>
-							</div>
-						</div>
+    <div class="board_page">
+        <ul class="boardPagination">
+            <li class="fo_re"><a href="/tables?nowPage=1&CATEGORY_ID=${CATEGORY_ID}"><span>처음</span></a></li>
+            <li class="board_page_link <c:if test='${paging.startPage == 1}'>disabled</c:if>" id="dataTable_previous">
+                <c:if test='${paging.nowPage != 1 }'>
+                    <a href="/tables?nowPage=${paging.nowPage-1}&CATEGORY_ID=${CATEGORY_ID}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="board_page_link">이전</a>
+                </c:if>    
+            </li>
+            <c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+                <li class="board_page_check <c:if test='${p == paging.nowPage}'>active</c:if>">
+                    <a href="/tables?nowPage=${p}&cntPerPage=${paging.cntPerPage}&CATEGORY_ID=${CATEGORY_ID}">
+                        <span>${p}</span>
+                    </a>
+                </li>                                          
+            </c:forEach>
+            <c:if test='${paging.nowPage!=paging.lastPage}'>
+                <li class="paginate_button page-item next" id="dataTable_next">
+                    <a href="/tables?nowPage=${paging.nowPage+1 }&cntPerPage=${paging.cntPerPage}&CATEGORY_ID=${CATEGORY_ID}" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">다음</a>
+                </li>
+            </c:if>
+            <li class="fo_re"><a href="/tables?nowPage=${paging.lastPage}&CATEGORY_ID=${CATEGORY_ID}"><span>마지막</span></a></li>
+        </ul>
+    </div>
+</div>
+
+
 					</div>
 				</div>
 			</div>

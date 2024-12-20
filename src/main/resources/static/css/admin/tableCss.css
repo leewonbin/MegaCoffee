@@ -1,32 +1,35 @@
 @charset "UTF-8";
 
 /* 전체 레이아웃 */
-html,
-body {
-	margin: 0;
-	padding: 0;
-	font-family: Arial, sans-serif;
-}
 
 .content {
 	margin-left: 260px;
 	padding: 20px;
 }
 
-table {
+#content-title {
+	padding-bottom: 10px;
+	border-bottom: 3px solid #FAD000;
+}
+
+table.list {
 	width: 100%;
 	border-collapse: collapse;
 	margin-top: 20px;
 	text-align: left;
 }
 
-th,
-td {
+table.list th {
 	padding: 10px;
 	border: 1px solid #ddd;
 }
 
-th {
+table.list td {
+	padding: 10px;
+	border: 1px solid #ddd;
+}
+
+table.list th {
 	background-color: #f4f4f4;
 	font-weight: bold;
 }
@@ -44,11 +47,12 @@ th {
 	float: right;
 }
 
-tr:hover {
+table.list tbody>tr:hover {
 	font-weight: bold;
+	cursor: pointer;
 }
 
 .addButton:hover {
-	background-color : #FAD000;
-	color : black;
+	background-color: #FAD000;
+	color: black;
 }

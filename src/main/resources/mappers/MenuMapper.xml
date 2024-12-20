@@ -3,55 +3,49 @@
 
 <mapper namespace="com.mega.menu.mapper.MenuMapper">
 
-<!--<select id="menuList" resultType="com.mega.menu.dto.MenuDto">
-select * from menu
-</select>-->
+	<select id="menuRead" resultType="com.mega.menu.dto.MenuDto">
+		select * from menu where
+		menu_id = #{menu_id}
+	</select>
 
-<!-- <select id="menuRead" resultType="com.mega.menu.dto.MenuDto"> -->
-<select id="menuRead" resultType="com.mega.menu.dto.MenuDto">
-<!-- select * from menu where munu_id = #{menu_id} -->
-<!-- select m.menu_id, m.menu_title, m.menu_eng_title, m.menu_content, m.menu_ice_hot, m.menu_onesize, c.category_name, a.admin_id 
-from menu m join category c on m.category_id = c.category_id join admin a on m.admin_num = a.admin_num
-where m.menu_id = #{menu_id} and m.menu_del = 'N' -->
-select m.menu_id, m.menu_title, m.menu_eng_title, m.menu_content, m.menu_ice_hot, m.menu_onesize, m.menu_date, n.nut_saturated, 
-n.nut_sugar, n.nut_sodium, n.nut_protein, n.nut_caffeine, n.nut_calorie, n.nut_high_caffeine, n.nut_size, n.nut_unit
-from menu m join nutrient n on m.menu_id = n.menu_id where m.menu_id = #{menu_id} and m.menu_del = 'N'
-</select>
+	<select id="getMenuNutrient"
+		resultType="com.mega.menu.dto.MenuNutrientDto">
+		select m.*,n.* from menu m, nutrient n
+where n.menu_id = m.menu_id
+and m.menu_id = #{menu_id}
+	</select>
 
-<!--
-<select id="menuList" resultType="com.mega.menu.dto.MenuDto">
+	<select id="getType" resultType="com.mega.menu.dto.TypeDto">
+		select t.* from menu_type mt,
+		type t
+		where mt.type_id = t.type_id
+		and mt.menu_id = #{menu_id}
+	</select>
 
-select * from menu where menu_del = 'N'
-</select>
- -->
- 
-<!-- 카테고리 메뉴 항목을 눌렀을때 카테고리별로 상품 출력 -->
-<select id="menuList" resultType="com.mega.menu.dto.MenuDto">
-select m.* from menu m
-<choose>
-<when test = "category_id != null">
-,category c
-where m.category_id = c.category_id
-and
-m.category_id = #{category_id}
-</when>
-<otherwise>
-where 1=1
-</otherwise>
-</choose>
-and m.menu_del = 'N'
-</select>
+	<select id="getAllergen"
+		resultType="com.mega.menu.dto.AllergenDto">
+		select a.* from menu_allergen ma, allergen a
+		where ma.all_id = a.all_id
+		and ma.menu_id = #{menu_id}
+	</select>
 
 
-<select id="getNutrient" parameterType="int" resultType="com.mega.menu.dto.NutrientDto">
-select nut_id, nut_saturated, nut_sugar, nut_sodium, nut_protein, nut_caffeine, nut_calorie, nut_high_caffeine, nut_size, nut_unit
-from nutrient where menu_id = #{menu_id}
-</select>
-
-<!-- <select id="getAllergens" parameterType="int" resultType="com.mega.menu.dto.AllergenDto">
-select a.all_id, a.all_name from allergen a join menu_allergen ma on a.all_id = ma.all_id where ma.menu_id = #{menu_id}
-</select> -->
-
+	<!-- 카테고리 메뉴 항목을 눌렀을때 카테고리별로 상품 출력 -->
+	<select id="menuList" resultType="com.mega.menu.dto.MenuDto">
+		select m.* from menu m
+		<choose>
+			<when test="category_id != null">
+				,category c
+				where m.category_id = c.category_id
+				and
+				m.category_id = #{category_id}
+			</when>
+			<otherwise>
+				where 1=1
+			</otherwise>
+		</choose>
+		and m.menu_del = 'N'
+	</select>
 
 <select id="filterType" resultType="com.mega.menu.dto.MenuDto">
 select m.* from menu m
@@ -64,9 +58,17 @@ and m.menu_del = 'N'
 </select>
 
 
-<select id="getAllegenList" resultType="com.mega.menu.dto.AllergenDto">
-	select * from allergen
+	<select id="getNutrient" parameterType="int"
+		resultType="com.mega.menu.dto.NutrientDto">
+		select n.* from menu m, nutrient n
+		where n.menu_id =
+		m.menu_id
+		and m.menu_id = #{menu_id}
+	</select>
 
-</select>
+	<select id="getAllegenList"
+		resultType="com.mega.menu.dto.AllergenDto">
+		select * from allergen
+	</select>
 
 </mapper>
