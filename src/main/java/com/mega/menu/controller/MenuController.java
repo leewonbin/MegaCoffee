@@ -65,6 +65,12 @@ public class MenuController {
 	    model.addAttribute("menuList", menuList);
 	    return "menu/menu";
 	}
-
+	
+	@ResponseBody
+	@GetMapping("/filterType")
+	public List<MenuDto> filterType(@RequestParam List<Integer> type_id) throws Exception {
+	    System.out.println("필터아이디: " + type_id); 
+	    return menuService.filterType(type_id);
+	}
 
 }

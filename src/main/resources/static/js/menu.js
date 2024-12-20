@@ -22,3 +22,4 @@ $(document).on("click",".inner_modal .inner_modal_title .close_wrap",function(){
 		}
 	});
 }*/
+

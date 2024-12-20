@@ -25,6 +25,8 @@ public interface MenuMapper {
 
 	public List<AllergenDto> getAllegenList() throws Exception;
 
+	public List<MenuDto> filterType(List<Integer> type_id) throws Exception;
+	
 	public MenuNutrientDto getMenuNutrient(int menu_id) throws Exception;
 
 	public List<TypeDto> getType(int menu_id) throws Exception;

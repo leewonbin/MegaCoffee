@@ -47,14 +47,11 @@ public class BoardController {
 	        cntPerPage = "10";
 	    }
 
-	    // 페이지 정보 설정
 	    pageDto = new PageDto(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 
-	    // start와 end 계산 (MyBatis에서 필요)
 	    int start = (Integer.parseInt(nowPage) - 1) * Integer.parseInt(cntPerPage) + 1;
 	    int end = Integer.parseInt(nowPage) * Integer.parseInt(cntPerPage);
 
-	    // PageDto에 start와 end 설정
 	    pageDto.setStart(start);
 	    pageDto.setEnd(end);
 
@@ -62,16 +59,16 @@ public class BoardController {
 	    if (category_id != null) {
 	        // 카테고리별 게시글 조회
 	        boardList = boardService.boardListByCategory(pageDto, category_id);
-	        System.out.println("cid: "+category_id);
+	        System.out.println("cid O: "+category_id);
 	    } else {
 	        // 전체 게시글 조회
 	        boardList = boardService.boardList(pageDto);
+	        System.out.println("cid x: "+category_id);
 	    }
-
-	    // 모델에 데이터 추가
+	    
 	    model.addAttribute("paging", pageDto);
 	    model.addAttribute("boardList", boardList);
-	    model.addAttribute("CATEGORY_ID", category_id); // 현재 카테고리 전달
+	    model.addAttribute("CATEGORY_ID", category_id); 
 	    return "board/board";
 	}
 
@@ -98,7 +95,7 @@ public class BoardController {
 	
 	//게시글 상세 페이지
 	@GetMapping("/boardDetail")
-	public String boardDeatil(@RequestParam(value="id",required = false) int boardId, Model model) {
+	public String boardDeatil(@RequestParam(value="id",required = false) int boardId,@RequestParam(value = "CATEGORY_ID", required = false) Integer category_id, Model model) {
 		BoardDto boardDto = boardService.boardDetail(boardId);
 		System.out.println("게시글 ID: "+boardDto.getBoardId());
 		System.out.println("제목: "+boardDto.getTitle());
