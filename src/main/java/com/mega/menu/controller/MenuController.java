@@ -51,26 +51,20 @@ public class MenuController {
 		return "menu/menu";
 	}
 	
-//	@GetMapping("/menu")
-//	public String getCategory(@RequestParam(required = false) Integer category_id, 
-//			@RequestParam(required = false) Integer type_id, Model model) {
-//	    List<MenuDto> menuList = menuService.getCategory(category_id, type_id);
-//	    model.addAttribute("menuList", menuList);
-//	    return "menu/menu";
-//	}
-	
-	@GetMapping("/menu")			//int는 null로 변환 불가능
-	public String getCategory(@RequestParam(required = false) Integer category_id, Model model) {
+	@GetMapping("/menu")
+	public String getCategory(@RequestParam(required = false) Integer category_id, Model model) throws Exception{
 	    List<MenuDto> menuList = menuService.menuList(category_id);
 	    model.addAttribute("menuList", menuList);
 	    return "menu/menu";
 	}
 	
 	@ResponseBody
-	@GetMapping("/filterType")
-	public List<MenuDto> filterType(@RequestParam List<Integer> type_id) throws Exception {
+	@GetMapping("/filterType")				//List<Integer>
+	public List<MenuDto> filterType(@RequestParam int category_id, @RequestParam List<Integer> type_id) throws Exception {
 	    System.out.println("필터아이디: " + type_id); 
-	    return menuService.filterType(type_id);
+	    String typeArr = type_id.toString().replaceAll("\\[", "").replaceAll("\\]", "");
+	    return menuService.filterType(category_id, typeArr);
 	}
+	
 
 }

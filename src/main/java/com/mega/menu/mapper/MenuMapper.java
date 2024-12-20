@@ -19,20 +19,17 @@ public interface MenuMapper {
 
 	public NutrientDto getNutrient(int menu_id) throws Exception;
 
-	// public List<AllergenDto> getAllergen(int menu_id) throws Exception;
-
-	public List<MenuDto> menuList(Integer category_id);
+	public List<MenuDto> menuList(Integer category_id) throws Exception;
 
 	public List<AllergenDto> getAllegenList() throws Exception;
 
-	public List<MenuDto> filterType(List<Integer> type_id) throws Exception;
-	
 	public MenuNutrientDto getMenuNutrient(int menu_id) throws Exception;
 
 	public List<TypeDto> getType(int menu_id) throws Exception;
 
 	public List<AllergenDto> getAllergen(int menu_id) throws Exception;
+	
+	public List<MenuDto> filterType(int category_id, String typeIdStr) throws Exception;
 
-	// public List<AllergenDto> getAllergen(int menu_id) throws Exception;
 
 }

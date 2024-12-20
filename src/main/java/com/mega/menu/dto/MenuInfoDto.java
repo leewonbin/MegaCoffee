@@ -9,13 +9,12 @@ public class MenuInfoDto {
 	public MenuInfoDto() {
 	}
 
-	public MenuInfoDto(MenuDto menuDto) {
+	public MenuInfoDto(MenuDto menuDto, NutrientDto nutrientDto) {
+		super();
 		this.menuDto = menuDto;
-	}
-
-	public MenuInfoDto(NutrientDto nutrientDto) {
 		this.nutrientDto = nutrientDto;
 	}
+
 //-----------------------------------------------------------------------------------------
 	public MenuDto getMenuDto() {
 		return menuDto;
@@ -30,12 +29,6 @@ public class MenuInfoDto {
 	}
 
 	public void setNutrientDto(NutrientDto nutrientDto) {
-		this.nutrientDto = nutrientDto;
-	}
-
-	public MenuInfoDto(MenuDto menuDto, NutrientDto nutrientDto) {
-		super();
-		this.menuDto = menuDto;
 		this.nutrientDto = nutrientDto;
 	}
 

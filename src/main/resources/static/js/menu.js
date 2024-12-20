@@ -6,9 +6,6 @@ $(document).on("click",".inner_modal .inner_modal_title .close_wrap",function(){
 });
 
 
-
-
-
 /*function ddd(url, data, callback) {
 	$.ajax({
 		type: 'GET',
