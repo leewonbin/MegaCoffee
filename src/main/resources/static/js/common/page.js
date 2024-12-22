@@ -1,4 +1,4 @@
-const pageContentCnt = 20;
+const pageContentCnt = 4;
 let currentPage = 1;
 
 function createPaging(pageElement, rowsElement) {

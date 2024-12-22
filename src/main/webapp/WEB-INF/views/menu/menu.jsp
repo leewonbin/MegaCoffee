@@ -325,139 +325,7 @@ ng\:form {
 				</div>
 			</button>
 		</div>
-		<div class="head_wrap head_fixed">
-			<div class="head">
-				<div class="head_logo">
-					<a href="/"> <img
-						src="https://img.79plus.co.kr/megahp/common/img/logo.png"
-						class="head_logo_img_fixed"> <img
-						src="https://img.79plus.co.kr/megahp/common/img/logo_b.png"
-						class="head_logo_img">
-					</a>
-				</div>
-				<div class="head_menu_wrap">
-					<div class="head_menu_logo t m">
-						<img src="https://img.79plus.co.kr/megahp/common/img/logo_w.png">
-					</div>
-					<div class="head_menu">
-						<ul>
-							<li><a href="/about/brand/" class="pc"> 메가 스토리 </a> <a
-								class="m head_menu_down"> 메가 스토리 </a>
-								<div
-									class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1"
-									style="display: none;">
-									<ul>
-										<li><a href="/about/brand/"> 브랜드 </a></li>
-										<li><a href="/about/bi/"> BI </a></li>
-										<li><a href="/about/map/"> 오시는 길 </a></li>
-									</ul>
-								</div></li>
-							<li><a href="/menu/" class="pc"> 메뉴소개 </a> <a
-								class="m head_menu_down"> 메뉴소개 </a>
-								<div
-									class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1"
-									style="display: none;">
-									<ul>
-										<!-- <li><a
-											href="/menu/?menu_category1=1&amp;menu_category2=1"> 음료 </a>
-										</li>
-										<li><a
-											href="/menu/?menu_category1=2&amp;menu_category2=2"> 푸드 </a>
-										</li>
-										<li><a
-											href="/menu/?menu_category1=3&amp;menu_category2=3"> 상품 </a>
-										</li> -->
-										<li><a href="/menu/?category_id=1&amp;type_id=1"> 음료
-										</a></li>
-										<li><a href="/menu/?category_id=2&amp;type_id=2"> 푸드
-										</a></li>
-										<li><a href="/menu/?category_id=3&amp;type_id=3"> 상품
-										</a></li>
-									</ul>
-								</div></li>
-							<li><a href="/store/find/" class="pc"> 매장 </a> <a
-								class="m head_menu_down"> 매장 </a>
-								<div
-									class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1"
-									style="display: none;">
-									<ul>
-										<li><a href="/store/find/"> 매장찾기 </a></li>
-									</ul>
-								</div></li>
-							<li class=""><a href="/startup/cost" class="pc"> 창업안내 </a> <a
-								class="m head_menu_down"> 창업안내 </a>
-								<div
-									class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1"
-									style="display: none;">
-									<ul>
-										<li><a href="/startup/cost/"> 개설비용 </a></li>
-										<li><a href="/startup/interior/"> 인테리어 </a></li>
-										<li><a href="/customer/?db_category=2"> 창업문의 </a></li>
-										<li><a href="/customer/?db_category=7"> 가맹점 인수 </a></li>
-										<li><a href="/bbs/?bbs_category=7"> 창업뉴스 </a></li>
-									</ul>
-								</div></li>
-							<li><a href="/bbs/?bbs_category=4" class="pc"> 메가소식 </a> <a
-								class="m head_menu_down"> 메가소식 </a>
-								<div
-									class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1"
-									style="display: none;">
-									<ul>
-										<li><a href="/bbs/?bbs_category=1"> 공지사항 </a></li>
-										<li><a href="/bbs/?bbs_category=3"> 이벤트 </a></li>
-										<li><a href="/bbs/?bbs_category=4"> FAQ </a></li>
-										<li><a href="/news/voc/"> 고객의 소리 </a></li>
-									</ul>
-								</div></li>
-							<li><a href="/recruit/job/" class="pc"> 채용 </a> <a
-								class="m head_menu_down"> 채용 </a>
-								<div
-									class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1"
-									style="display: none;">
-									<ul>
-										<li><a href="/recruit/job/"> 채용안내 </a></li>
-									</ul>
-								</div></li>
-						</ul>
-					</div>
-				</div>
-				<div class="head_sns">
-					<div class="cont_list cont_list_small">
-						<ul>
-							<li><a href="https://blog.naver.com/ekddusekddus"
-								target="_blank"> <img
-									src="https://img.79plus.co.kr/megahp/common/img/sns/sns_blog.png">
-							</a></li>
-							<li><a
-								href="https://www.facebook.com/mega.mgc.coffee.official"
-								target="_blank"> <img
-									src="https://img.79plus.co.kr/megahp/common/img/sns/sns_facebook.png">
-							</a></li>
-							<li><a
-								href="https://www.instagram.com/mega.mgc.coffee_official/"
-								target="_blank"> <img
-									src="https://img.79plus.co.kr/megahp/common/img/sns/sns_instagram.png">
-							</a></li>
-							<li><a href="https://smartstore.naver.com/megamgccoffee"
-								target="_blank"> <img
-									src="https://img.79plus.co.kr/megahp/common/img/sns/sns_smartstore.png">
-							</a></li>
-							<!-- <li> -->
-							<!-- <a href="/manager/" target="_blank"> -->
-							<!-- <img src="https://img.79plus.co.kr/megahp/common/img/sns/sns_mng.png"> -->
-							<!-- <span>점주님전용</span> -->
-							<!-- </a> -->
-							<!-- </li> -->
-						</ul>
-					</div>
-				</div>
-				<div class="mobile_menu_icon_wrap m t">
-					<div class="mobile_menu_icon">
-						<div class="mobile_menu_icon_bar bar_black"></div>
-					</div>
-				</div>
-			</div>
-		</div>
+
 		<div class="cont_wrap menu_wrap">
 			<div class="cont">
 				<div class="cont_box cont_head">
@@ -532,12 +400,17 @@ ng\:form {
 						<div class="cont_text_wrap text_center">
 							<div class="cont_text_info">※메뉴 이미지는 연출컷이라 실물과 다를 수 있습니다.</div>
 						</div>
+
+
+
+
+
+
 						<div class="cont_text_wrap list_checkbox_wrap">
-							<!-- 메뉴소개로 들어가면 비활성화 시켜야됨111111111111111111111111111111111111111 -->
 							<div class="cont_text cont_text_title">
 								<b>분류보기</b>
 							</div>
-							<!-- <div class="checkbox_wrap">
+							<div class="checkbox_wrap">
 								<label class="checkbox"> <input type="checkbox" id=""
 									name="list_checkbox_all" value="all" checked=""> <span
 									class="check_mark"></span>
@@ -592,145 +465,18 @@ ng\:form {
 									class="check_mark"></span>
 									<div class="checkbox_text">신상품</div>
 								</label>
-							</div> -->
-							<div class="checkbox_wrap">
-								<label class="checkbox"> <input type="checkbox"
-									id="list_checkbox_all" name="list_checkbox_all" value="all"
-									checked=""> <span class="check_mark"></span>
-									<div class="checkbox_text">전체 상품보기</div>
-								</label>
 							</div>
-
-							<div class="checkbox_wrap list_checkbox">
-								<label class="checkbox"> <input type="checkbox"
-									name="list_checkbox" value="1"> <span
-									class="check_mark"></span>
-									<div class="checkbox_text">커피</div>
-								</label>
-							</div>
-
-							<div class="checkbox_wrap list_checkbox">
-								<label class="checkbox"> <input type="checkbox"
-									name="list_checkbox" value="2"> <span
-									class="check_mark"></span>
-									<div class="checkbox_text">티</div>
-								</label>
-							</div>
-
-							<div class="checkbox_wrap list_checkbox">
-								<label class="checkbox"> <input type="checkbox"
-									name="list_checkbox" value="3"> <span
-									class="check_mark"></span>
-									<div class="checkbox_text">에이드&amp;주스</div>
-								</label>
-							</div>
-
-							<div class="checkbox_wrap list_checkbox">
-								<label class="checkbox"> <input type="checkbox"
-									name="list_checkbox" value="4"> <span
-									class="check_mark"></span>
-									<div class="checkbox_text">스무디&amp;프라페</div>
-								</label>
-							</div>
-
-							<div class="checkbox_wrap list_checkbox">
-								<label class="checkbox"> <input type="checkbox"
-									name="list_checkbox" value="5"> <span
-									class="check_mark"></span>
-									<div class="checkbox_text">디카페인</div>
-								</label>
-							</div>
-
-							<div class="checkbox_wrap list_checkbox">
-								<label class="checkbox"> <input type="checkbox"
-									name="list_checkbox" value="6"> <span
-									class="check_mark"></span>
-									<div class="checkbox_text">음료</div>
-								</label>
-							</div>
-
-							<div class="checkbox_wrap list_checkbox">
-								<label class="checkbox"> <input type="checkbox"
-									name="list_checkbox" value="9"> <span
-									class="check_mark"></span>
-									<div class="checkbox_text">신상품</div>
-								</label>
-							</div>
-
 						</div>
+
+
+
+
 						<div class="cont_text_wrap">
 							<div
 								class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2">
 								<ul id="menu_list">
 									<div
 										class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2 wfull">
-										<!-- <ul id="menu_list">
-											<li><a class="inner_modal_open">
-													<div class="cont_gallery_list_box">
-														<div class="cont_gallery_list_img"
-															style="width: 305px; height: 305px;">
-															<div
-																class="cont_gallery_list_label cont_gallery_list_label2">ICE</div>
-															<img
-																src="https://img.79plus.co.kr/megahp/manager/upload/menu/20241106233407_1730903647569_24XqTsoIe9.jpg">
-														</div>
-														<div class="cont_text_box">
-															<div class="cont_text">
-																<div class="cont_text_inner text_wrap cont_text_title">
-																	<div class="text text1">
-																		<b>초코 눈송이 피스타치오 프라페</b>
-																	</div>
-																</div>
-																<div class="cont_text_inner text_wrap cont_text_info">
-																	<div class="text text1">Pistachio Frappe</div>
-																</div>
-															</div>
-															<div class="cont_text cont_text_info">
-																<div class="text_wrap">
-																	<div class="text text2">피스타치오 나무 위에 초코 눈송이가 와르르!
-																		와작와작! 초콜릿을 깨서 고소한 피스타치오 프라페와 섞은 후 식감 좋은 초콜릿 아몬드와 함께
-																		즐기는 달콤하고 고소한 피스타치오 프라페</div>
-																</div>
-															</div>
-														</div>
-													</div>
-											</a>
-												<div class="inner_modal">
-													<div class="cont_text_box">
-														<div class="cont_text inner_modal_title">
-															<div class="cont_text_inner cont_text_title">
-																<b>초코 눈송이 피스타치오 프라페</b>
-															</div>
-															<div class="cont_text_inner cont_text_info">
-																Pistachio Frappe</div>
-															<div class="close_wrap">
-																<div class="close"></div>
-															</div>
-														</div>
-														<div class="cont_text">
-															<div class="cont_text_inner">20oz</div>
-															<div class="cont_text_inner">1회 제공량 517.5kcal</div>
-														</div>
-														<div class="cont_text">피스타치오 나무 위에 초코 눈송이가 와르르!
-															와작와작! 초콜릿을 깨서 고소한 피스타치오 프라페와 섞은 후 식감 좋은 초콜릿 아몬드와 함께 즐기는
-															달콤하고 고소한 피스타치오 프라페</div>
-														<div class="cont_text cont_text_info">알레르기 성분 : 우유,
-															대두</div>
-													</div>
-													<div
-														class="cont_list cont_list2 cont_list_small cont_list_small2">
-														<ul>
-															<li>포화지방 9.2g</li>
-															<li>당류 74.3g</li>
-															<li>나트륨 205.6mg</li>
-															<li>단백질 11.2g</li>
-															<li>카페인 4.9mg</li>
-														</ul>
-													</div>
-												</div></li>
-
-										</ul> -->
-										<%-- <li data-menu-id="${menu.menu_id}"> --%>
 
 										<ul id="menu_list">
 											<c:forEach var="menu" items="${menuList}">
@@ -824,7 +570,7 @@ ng\:form {
 				</div>
 			</div>
 		</div>
-		<script>
+		<!-- <script>
 			var category_change = "";
 			$(document).on(
 					"click",
@@ -893,245 +639,11 @@ ng\:form {
 					}
 				});
 			};
-		</script>
-		<div class="foot_menu_wrap">
-			<div class="foot_menu">
-				<div class="cont_list">
-					<ul>
-						<li><a class="modal_open modal_open_policy1"> <b>이용약관</b>
-						</a></li>
-						<li><a class="modal_open modal_open_policy2"> <b>개인정보처리방침</b>
-						</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="foot_wrap">
-			<div class="foot">
-				<div class="cont_list cont_list_content">
-					<ul>
-						<li>
-							<div class="cont_text">
-								<div class="cont_list cont_list_m cont_list_m1">
-									<ul>
-										<li>
-											<div class="foot_logo">
-												<img
-													src="https://img.79plus.co.kr/megahp/common/img/logo_w.png">
-											</div>
-										</li>
-										<li>
-											<div class="foot_sns">
-												<div
-													class="cont_list cont_list3 cont_list_small cont_list_width">
-													<ul>
-														<li><a href="https://blog.naver.com/ekddusekddus"
-															target="_blank"> <img
-																src="https://img.79plus.co.kr/megahp/common/img/sns/sns_blog.png">
-														</a></li>
-														<li><a
-															href="https://www.facebook.com/mega.mgc.coffee.official"
-															target="_blank"> <img
-																src="https://img.79plus.co.kr/megahp/common/img/sns/sns_facebook.png">
-														</a></li>
-														<li><a
-															href="https://www.instagram.com/mega.mgc.coffee_official/"
-															target="_blank"> <img
-																src="https://img.79plus.co.kr/megahp/common/img/sns/sns_instagram.png">
-														</a></li>
-														<li><a
-															href="https://smartstore.naver.com/megamgccoffee"
-															target="_blank"> <img
-																src="https://img.79plus.co.kr/megahp/common/img/sns/sns_smartstore.png">
-														</a></li>
-														<!-- <li> -->
-														<!-- <a href="/manager/" target="_blank"> -->
-														<!-- <img src="https://img.79plus.co.kr/megahp/common/img/sns/sns_mng.png"> -->
-														<!-- </a> -->
-														<!-- </li> -->
-													</ul>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="cont_text foot_info">
-								<div class="cont_list cont_list_small cont_list_width_m">
-									<ul>
-										<li><b>주식회사 앤하우스</b></li>
-										<li>대표자 김대영</li>
-										<li>창업상담 1588-0656</li>
-										<li>고객센터 1588-8298</li>
-										<li>FAX 02-325-5199</li>
-										<li>사업자등록번호 105-87-51367</li>
-										<li>서울특별시 강남구 강남대로 518 11층, 13층 (주)앤하우스</li>
-										<li>개인정보보호 책임자 이종원</li>
-									</ul>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="cont_list cont_list6 pc">
-								<ul>
-									<li>
-										<div class="cont_text cont_text_title">메가 스토리</div>
-										<div class="cont_text">
-											<div
-												class="cont_list cont_list1 cont_list_small cont_list_small1">
-												<ul>
-													<li><a href="/about/brand/"> 브랜드 </a></li>
-													<li><a href="/about/bi/"> BI </a></li>
-													<li><a href="/about/map/"> 오시는 길 </a></li>
-												</ul>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="cont_text cont_text_title">메뉴소개</div>
-										<div class="cont_text">
-											<div
-												class="cont_list cont_list1 cont_list_small cont_list_small1">
-												<ul>
-													<li><a
-														href="/menu/?menu_category1=1&amp;menu_category2=1">
-															음료 </a></li>
-													<li><a
-														href="/menu/?menu_category1=2&amp;menu_category2=2">
-															푸드 </a></li>
-													<li><a
-														href="/menu/?menu_category1=3&amp;menu_category2=3">
-															상품 </a></li>
-												</ul>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="cont_text cont_text_title">매장</div>
-										<div class="cont_text">
-											<div
-												class="cont_list cont_list1 cont_list_small cont_list_small1">
-												<ul>
-													<li><a href="/store/find/"> 매장찾기 </a></li>
-												</ul>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="cont_text cont_text_title">창업안내</div>
-										<div class="cont_text">
-											<div
-												class="cont_list cont_list1 cont_list_small cont_list_small1">
-												<ul>
-													<li><a href="/startup/cost/"> 개설비용 </a></li>
-													<li><a href="/startup/interior/"> 인테리어 </a></li>
-													<li><a href="/customer/?db_category=2"> 창업문의 </a></li>
-													<li><a href="/bbs/?bbs_category=7"> 창업뉴스 </a></li>
-												</ul>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="cont_text cont_text_title">메가소식</div>
-										<div class="cont_text">
-											<div
-												class="cont_list cont_list1 cont_list_small cont_list_small1">
-												<ul>
-													<li><a href="/bbs/?bbs_category=1"> 공지사항 </a></li>
-													<li><a href="/bbs/?bbs_category=3"> 이벤트 </a></li>
-													<li><a href="/bbs/?bbs_category=4"> FAQ </a></li>
-													<li><a href="/news/voc/"> 고객의 소리 </a></li>
-												</ul>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="cont_text cont_text_title">제휴문의</div>
-										<div class="cont_text">
-											<div
-												class="cont_list cont_list1 cont_list_small cont_list_small1">
-												<ul>
-													<li><a href="/customer/?db_category=3"> 상품제안 </a></li>
-													<li><a href="/customer/?db_category=5"> 마케팅 제휴 </a></li>
-												</ul>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<a href="javascript:go_top()">
-		<div class="go_top_wrap">
-			<div class="go_top"></div>
-		</div>
-	</a>
-	<div class="swiper-container">
-		<div class="swiper-wrapper">
-			<div class="swiper-slide"></div>
-			<div class="swiper-slide"></div>
-		</div>
-	</div>
-	<!-- s: 사이트 연관 채널 마크업 -->
-	<script type="application/ld+json">
-		{
-			"@context": "http://schema.org",
-			"@type": "Person",
-			"name": "My Site Name",
-			"url": "https://mega-mgccoffee.com",
-			"sameAs": [
-			   "https://blog.naver.com/ekddusekddus",
-			   "https://www.instagram.com/mega.mgc.coffee_official",
-			   "https://www.facebook.com/mega.mgc.coffee.official",
-			   "https://smartstore.naver.com/megamgccoffee"
-			]
-		}
-	</script>
-	<!-- e: 사이트 연관 채널 마크업 -->
-	<script type="text/javascript"
-		src="/common/js/daterangepicker_common.js"></script>
-	<script type="text/javascript"
-		src="https://img.79plus.co.kr/megahp/common/js/aos.js"></script>
-	<script>
-		$(".modal").on("hidden.bs.modal", function(e) {
-			$(".modal-content").empty();
-		});
-		AOS.init({
-			duration : 1200,
-		});
-		$(document).ready(function() {
-			var swiper_foot = new Swiper(".swiper_foot", {
-				slidesPerView : "auto",
-				spaceBetween : 50,
-				loop : true,
-				autoplay : {
-					delay : 0,
-				},
-				speed : 5000,
-				navigation : {
-					nextEl : ".swiper-button-next",
-					prevEl : ".swiper-button-prev",
-				},
-				on : {
-					slideChange : function() {
-					},
-					activeIndexChange : function() {
-					}
-				},
-				breakpoints : {}
-			});
-		});
-	</script>
-	<script src="js/menu.js"></script>
-	<script src="js/common/page.js"></script>
-	<script>
-		$(function() {
-			createPaging(".board_page", "#menu_list > li");
-		})
-	</script>
+		</script> -->
+		<!-- footer -->
+		<jsp:include page="../common/footer.jsp" />
+		<jsp:include page="../common/header.jsp" />
+		<script src="js/menu.js"></script>
+		<script src="js/common/page.js"></script>
 </body>
 </html>

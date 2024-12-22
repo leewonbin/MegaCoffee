@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.mega.board.dto.BoardCategoryDto;
 import com.mega.board.dto.BoardDto;
 import com.mega.board.dto.PageDto;
 
@@ -30,4 +31,9 @@ public interface BoardMapper {
 	
 	//조회수
 	public void boardHit(int hits);
+	
+	//카테고리
+	public List<BoardCategoryDto>boardCategoryList(BoardCategoryDto boardCategoryDto);
+		
+	
 }

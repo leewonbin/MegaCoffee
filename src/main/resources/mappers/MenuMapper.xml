@@ -47,16 +47,24 @@ and m.menu_id = #{menu_id}
 		and m.menu_del = 'N'
 	</select>
 
-<select id="filterType" resultType="com.mega.menu.dto.MenuDto">
-select m.* from menu m
-join menu_type mt on m.menu_id = mt.menu_id
-where mt.type_id in
-<foreach item="id" collection="typeIds" open="(" separator="," close=")">
-#{id}
-</foreach>
+<!-- <select id="filterType" resultType="com.mega.menu.dto.MenuDto">
+select m.*
+from menu m, menu_type mt, type t
+where m.menu_id = mt.menu_id
+and t.type_id = mt.type_id
+and mt.type_id in (#{type_id})
 and m.menu_del = 'N'
-</select>
+</select>  -->
 
+<select id="filterType" resultType="com.mega.menu.dto.MenuDto">
+    select m.*
+    from menu m
+    join menu_type mt on m.menu_id = mt.menu_id
+    join type t on t.type_id = mt.type_id
+    where mt.type_id in (${typeIdStr})
+    and m.menu_del = 'N'
+    and m.category_id = #{category_id}
+</select>
 
 	<select id="getNutrient" parameterType="int"
 		resultType="com.mega.menu.dto.NutrientDto">

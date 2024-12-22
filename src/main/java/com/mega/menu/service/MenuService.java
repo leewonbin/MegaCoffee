@@ -22,12 +22,12 @@ public interface MenuService {
 
 	public List<AllergenDto> getAllergen(int menu_id) throws Exception;
 
-	public List<MenuDto> menuList(Integer category_id);
+	public List<MenuDto> menuList(Integer category_id) throws Exception;
+
+	public List<MenuDto> filterType(int category_id, String typeIdStr) throws Exception;
 
 	public List<AllergenDto> getAllegenList() throws Exception;
 
 	public List<TypeDto> getTypeList() throws Exception;
-
-	public List<MenuDto> filterType(List<Integer> type_id) throws Exception;
 
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mega.board.dto.BoardCategoryDto;
 import com.mega.board.dto.BoardDto;
 import com.mega.board.dto.PageDto;
 import com.mega.board.service.BoardService;
@@ -23,6 +24,7 @@ public class BoardController {
 	
 	@GetMapping("/tables")
 	public String boardList(PageDto pageDto,
+							BoardCategoryDto boardCategoryDto,
 	                        Model model,
 	                        @RequestParam(value = "nowPage", required = false) String nowPage,
 	                        @RequestParam(value = "cntPerPage", required = false) String cntPerPage,
@@ -56,6 +58,7 @@ public class BoardController {
 	    pageDto.setEnd(end);
 
 	    List<BoardDto> boardList;
+	    List<BoardCategoryDto> boardCategoryList;
 	    if (category_id != null) {
 	        // 카테고리별 게시글 조회
 	        boardList = boardService.boardListByCategory(pageDto, category_id);
@@ -66,7 +69,10 @@ public class BoardController {
 	        System.out.println("cid x: "+category_id);
 	    }
 	    
+	    boardCategoryList = boardService.boardCategoryList(boardCategoryDto);
+	    
 	    model.addAttribute("paging", pageDto);
+	    model.addAttribute("categoryList",boardCategoryList);
 	    model.addAttribute("boardList", boardList);
 	    model.addAttribute("CATEGORY_ID", category_id); 
 	    return "board/board";

@@ -35,39 +35,31 @@ public class MenuServiceImpl implements MenuService {
 
 	@Override
 	public List<AllergenDto> getAllegenList() throws Exception {
-		// TODO Auto-generated method stub
 		return menuMapper.getAllegenList();
 	}
 
-//    @Override
-//    public List<AllergenDto> getAllergen(int menu_id) throws Exception {
-//        return menuMapper.getAllergen(menu_id);
-//    }
-
 	@Override
-	public List<MenuDto> filterType(List<Integer> type_id) throws Exception {
-		return menuMapper.filterType(type_id);
+	public List<MenuDto> filterType(int category_id, String typeIdStr) throws Exception {
+	    return menuMapper.filterType(category_id, typeIdStr);
 	}
-
-	public List<MenuDto> menuList(Integer category_id) {
+	
+	@Override
+	public List<MenuDto> menuList(Integer category_id) throws Exception {
 		return menuMapper.menuList(category_id);
 	}
 
 	@Override
 	public MenuNutrientDto getMenuNutrient(int menu_id) throws Exception {
-		// TODO Auto-generated method stub
 		return menuMapper.getMenuNutrient(menu_id);
 	}
 
 	@Override
 	public List<TypeDto> getType(int menu_id) throws Exception {
-		// TODO Auto-generated method stub
 		return menuMapper.getType(menu_id);
 	}
 
 	@Override
 	public List<AllergenDto> getAllergen(int menu_id) throws Exception {
-		// TODO Auto-generated method stub
 		return menuMapper.getAllergen(menu_id);
 	}
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mega.menu.dto.MenuDto;
 import com.mega.menu.dto.MenuInfoDto;
 import com.mega.menu.dto.NutrientDto;
+import com.mega.menu.dto.TypeDto;
 import com.mega.menu.service.MenuService;
 
 @Controller
@@ -52,25 +53,38 @@ public class MenuController {
 	}
 	
 //	@GetMapping("/menu")
-//	public String getCategory(@RequestParam(required = false) Integer category_id, 
-//			@RequestParam(required = false) Integer type_id, Model model) {
-//	    List<MenuDto> menuList = menuService.getCategory(category_id, type_id);
+//	public String getCategory(@RequestParam(required = false) Integer category_id, Model model) throws Exception{
+//	    List<MenuDto> menuList = menuService.menuList(category_id);
 //	    model.addAttribute("menuList", menuList);
 //	    return "menu/menu";
 //	}
 	
-	@GetMapping("/menu")			//int는 null로 변환 불가능
-	public String getCategory(@RequestParam(required = false) Integer category_id, Model model) {
+	@GetMapping("/menu")
+	public String getCategory(@RequestParam(required = false) Integer category_id, Model model) throws Exception{
 	    List<MenuDto> menuList = menuService.menuList(category_id);
+	    List<TypeDto> typeList = menuService.getTypeList();
 	    model.addAttribute("menuList", menuList);
+	    model.addAttribute("typeList", typeList);
 	    return "menu/menu";
 	}
+
+	
 	
 	@ResponseBody
-	@GetMapping("/filterType")
-	public List<MenuDto> filterType(@RequestParam List<Integer> type_id) throws Exception {
+	@GetMapping("/filterType")				//List<Integer>
+	public List<MenuDto> filterType(@RequestParam int category_id, @RequestParam List<Integer> type_id) throws Exception {
 	    System.out.println("필터아이디: " + type_id); 
-	    return menuService.filterType(type_id);
+	    String typeArr = type_id.toString().replaceAll("\\[", "").replaceAll("\\]", "");
+	    return menuService.filterType(category_id, typeArr);
 	}
+	
+//	@GetMapping("/menu/types")
+//	public String getTypeList(Model model) throws Exception {
+//	    List<TypeDto> typeList = menuService.getTypeList();
+//	    model.addAttribute("typeList", typeList);
+//	    return "menu/menu";
+//	}
+
+	
 
 }
