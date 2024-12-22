@@ -1,28 +1,26 @@
 package com.mega.menu.dto;
 
-import java.util.List;
-
 public class MenuNutrientDto {
-	private int menu_id;
+	private int menu_id = 0;
 	private String menu_title;
 	private String menu_eng_title;
 	private String menu_content;
-	private String menu_del;
-	private String menu_ice_hot;
-	private String menu_onesize;
+	private String menu_del = "N";
+	private String menu_ice_hot = "";
+	private String menu_onesize = "N";
 	private String menu_file_id;
 	private int category_id;
-	private double nut_saturated;
-	private double nut_sugar;
-	private double nut_sodium;
-	private double nut_protein;
-	private double nut_caffeine;
-	private double nut_calorie;
-	private String nut_high_caffeine;
+	private double nut_saturated = 0.0;
+	private double nut_sugar = 0.0;
+	private double nut_sodium = 0.0;
+	private double nut_protein = 0.0;
+	private double nut_caffeine = 0.0;
+	private double nut_calorie = 0.0;
+	private String nut_high_caffeine = "N";
 	private int nut_size;
 	private String nut_unit;
-	private List<TypeDto> type_id;
-	private List<AllergenDto> all_id;
+//	private List<TypeDto> type_id;
+//	private List<AllergenDto> all_id;
 
 	public MenuNutrientDto() {
 		// TODO Auto-generated constructor stub
@@ -51,33 +49,6 @@ public class MenuNutrientDto {
 		this.nut_high_caffeine = nut_high_caffeine;
 		this.nut_size = nut_size;
 		this.nut_unit = nut_unit;
-	}
-
-	public MenuNutrientDto(int menu_id, String menu_title, String menu_eng_title, String menu_content, String menu_del,
-			String menu_ice_hot, String menu_onesize, String menu_file_id, int category_id, double nut_saturated,
-			double nut_sugar, double nut_sodium, double nut_protein, double nut_caffeine, double nut_calorie,
-			String nut_high_caffeine, int nut_size, String nut_unit, List<TypeDto> type_id, List<AllergenDto> all_id) {
-		super();
-		this.menu_id = menu_id;
-		this.menu_title = menu_title;
-		this.menu_eng_title = menu_eng_title;
-		this.menu_content = menu_content;
-		this.menu_del = menu_del;
-		this.menu_ice_hot = menu_ice_hot;
-		this.menu_onesize = menu_onesize;
-		this.menu_file_id = menu_file_id;
-		this.category_id = category_id;
-		this.nut_saturated = nut_saturated;
-		this.nut_sugar = nut_sugar;
-		this.nut_sodium = nut_sodium;
-		this.nut_protein = nut_protein;
-		this.nut_caffeine = nut_caffeine;
-		this.nut_calorie = nut_calorie;
-		this.nut_high_caffeine = nut_high_caffeine;
-		this.nut_size = nut_size;
-		this.nut_unit = nut_unit;
-		this.type_id = type_id;
-		this.all_id = all_id;
 	}
 
 	public int getMenu_id() {
@@ -224,22 +195,6 @@ public class MenuNutrientDto {
 		this.nut_unit = nut_unit;
 	}
 
-	public List<TypeDto> getType_id() {
-		return type_id;
-	}
-
-	public void setType_id(List<TypeDto> type_id) {
-		this.type_id = type_id;
-	}
-
-	public List<AllergenDto> getAll_id() {
-		return all_id;
-	}
-
-	public void setAll_id(List<AllergenDto> all_id) {
-		this.all_id = all_id;
-	}
-
 	@Override
 	public String toString() {
 		return "MenuNutrientDto [menu_id=" + menu_id + ", menu_title=" + menu_title + ", menu_eng_title="
@@ -248,6 +203,34 @@ public class MenuNutrientDto {
 				+ category_id + ", nut_saturated=" + nut_saturated + ", nut_sugar=" + nut_sugar + ", nut_sodium="
 				+ nut_sodium + ", nut_protein=" + nut_protein + ", nut_caffeine=" + nut_caffeine + ", nut_calorie="
 				+ nut_calorie + ", nut_high_caffeine=" + nut_high_caffeine + ", nut_size=" + nut_size + ", nut_unit="
-				+ nut_unit + ", type_id=" + type_id + ", all_id=" + all_id + "]";
+				+ nut_unit + "]";
 	}
+
+//	public List<TypeDto> getType_id() {
+//		return type_id;
+//	}
+//
+//	public void setType_id(List<TypeDto> type_id) {
+//		this.type_id = type_id;
+//	}
+//
+//	public List<AllergenDto> getAll_id() {
+//		return all_id;
+//	}
+//
+//	public void setAll_id(List<AllergenDto> all_id) {
+//		this.all_id = all_id;
+//	}
+
+//	@Override
+//	public String toString() {
+//		return "MenuNutrientDto [menu_id=" + menu_id + ", menu_title=" + menu_title + ", menu_eng_title="
+//				+ menu_eng_title + ", menu_content=" + menu_content + ", menu_del=" + menu_del + ", menu_ice_hot="
+//				+ menu_ice_hot + ", menu_onesize=" + menu_onesize + ", menu_file_id=" + menu_file_id + ", category_id="
+//				+ category_id + ", nut_saturated=" + nut_saturated + ", nut_sugar=" + nut_sugar + ", nut_sodium="
+//				+ nut_sodium + ", nut_protein=" + nut_protein + ", nut_caffeine=" + nut_caffeine + ", nut_calorie="
+//				+ nut_calorie + ", nut_high_caffeine=" + nut_high_caffeine + ", nut_size=" + nut_size + ", nut_unit="
+//				+ nut_unit + ", type_id=" + type_id + ", all_id=" + all_id + "]";
+//	}
+
 }

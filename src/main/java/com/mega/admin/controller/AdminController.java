@@ -1,11 +1,13 @@
 package com.mega.admin.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,7 +45,7 @@ public class AdminController {
 	public String moveInsert(Model model) throws Exception {
 		model.addAttribute("typeList", menuService.getTypeList());
 		model.addAttribute("allergenList", menuService.getAllegenList());
-		return "/admin/productInsert";
+		return "/admin/productManage";
 	}
 
 	@GetMapping("/moveModify")
@@ -58,7 +60,7 @@ public class AdminController {
 
 		model.addAttribute("typeList", menuService.getTypeList());
 		model.addAttribute("allergenList", menuService.getAllegenList());
-		return "/admin/productModify";
+		return "/admin/productManage";
 	}
 
 	@GetMapping("/moveMenu")
@@ -103,11 +105,45 @@ public class AdminController {
 		return redirectUrl;
 	}
 
+	// @RequestParam(value = "menu_file_id", required = false) MultipartFile
+	// menuFile)
 	@PostMapping("/productInsert")
-	public String productInsert(MenuNutrientDto mnDto) throws Exception {
-		System.out.println(mnDto);
-		System.out.println(mnDto.getType_id().toString());
-		System.out.println(mnDto.getAll_id().toString());
-		return "redirect:/amdin/main";
+	public String saveMenu(@ModelAttribute MenuNutrientDto menuNutrientDto,
+			@RequestParam(value = "type_id", required = false) String[] typeIds,
+			@RequestParam(value = "all_id", required = false) String[] allergenIds) {
+
+//		menuNutrientDto.setType_id(new ArrayList<>());
+//		menuNutrientDto.setAll_id(new ArrayList<>());
+
+		// TypeDto 변환
+//		if (typeIds != null) {
+//			for (String typeId : typeIds) {
+//				TypeDto typeDto = new TypeDto();
+//				typeDto.setType_id(Integer.parseInt(typeId));
+//				menuNutrientDto.getType_id().add(typeDto);
+//			}
+//		}
+//
+//		// AllergenDto 변환
+//		if (allergenIds != null) {
+//			for (String allergenId : allergenIds) {
+//				AllergenDto allergenDto = new AllergenDto();
+//				allergenDto.setAll_id(Integer.parseInt(allergenId));
+//				menuNutrientDto.getAll_id().add(allergenDto);
+//			}
+//		}
+
+		/*
+		 * // 파일 처리 if (menuFile != null && !menuFile.isEmpty()) { String fileName =
+		 * menuFile.getOriginalFilename(); menuNutrientDto.setMenu_file_id(fileName); //
+		 * 파일명 저장 또는 처리 }
+		 */
+
+		System.out.println(menuNutrientDto);
+		System.out.println(Arrays.toString(typeIds));
+		System.out.println(Arrays.toString(allergenIds));
+
+		return "redirect:/admin/main";
 	}
+
 }
