@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mega.menu.dto.MenuDto;
 import com.mega.menu.dto.MenuInfoDto;
 import com.mega.menu.dto.NutrientDto;
+import com.mega.menu.dto.TypeDto;
 import com.mega.menu.service.MenuService;
 
 @Controller
@@ -51,12 +52,23 @@ public class MenuController {
 		return "menu/menu";
 	}
 	
+//	@GetMapping("/menu")
+//	public String getCategory(@RequestParam(required = false) Integer category_id, Model model) throws Exception{
+//	    List<MenuDto> menuList = menuService.menuList(category_id);
+//	    model.addAttribute("menuList", menuList);
+//	    return "menu/menu";
+//	}
+	
 	@GetMapping("/menu")
 	public String getCategory(@RequestParam(required = false) Integer category_id, Model model) throws Exception{
 	    List<MenuDto> menuList = menuService.menuList(category_id);
+	    List<TypeDto> typeList = menuService.getTypeList();
 	    model.addAttribute("menuList", menuList);
+	    model.addAttribute("typeList", typeList);
 	    return "menu/menu";
 	}
+
+	
 	
 	@ResponseBody
 	@GetMapping("/filterType")				//List<Integer>
@@ -65,6 +77,14 @@ public class MenuController {
 	    String typeArr = type_id.toString().replaceAll("\\[", "").replaceAll("\\]", "");
 	    return menuService.filterType(category_id, typeArr);
 	}
+	
+//	@GetMapping("/menu/types")
+//	public String getTypeList(Model model) throws Exception {
+//	    List<TypeDto> typeList = menuService.getTypeList();
+//	    model.addAttribute("typeList", typeList);
+//	    return "menu/menu";
+//	}
+
 	
 
 }

@@ -295,7 +295,9 @@ ng\:form {
 				</div>
 			</button>
 		</div>
-		<div class="head_wrap">
+		
+		
+		<!-- <div class="head_wrap">
 			<div class="head">
 				<div class="head_logo">
 					<a href="/"> <img
@@ -406,12 +408,12 @@ ng\:form {
 								target="_blank"> <img
 									src="https://img.79plus.co.kr/megahp/common/img/sns/sns_smartstore.png">
 							</a></li>
-							<!-- <li> -->
-							<!-- <a href="/manager/" target="_blank"> -->
-							<!-- <img src="https://img.79plus.co.kr/megahp/common/img/sns/sns_mng.png"> -->
-							<!-- <span>점주님전용</span> -->
-							<!-- </a> -->
-							<!-- </li> -->
+							<li>
+							<a href="/manager/" target="_blank">
+							<img src="https://img.79plus.co.kr/megahp/common/img/sns/sns_mng.png">
+							<span>점주님전용</span>
+							</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -421,7 +423,14 @@ ng\:form {
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
+		
+		
+		
+		
+		
+		
+		
 		<div class="cont_wrap best_wrap">
 			<div class="cont">
 				<div class="cont_box cont_head">
@@ -502,6 +511,7 @@ ng\:form {
 		</div>
 		<!-- footer -->
 	<jsp:include page="../common/footer.jsp"/>
+	<%-- <jsp:include page="../common/header.jsp"/> --%>
 
 </body>
 </html>
