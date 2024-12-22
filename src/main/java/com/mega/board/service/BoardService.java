@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mega.board.dto.BoardCategoryDto;
 import com.mega.board.dto.BoardDto;
 import com.mega.board.dto.PageDto;
 import com.mega.board.mappers.BoardMapper;
@@ -48,6 +49,11 @@ public class BoardService {
     		boardMapper.boardHit(boardId);
     	return boardMapper.boardDetail(boardId);
     }
+    
+    //카테고리
+    public List<BoardCategoryDto>boardCategoryList(BoardCategoryDto boardCategoryDto) {
+		return boardMapper.boardCategoryList(boardCategoryDto);
+	}
     
     
     
