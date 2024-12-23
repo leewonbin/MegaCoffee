@@ -49,9 +49,9 @@
 										<li><a
 											href="/menu/?menu_category1=3&amp;menu_category2=3"> 상품 </a>
 										</li> -->
-									<li><a href="/menu/?category_id=1&amp;type_id=1"> 음료 </a></li>
-									<li><a href="/menu/?category_id=2&amp;type_id=2"> 푸드 </a></li>
-									<li><a href="/menu/?category_id=3&amp;type_id=3"> 상품 </a></li>
+									<li><a href="/menu/?category_id=1"> 음료 </a></li>
+									<li><a href="/menu/?category_id=2"> 푸드 </a></li>
+									<li><a href="/menu/?category_id=3"> 상품 </a></li>
 								</ul>
 							</div></li>
 						<li><a href="/store/find/" class="pc"> 매장 </a> <a

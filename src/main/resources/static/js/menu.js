@@ -1,7 +1,7 @@
-$(document).on("click",".inner_modal_open",function(){
+$(document).on("click", ".inner_modal_open", function() {
 	$(this).siblings(".inner_modal").show(0);
 });
-$(document).on("click",".inner_modal .inner_modal_title .close_wrap",function(){
+$(document).on("click", ".inner_modal .inner_modal_title .close_wrap", function() {
 	$(this).parents(".inner_modal").hide(0);
 });
 
@@ -19,4 +19,15 @@ $(document).on("click",".inner_modal .inner_modal_title .close_wrap",function(){
 		}
 	});
 }*/
+
+
+
+
+
+
+
+
+
+
+
 
