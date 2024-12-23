@@ -230,206 +230,9 @@ ng\:form {
 		</div>
 	</div>
 	<div class="wrap">
-		<div class="nav_wrap">
-			<div class="nav">
-				<ul>
-					<li><a href="/customer/?db_category=2">
-							<div class="table0">
-								<div class="cell">
-									<div class="cont_text">창업상담</div>
-									<div class="cont_text cont_text_title robo">
-										1588-<br>0656
-									</div>
-								</div>
-							</div>
-					</a></li>
-					<li><a href="/customer/?db_category=7">
-							<div class="table0">
-								<div class="cell">
-									<div class="cont_text">가맹점</div>
-									<div class="cont_text cont_text_title robo">인수 상담</div>
-								</div>
-							</div>
-					</a></li>
-					<li><a href="/news/voc/">
-							<div class="table0">
-								<div class="cell">
-									<div class="cont_text">고객센터</div>
-									<div class="cont_text cont_text_title robo">문의/접수</div>
-								</div>
-							</div>
-					</a></li>
-					<li><a href="/news/voc/">
-							<div class="table0">
-								<div class="cell">
-									<div class="cont_text">고객센터</div>
-									<div class="cont_text cont_text_title robo">
-										1588-<br>8298
-									</div>
-								</div>
-							</div>
-					</a></li>
-					<li><a href="/store/find">
-							<div class="table0">
-								<div class="cell">
-									<div class="cont_text">(24.12.12)누적</div>
-									<div class="cont_text cont_text_title robo">
-										3,387호<br> 오픈
-									</div>
-								</div>
-							</div>
-					</a></li>
-				</ul>
-			</div>
-			<button type="button" onclick="quick(this);" class="nav_quick">
-				<div class="table0">
-					<div class="cell">
-						<div class="nav_quick_title">
-							<img
-								src="https://img.79plus.co.kr/megahp/common/img/quick_img.png?ver=202403041117"
-								alt="">
-							<div class="cont_text_inner robo">QUICK</div>
-						</div>
-						<div class="nav_quick_close"></div>
-					</div>
-				</div>
-			</button>
-		</div>
-		
-		
-		<!-- <div class="head_wrap">
-			<div class="head">
-				<div class="head_logo">
-					<a href="/"> <img
-						src="https://img.79plus.co.kr/megahp/common/img/logo.png"
-						class="head_logo_img_fixed"> <img
-						src="https://img.79plus.co.kr/megahp/common/img/logo_b.png"
-						class="head_logo_img">
-					</a>
-				</div>
-				<div class="head_menu_wrap">
-					<div class="head_menu_logo t m">
-						<img src="https://img.79plus.co.kr/megahp/common/img/logo_w.png">
-					</div>
-					<div class="head_menu">
-						<ul>
-							<li><a href="/about/brand/" class="pc"> 메가 스토리 </a> <a
-								class="m head_menu_down"> 메가 스토리 </a>
-								<div
-									class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1"
-									style="display: none; height: 120px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
-									<ul>
-										<li><a href="/about/brand/"> 브랜드 </a></li>
-										<li><a href="/about/bi/"> BI </a></li>
-										<li><a href="/about/map/"> 오시는 길 </a></li>
-									</ul>
-								</div></li>
-							<li><a href="/menu/" class="pc"> 메뉴소개 </a> <a
-								class="m head_menu_down"> 메뉴소개 </a>
-								<div
-									class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1"
-									style="display: none; height: 120px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
-									<ul>
-										<li><a
-											href="/menu/?menu_category1=1&amp;menu_category2=1"> 음료 </a>
-										</li>
-										<li><a
-											href="/menu/?menu_category1=2&amp;menu_category2=2"> 푸드 </a>
-										</li>
-										<li><a
-											href="/menu/?menu_category1=3&amp;menu_category2=3"> 상품 </a>
-										</li>
-									</ul>
-								</div></li>
-							<li><a href="/store/find/" class="pc"> 매장 </a> <a
-								class="m head_menu_down"> 매장 </a>
-								<div
-									class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1"
-									style="display: none; height: 60px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
-									<ul>
-										<li><a href="/store/find/"> 매장찾기 </a></li>
-									</ul>
-								</div></li>
-							<li class=""><a href="/startup/cost" class="pc"> 창업안내 </a> <a
-								class="m head_menu_down"> 창업안내 </a>
-								<div
-									class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1"
-									style="display: none; height: 181px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
-									<ul>
-										<li><a href="/startup/cost/"> 개설비용 </a></li>
-										<li><a href="/startup/interior/"> 인테리어 </a></li>
-										<li><a href="/customer/?db_category=2"> 창업문의 </a></li>
-										<li><a href="/customer/?db_category=7"> 가맹점 인수 </a></li>
-										<li><a href="/bbs/?bbs_category=7"> 창업뉴스 </a></li>
-									</ul>
-								</div></li>
-							<li class=""><a href="/bbs/?bbs_category=4" class="pc">
-									메가소식 </a> <a class="m head_menu_down"> 메가소식 </a>
-								<div
-									class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1"
-									style="display: none; height: 151px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
-									<ul>
-										<li><a href="/bbs/?bbs_category=1"> 공지사항 </a></li>
-										<li><a href="/bbs/?bbs_category=3"> 이벤트 </a></li>
-										<li><a href="/tables"> FAQ </a></li>
-										<li><a href="/news/voc/"> 고객의 소리 </a></li>
-									</ul>
-								</div></li>
-							<li class=""><a href="/recruit/job/" class="pc"> 채용 </a> <a
-								class="m head_menu_down"> 채용 </a>
-								<div
-									class="head_menu_down_menu cont_list cont_list1 cont_list_small cont_list_small1"
-									style="display: none; height: 60px; padding-top: 20px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
-									<ul>
-										<li><a href="/recruit/job/"> 채용안내 </a></li>
-									</ul>
-								</div></li>
-						</ul>
-					</div>
-				</div>
-				<div class="head_sns">
-					<div class="cont_list cont_list_small">
-						<ul>
-							<li><a href="https://blog.naver.com/ekddusekddus"
-								target="_blank"> <img
-									src="https://img.79plus.co.kr/megahp/common/img/sns/sns_blog.png">
-							</a></li>
-							<li><a
-								href="https://www.facebook.com/mega.mgc.coffee.official"
-								target="_blank"> <img
-									src="https://img.79plus.co.kr/megahp/common/img/sns/sns_facebook.png">
-							</a></li>
-							<li><a
-								href="https://www.instagram.com/mega.mgc.coffee_official/"
-								target="_blank"> <img
-									src="https://img.79plus.co.kr/megahp/common/img/sns/sns_instagram.png">
-							</a></li>
-							<li><a href="https://smartstore.naver.com/megamgccoffee"
-								target="_blank"> <img
-									src="https://img.79plus.co.kr/megahp/common/img/sns/sns_smartstore.png">
-							</a></li>
-							<li>
-							<a href="/manager/" target="_blank">
-							<img src="https://img.79plus.co.kr/megahp/common/img/sns/sns_mng.png">
-							<span>점주님전용</span>
-							</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="mobile_menu_icon_wrap m t">
-					<div class="mobile_menu_icon">
-						<div class="mobile_menu_icon_bar bar_black"></div>
-					</div>
-				</div>
-			</div>
-		</div> -->
-		
-		
-		
-		
-		
-		
+
+		<jsp:include page="../common/sidebar.jsp" />
+
 		
 		<div class="cont_wrap best_wrap">
 			<div class="cont">
@@ -479,24 +282,34 @@ ng\:form {
 								</div>
 								<div class="board_detail_prev_next">
 									<ul class="prev-next-box">
-										<li>
-										<span>다음글</span> 
-											<span> 
-												<a href="../detail/?bbs_idx=181&amp;bbs_category=4&amp;bbs_detail_category=&amp;bbs_page=1">
-													[고객센터] 9월 1일부터 인상되는 디저트 가격이 어떻게 되나요? </a>
-											</span>
-										</li>
-										<li>
-										<span>이전글</span>
-											 <span> 
-											 	<a href="../detail/?bbs_idx=176&amp;bbs_category=4&amp;bbs_detail_category=&amp;bbs_page=1">
-													[고객센터] 고객의 소리 접수는 어떻게 하나요? </a>
-											</span>
-										</li>
+										<c:choose>
+											<c:when test="${move.next != 9999}">
+												<li>
+													<span>다음글</span> 
+													<span> 													
+														<a href="${path}/boardDetail?id=${move.next}&CATEGORY_ID=${empty param.CATEGORY_ID ? category_id : boardDetail.category_id }">
+															${move.nextTitle}	
+														</a>
+													</span>
+												</li>
+											</c:when>
+										</c:choose>
+										<c:choose>
+											<c:when test="${move.last != 9999}">
+												<li>
+													<span>이전글</span> 
+													<span> 
+														<a href="${path}/boardDetail?id=${move.last}&CATEGORY_ID=${empty param.CATEGORY_ID ?category_id : boardDetail.category_id}">
+															${move.lastTitle}	
+														</a>
+													</span>
+												</li>
+											</c:when>
+										</c:choose>										
 									</ul>
 								</div>
 								<div class="cont_btn">
-									<a href="#">
+									<a href="/tables?CATEGORY_ID=${empty param.CATEGORY_ID ? category_id : boardDetail.category_id}">
 										<div class="input_btn_wrap input_wrap3 input_width">
 											<input type="button" value="목록으로" class="btn btn1 btn_ani"
 												id="goToListBtn">
@@ -511,7 +324,7 @@ ng\:form {
 		</div>
 		<!-- footer -->
 	<jsp:include page="../common/footer.jsp"/>
-	<%-- <jsp:include page="../common/header.jsp"/> --%>
+	<jsp:include page="../common/header.jsp"/>
 
 </body>
 </html>

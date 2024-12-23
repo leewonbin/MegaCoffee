@@ -254,88 +254,13 @@ ng\:form {
 			<div class="modal-content"></div>
 		</div>
 	</div>
+	<!--  -->
 	<div class="wrap">
-		<div class="nav_wrap">
-			<div class="nav">
-				<ul>
-					<li><a href="/customer/?db_category=2">
-							<div class="table0">
-								<div class="cell">
-									<div class="cont_text">창업상담</div>
-									<div class="cont_text cont_text_title robo">
-										1588-<br>0656
-									</div>
-								</div>
-							</div>
-					</a></li>
-					<li><a href="/customer/?db_category=7">
-							<div class="table0">
-								<div class="cell">
-									<div class="cont_text">가맹점</div>
-									<div class="cont_text cont_text_title robo">인수 상담</div>
-								</div>
-							</div>
-					</a></li>
-					<li><a href="/news/voc/">
-							<div class="table0">
-								<div class="cell">
-									<div class="cont_text">고객센터</div>
-									<div class="cont_text cont_text_title robo">문의/접수</div>
-								</div>
-							</div>
-					</a></li>
-					<li><a href="/news/voc/">
-							<div class="table0">
-								<div class="cell">
-									<div class="cont_text">고객센터</div>
-									<div class="cont_text cont_text_title robo">
-										1588-<br>8298
-									</div>
-								</div>
-							</div>
-					</a></li>
-					<li><a href="/store/find">
-							<div class="table0">
-								<div class="cell">
-									<div class="cont_text">(24.12.12)누적</div>
-									<div class="cont_text cont_text_title robo">
-										3,387호<br> 오픈
-									</div>
-								</div>
-							</div>
-					</a></li>
-				</ul>
-			</div>
-			<button type="button" onclick="quick(this);" class="nav_quick">
-				<div class="table0">
-					<div class="cell">
-						<div class="nav_quick_title">
-							<img
-								src="https://img.79plus.co.kr/megahp/common/img/quick_img.png?ver=202403041117"
-								alt="">
-							<div class="cont_text_inner robo">QUICK</div>
-						</div>
-						<div class="nav_quick_close"></div>
-					</div>
-				</div>
-			</button>
-		</div>
+		<jsp:include page="../common/sidebar.jsp" />
 		
+
 	</div>
-	<!-- 게시판 카페고리 색 변경 -->
-	<!-- <script>
-		$(document).ready(function() {
-			$(".cont_tab ul li").eq(0).addClass("check");
-
-		});
-
-		$(function() {
-			$('.cont_tab ul li').click(function() {
-				$('.cont_tab ul li').eq(0).removeClass("check");
-				$(".cont_tab ul li").eq(1).addClass("check");
-			})
-		})
-	</script> -->
+	<!--  -->
 	<div class="cont_wrap bbs_wrap">
 		<div class="cont">
 			<div class="cont_box cont_head">
@@ -458,7 +383,7 @@ ng\:form {
 												<div class="text_wrap">
 													<div class="text">
 														<a
-															href="${path}/boardDetail?id=${board.boardId}&CATEGOGY_ID=${CATEGORY_ID}">
+															href="${path}/boardDetail?id=${board.boardId}&CATEGORY_ID=${CATEGORY_ID}">
 															<em> ${board.title} </em>
 														</a>
 													</div>
@@ -508,8 +433,12 @@ ng\:form {
 											class="page-link">다음</a>
 										</li>
 									</c:if>
-									<li class="fo_re"><a
-										href="/tables?nowPage=${paging.lastPage}&CATEGORY_ID=${CATEGORY_ID}"><span>마지막</span></a></li>
+									<li class="fo_re">
+										<a
+											href="/tables?nowPage=${paging.lastPage}&CATEGORY_ID=${CATEGORY_ID}">
+											<span>마지막</span>
+										</a>
+									</li>
 								</ul>
 							</div>
 						</div>

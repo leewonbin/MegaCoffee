@@ -260,152 +260,29 @@ ng\:form {
 		</div>
 	</div>
 	<div class="wrap">
-		<div class="nav_wrap">
-			<div class="nav">
-				<ul>
-					<li><a href="/customer/?db_category=2">
-							<div class="table0">
-								<div class="cell">
-									<div class="cont_text">창업상담</div>
-									<div class="cont_text cont_text_title robo">
-										1588-<br>0656
-									</div>
-								</div>
-							</div>
-					</a></li>
-					<li><a href="/customer/?db_category=7">
-							<div class="table0">
-								<div class="cell">
-									<div class="cont_text">가맹점</div>
-									<div class="cont_text cont_text_title robo">인수 상담</div>
-								</div>
-							</div>
-					</a></li>
-					<li><a href="/news/voc/">
-							<div class="table0">
-								<div class="cell">
-									<div class="cont_text">고객센터</div>
-									<div class="cont_text cont_text_title robo">문의/접수</div>
-								</div>
-							</div>
-					</a></li>
-					<li><a href="/news/voc/">
-							<div class="table0">
-								<div class="cell">
-									<div class="cont_text">고객센터</div>
-									<div class="cont_text cont_text_title robo">
-										1588-<br>8298
-									</div>
-								</div>
-							</div>
-					</a></li>
-					<li><a href="/store/find">
-							<div class="table0">
-								<div class="cell">
-									<div class="cont_text">(24.12.12)누적</div>
-									<div class="cont_text cont_text_title robo">
-										3,387호<br> 오픈
-									</div>
-								</div>
-							</div>
-					</a></li>
-				</ul>
-			</div>
-			<button type="button" onclick="quick(this);" class="nav_quick">
-				<div class="table0">
-					<div class="cell">
-						<div class="nav_quick_title">
-							<img
-								src="https://img.79plus.co.kr/megahp/common/img/quick_img.png?ver=202403041117"
-								alt="">
-							<div class="cont_text_inner robo">QUICK</div>
-						</div>
-						<div class="nav_quick_close"></div>
-					</div>
-				</div>
-			</button>
-		</div>
+		<jsp:include page="../common/sidebar.jsp" />
+
 
 		<div class="cont_wrap menu_wrap">
 			<div class="cont">
-				<div class="cont_box cont_head">
-					<div class="cont_boxs">
-						<div class="cont_title_wrap">
-							<div class="cont_title_info">MEGA MENU</div>
-							<div class="cont_title robo color">
-								<h2>DRINK MENU</h2>
-							</div>
-						</div>
-						<div class="cont_text_wrap">
-							<div class="cont_text cont_list_map">
-								<ul>
-									<li>홈</li>
-									<li>메뉴소개</li>
-									<li>음료</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="cont_box cont_banner aos-init aos-animate"
-					data-aos="slide-down" data-aos-delay="0">
-					<div class="cont_boxs text_center">
-						<div class="cont_title_wrap">
-							<div class="cont_title">
-								<b>깊고 부드러운 커피 맛의 비밀</b><br>행복을 선사하는 다양한 음료
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="cont_box menu01">
-					<div class="cont_boxs">
-						<div class="cont_text_wrap">
-							<div class="cont_list cont_list_content cont_list_content_align">
-								<ul>
-									<li>
-										<div class="cont_title_wrap">
-											<div class="cont_title_info">메가MGC커피 겨울시즌 신메뉴</div>
-											<div class="cont_title">
-												<h3>
-													<span class="inline"><b>피스타치오 숲 산타의<br>MEGA
-															CHRISTMAS TO YOU
-													</b></span>
-												</h3>
-											</div>
-										</div>
-										<div class="cont_text_wrap">
-											<div class="cont_text cont_text_title">
-												<b>산타와 루돌프가 초대하는 메가 크리스마스 파티</b>
-											</div>
-											<div class="cont_text">
-												MGC에서 준비한 즐거움 가-득 메가 크리스마스 파티에 초대합니다!<br>와작와작 피스타치오를
-												활용한 음료와 산타를 닮은 티라떼까지<br>가까운 메가MGC커피에서 크리스마스를 즐겨보세요.
-											</div>
-										</div>
-									</li>
-									<li><img
-										src="https://img.79plus.co.kr/megahp/common/img/menu01_1_drink_20241107.jpg?ver=202411060837">
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="cont_boxs menu_box">
-						<div class="cont_title_wrap text_center">
-							<div class="cont_title_info">메가MGC커피의 엄선된 메뉴</div>
-							<div class="cont_title robo">
-								<h2>MEGA MENU</h2>
-							</div>
-						</div>
-						<div class="cont_text_wrap text_center">
-							<div class="cont_text_info">※메뉴 이미지는 연출컷이라 실물과 다를 수 있습니다.</div>
-						</div>
+			
+			<c:choose>
+			<c:when test="${param.category_id == '1'}">
+			<jsp:include page="../common/menuCategory/drink.jsp" />
+			</c:when>
+			<c:when test="${param.category_id == '2'}">
+			<jsp:include page="../common/menuCategory/food.jsp" />
+			</c:when>
+			<c:when test="${param.category_id == '3'}">
+			<jsp:include page="../common/menuCategory/product.jsp" />
+			</c:when>
+			<c:otherwise>
+			<jsp:include page="../common/menuCategory/main.jsp" />
+			</c:otherwise>
+		</c:choose>
 
-
-
-
-
-
+<c:choose>
+<c:when test="${param.category_id == '1' || param.category_id == '2'}">
 						<div class="cont_text_wrap list_checkbox_wrap">
 							<div class="cont_text cont_text_title">
 								<b>분류보기</b>
@@ -417,124 +294,85 @@ ng\:form {
 									<div class="checkbox_text">전체 상품보기</div>
 								</label>
 							</div>
-							<div class="checkbox_wrap list_checkbox">
-								<label class="checkbox"> <input type="checkbox" id=""
-									name="list_checkbox" value="1"> <span
-									class="check_mark"></span>
-									<div class="checkbox_text">커피</div>
-								</label>
-							</div>
-							<div class="checkbox_wrap list_checkbox">
-								<label class="checkbox"> <input type="checkbox" id=""
-									name="list_checkbox" value="2"> <span
-									class="check_mark"></span>
-									<div class="checkbox_text">티</div>
-								</label>
-							</div>
-							<div class="checkbox_wrap list_checkbox">
-								<label class="checkbox"> <input type="checkbox" id=""
-									name="list_checkbox" value="3"> <span
-									class="check_mark"></span>
-									<div class="checkbox_text">에이드&amp;주스</div>
-								</label>
-							</div>
-							<div class="checkbox_wrap list_checkbox">
-								<label class="checkbox"> <input type="checkbox" id=""
-									name="list_checkbox" value="4"> <span
-									class="check_mark"></span>
-									<div class="checkbox_text">스무디&amp;프라페</div>
-								</label>
-							</div>
-							<div class="checkbox_wrap list_checkbox">
-								<label class="checkbox"> <input type="checkbox" id=""
-									name="list_checkbox" value="5"> <span
-									class="check_mark"></span>
-									<div class="checkbox_text">디카페인</div>
-								</label>
-							</div>
-							<div class="checkbox_wrap list_checkbox">
-								<label class="checkbox"> <input type="checkbox" id=""
-									name="list_checkbox" value="6"> <span
-									class="check_mark"></span>
-									<div class="checkbox_text">음료</div>
-								</label>
-							</div>
-							<div class="checkbox_wrap list_checkbox">
-								<label class="checkbox"> <input type="checkbox" id=""
-									name="list_checkbox" value="9"> <span
-									class="check_mark"></span>
-									<div class="checkbox_text">신상품</div>
-								</label>
-							</div>
+							<c:forEach var="type" items="${typeList}">
+								<div class="checkbox_wrap list_checkbox">
+									<label class="checkbox"> <input type="checkbox" id=""
+										name="list_checkbox" value="${type.type_id}"> <span
+										class="check_mark"></span>
+										<div class="checkbox_text">${type.type_name}</div>
+									</label>
+								</div>
+							</c:forEach>
 						</div>
+						</c:when>
+						<c:otherwise>
+						</c:otherwise>
+</c:choose>
 
+							<div class="cont_text_wrap">
+								<div
+									class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2">
+									<ul id="menu_list">
+										<div
+											class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2 wfull">
 
-
-
-						<div class="cont_text_wrap">
-							<div
-								class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2">
-								<ul id="menu_list">
-									<div
-										class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2 wfull">
-
-										<ul id="menu_list">
-											<c:forEach var="menu" items="${menuList}">
-												<li><a class="inner_modal_open">
-														<div class="cont_gallery_list_box">
-															<div class="cont_gallery_list_img"
-																style="width: 305px; height: 305px;">
-																<!-- cont_gallery_list_label cont_gallery_list_label1 빨간색, 2가 파란색 -->
-																<%-- <div
+											<ul id="menu_list">
+												<c:forEach var="menu" items="${menuList}">
+													<li><a class="inner_modal_open">
+															<div class="cont_gallery_list_box">
+																<div class="cont_gallery_list_img"
+																	style="width: 305px; height: 305px;">
+																	<!-- cont_gallery_list_label cont_gallery_list_label1 빨간색, 2가 파란색 -->
+																	<%-- <div
 																	class="cont_gallery_list_label cont_gallery_list_label2">${menu.menu_ice_hot}</div> --%>
-																<c:choose>
-																	<c:when test="${menu.menu_ice_hot == 'ICE'}">
-																		<div
-																			class="cont_gallery_list_label cont_gallery_list_label2">${menu.menu_ice_hot}</div>
-																	</c:when>
-																	<c:when test="${menu.menu_ice_hot == 'HOT'}">
-																		<div
-																			class="cont_gallery_list_label cont_gallery_list_label1">${menu.menu_ice_hot}</div>
-																	</c:when>
-																	<c:otherwise>
-																		<div class="default">${menu.menu_ice_hot}</div>
-																	</c:otherwise>
-																</c:choose>
-																<img src="/img/${menu.menu_file_id}">
-															</div>
-															<!-- 여기가 이미지 나오는 부분 -->
-															<div class="cont_text_box">
-																<div class="cont_text">
-																	<div class="cont_text_inner text_wrap cont_text_title">
-																		<div class="text text1">
-																			<b>${menu.menu_title}</b>
+																	<c:choose>
+																		<c:when test="${menu.menu_ice_hot == 'ICE'}">
+																			<div
+																				class="cont_gallery_list_label cont_gallery_list_label2">${menu.menu_ice_hot}</div>
+																		</c:when>
+																		<c:when test="${menu.menu_ice_hot == 'HOT'}">
+																			<div
+																				class="cont_gallery_list_label cont_gallery_list_label1">${menu.menu_ice_hot}</div>
+																		</c:when>
+																		<c:otherwise>
+																			<div class="default">${menu.menu_ice_hot}</div>
+																		</c:otherwise>
+																	</c:choose>
+																	<img src="/img/${menu.menu_file_id}">
+																</div>
+																<!-- 여기가 이미지 나오는 부분 -->
+																<div class="cont_text_box">
+																	<div class="cont_text">
+																		<div class="cont_text_inner text_wrap cont_text_title">
+																			<div class="text text1">
+																				<b>${menu.menu_title}</b>
+																			</div>
+																		</div>
+																		<div class="cont_text_inner text_wrap cont_text_info">
+																			<div class="text text1">${menu.menu_eng_title}</div>
 																		</div>
 																	</div>
-																	<div class="cont_text_inner text_wrap cont_text_info">
-																		<div class="text text1">${menu.menu_eng_title}</div>
-																	</div>
-																</div>
-																<div class="cont_text cont_text_info">
-																	<div class="text_wrap">
-																		<div class="text text2">${menu.menu_content}</div>
+																	<div class="cont_text cont_text_info">
+																		<div class="text_wrap">
+																			<div class="text text2">${menu.menu_content}</div>
+																		</div>
 																	</div>
 																</div>
 															</div>
-														</div>
-												</a> <!-- 여기가 이미지 눌렀을때 창 나오는 부분 -->
-													<div class="inner_modal">
-														<div class="cont_text_box">
-															<div class="cont_text inner_modal_title">
-																<div class="cont_text_inner cont_text_title">
-																	<b>${menu.menu_title}</b>
+													</a> <!-- 여기가 이미지 눌렀을때 창 나오는 부분 -->
+														<div class="inner_modal">
+															<div class="cont_text_box">
+																<div class="cont_text inner_modal_title">
+																	<div class="cont_text_inner cont_text_title">
+																		<b>${menu.menu_title}</b>
+																	</div>
+																	<div class="cont_text_inner cont_text_info">
+																		${menu.menu_eng_title}</div>
+																	<div class="close_wrap">
+																		<div class="close"></div>
+																	</div>
 																</div>
-																<div class="cont_text_inner cont_text_info">
-																	${menu.menu_eng_title}</div>
-																<div class="close_wrap">
-																	<div class="close"></div>
-																</div>
-															</div>
-															<%-- <div class="cont_text">
+																<%-- <div class="cont_text">
 																<div class="cont_text_inner">${menu.menu_size}</div>
 																<div class="cont_text_inner">${menu.menu_calories}</div>
 															</div>
@@ -542,7 +380,7 @@ ng\:form {
 															<div class="cont_text cont_text_info">알레르기 성분 :</div>
 															<!--${menu.menu_allergen}-->
 														</div>--%>
-															<%-- <div
+																<%-- <div
 															class="cont_list cont_list2 cont_list_small cont_list_small2">
 															<ul>
 																<li>포화지방 ${menu.menu_saturated}g</li>
@@ -550,27 +388,31 @@ ng\:form {
 																<li>나트륨 ${menu.menu_sodium}mg</li>
 																<li>단백질 ${menu.menu_protein}g</li>
 																<li>카페인 ${menu.menu_caffeine}mg</li>
-															</ul>
-														</div>  --%>
+															</ul>--%>
+
+
+															</div>
 														</div></li>
-											</c:forEach>
-										</ul>
+												</c:forEach>
+											</ul>
 
 
 
-									</div>
-									<div class="board_page_wrap">
-										<div class="board_page"></div>
-									</div>
-								</ul>
+										</div>
+										<div class="board_page_wrap">
+											<div class="board_page"></div>
+										</div>
+									</ul>
+								</div>
 							</div>
+
+
 
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- <script>
+			<!-- <script>
 			var category_change = "";
 			$(document).on(
 					"click",
@@ -640,10 +482,10 @@ ng\:form {
 				});
 			};
 		</script> -->
-		<!-- footer -->
-		<jsp:include page="../common/footer.jsp" />
-		<jsp:include page="../common/header.jsp" />
-		<script src="js/menu.js"></script>
-		<script src="js/common/page.js"></script>
+			<!-- footer -->
+			<jsp:include page="../common/footer.jsp" />
+			<jsp:include page="../common/header.jsp" />
+			<script src="js/menu.js"></script>
+			<script src="js/common/page.js"></script>
 </body>
 </html>
