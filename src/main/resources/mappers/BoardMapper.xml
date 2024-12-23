@@ -57,9 +57,6 @@
 	    WHERE RNM BETWEEN #{pageDto.start} AND #{pageDto.end}
 	</select>
 
-
-
-    
     <!-- 게시글 상세 -->
     <select id="boardDetail" parameterType="int" resultType="com.mega.board.dto.BoardDto">
     SELECT * FROM(
@@ -71,7 +68,7 @@
 	    	b.SEPARATION,
 	    	b.UPLOAD_AT,
 	    	b.HITS, 
-	    	b.CATEGORY_ID,
+	    	b.CATEGORY_ID AS category_id,
 	    	a.ADMIN_NAME AS writer
     	FROM BOARD b 
         JOIN ADMIN a ON a.ADMIN_NUM = b.ADMIN_NUM    	 
@@ -89,4 +86,55 @@
      <select id="boardCategoryList" resultType="com.mega.board.dto.BoardCategoryDto">
      	SELECT * FROM BOARD_CATEGORY ORDER BY CATEGORY_ID ASC
      </select>
+     
+     <!-- 카테고리X 이전글 다음글 -->
+     <select id="movePageO" parameterType="int" resultType="com.mega.board.dto.MoveDto">
+     	SELECT * FROM 
+     	(SELECT
+     	   BOARD_ID,
+     	   LEAD(BOARD_ID,1,9999) OVER(ORDER BY BOARD_ID) AS next,
+     	   LAG(BOARD_ID,1,9999) OVER(ORDER BY BOARD_ID) AS last,
+     	   TITLE,
+     	   LEAD(TITLE,1,9999) OVER(ORDER BY BOARD_ID) AS nextTitle,
+     	   LAG(TITLE,1,9999) OVER(ORDER BY BOARD_ID) AS lastTitle,
+     	   UPLOAD_AT,
+     	   CATEGORY_ID,     	   
+     	   ROW_NUMBER() OVER (ORDER BY UPLOAD_AT DESC) AS RNM
+     	   FROM BOARD
+     	   WHERE CATEGORY_ID = #{category_id} 
+     	   <!-- <choose>
+     	     <when test="category_id != null ">
+     	   WHERE CATEGORY_ID = #{category_id} 
+     	   </when>
+     	   <when test="category_id != null">
+     	   ORDER BY UPLOAD_AT DESC
+     	   </when> 
+     	   </choose> -->
+     	   ORDER BY BOARD_ID DESC
+     	    
+     	)k
+     	WHERE BOARD_ID = #{board_id}      	
+     </select>
+     
+     <select id="movePageX" parameterType="int" resultType="com.mega.board.dto.MoveDto">
+     	SELECT * FROM 
+     	(SELECT
+     	   BOARD_ID,
+     	   LEAD(BOARD_ID,1,9999) OVER(ORDER BY BOARD_ID) AS next,
+     	   LAG(BOARD_ID,1,9999) OVER(ORDER BY BOARD_ID) AS last,
+     	   TITLE,
+     	   LEAD(TITLE,1,9999) OVER(ORDER BY BOARD_ID) AS nextTitle,
+     	   LAG(TITLE,1,9999) OVER(ORDER BY BOARD_ID) AS lastTitle,
+     	   UPLOAD_AT,
+     	   CATEGORY_ID,     	   
+     	   ROW_NUMBER() OVER (ORDER BY UPLOAD_AT DESC) AS RNM
+     	   FROM BOARD 
+     	   <!-- WHERE CATEGORY_ID = #{category_id} --> 
+     	  
+     	   ORDER BY BOARD_ID DESC
+     	    
+     	)k
+     	WHERE BOARD_ID = #{board_id}      	
+     </select>
+    
 </mapper>

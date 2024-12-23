@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mega.board.dto.BoardCategoryDto;
 import com.mega.board.dto.BoardDto;
+import com.mega.board.dto.MoveDto;
 import com.mega.board.dto.PageDto;
 import com.mega.board.service.BoardService;
 
@@ -51,11 +52,11 @@ public class BoardController {
 
 	    pageDto = new PageDto(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 
-	    int start = (Integer.parseInt(nowPage) - 1) * Integer.parseInt(cntPerPage) + 1;
-	    int end = Integer.parseInt(nowPage) * Integer.parseInt(cntPerPage);
+	    //int start = (Integer.parseInt(nowPage) - 1) * Integer.parseInt(cntPerPage) + 1;
+	    //int end = Integer.parseInt(nowPage) * Integer.parseInt(cntPerPage);
 
-	    pageDto.setStart(start);
-	    pageDto.setEnd(end);
+	    //pageDto.setStart(start);
+	    //pageDto.setEnd(end);
 
 	    List<BoardDto> boardList;
 	    List<BoardCategoryDto> boardCategoryList;
@@ -101,13 +102,27 @@ public class BoardController {
 	
 	//게시글 상세 페이지
 	@GetMapping("/boardDetail")
-	public String boardDeatil(@RequestParam(value="id",required = false) int boardId,@RequestParam(value = "CATEGORY_ID", required = false) Integer category_id, Model model) {
+	public String boardDeatil(@RequestParam(value="id",required = false) int boardId,
+							  @RequestParam(value = "CATEGORY_ID", required = false) Integer category_id, 
+							  Model model
+							  ) {
+		
 		BoardDto boardDto = boardService.boardDetail(boardId);
+		System.out.println("??: "+category_id);
 		System.out.println("게시글 ID: "+boardDto.getBoardId());
 		System.out.println("제목: "+boardDto.getTitle());
 		System.out.println("내용: "+boardDto.getContent());
 		System.out.println("카테고리Id: "+boardDto.getCategory_id());
+		MoveDto moveDto;
+		if(category_id != null) {
+			moveDto = boardService.movePageO(boardId, category_id);
+		}
+		else {
+			moveDto = boardService.movePageX(boardId);
+		}
 		model.addAttribute("boardDetail", boardDto);
+		model.addAttribute("move",moveDto); 
+		
 		return "board/boardDetail";
 	}
 	

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.mega.board.dto.BoardCategoryDto;
 import com.mega.board.dto.BoardDto;
+import com.mega.board.dto.MoveDto;
 import com.mega.board.dto.PageDto;
 
 @Mapper
@@ -34,6 +35,11 @@ public interface BoardMapper {
 	
 	//카테고리
 	public List<BoardCategoryDto>boardCategoryList(BoardCategoryDto boardCategoryDto);
+	
+	//이전글 다음글
+	public MoveDto movePageO(int board_id,int category_id);
+	
+	public MoveDto movePageX(int board_id);
 		
 	
 }
