@@ -297,7 +297,7 @@ ng\:form {
 		</div>
 		
 		
-		<!-- <div class="head_wrap">
+		 <div class="head_wrap">
 			<div class="head">
 				<div class="head_logo">
 					<a href="/"> <img
@@ -423,7 +423,7 @@ ng\:form {
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 		
 		
 		
@@ -479,24 +479,34 @@ ng\:form {
 								</div>
 								<div class="board_detail_prev_next">
 									<ul class="prev-next-box">
-										<li>
-										<span>다음글</span> 
-											<span> 
-												<a href="../detail/?bbs_idx=181&amp;bbs_category=4&amp;bbs_detail_category=&amp;bbs_page=1">
-													[고객센터] 9월 1일부터 인상되는 디저트 가격이 어떻게 되나요? </a>
-											</span>
-										</li>
-										<li>
-										<span>이전글</span>
-											 <span> 
-											 	<a href="../detail/?bbs_idx=176&amp;bbs_category=4&amp;bbs_detail_category=&amp;bbs_page=1">
-													[고객센터] 고객의 소리 접수는 어떻게 하나요? </a>
-											</span>
-										</li>
+										<c:choose>
+											<c:when test="${move.next != 9999}">
+												<li>
+													<span>다음글</span> 
+													<span> 													
+														<a href="${path}/boardDetail?id=${move.next}&CATEGORY_ID=${empty param.CATEGORY_ID ? category_id : boardDetail.category_id }">
+															${move.nextTitle}	
+														</a>
+													</span>
+												</li>
+											</c:when>
+										</c:choose>
+										<c:choose>
+											<c:when test="${move.last != 9999}">
+												<li>
+													<span>이전글</span> 
+													<span> 
+														<a href="${path}/boardDetail?id=${move.last}&CATEGORY_ID=${empty param.CATEGORY_ID ?category_id : boardDetail.category_id}">
+															${move.lastTitle}	
+														</a>
+													</span>
+												</li>
+											</c:when>
+										</c:choose>										
 									</ul>
 								</div>
 								<div class="cont_btn">
-									<a href="#">
+									<a href="/tables?CATEGORY_ID=${empty param.CATEGORY_ID ? category_id : boardDetail.category_id}">
 										<div class="input_btn_wrap input_wrap3 input_width">
 											<input type="button" value="목록으로" class="btn btn1 btn_ani"
 												id="goToListBtn">

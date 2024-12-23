@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mega.board.dto.BoardCategoryDto;
 import com.mega.board.dto.BoardDto;
+import com.mega.board.dto.MoveDto;
 import com.mega.board.dto.PageDto;
 import com.mega.board.mappers.BoardMapper;
 
@@ -54,6 +55,15 @@ public class BoardService {
     public List<BoardCategoryDto>boardCategoryList(BoardCategoryDto boardCategoryDto) {
 		return boardMapper.boardCategoryList(boardCategoryDto);
 	}
+    
+    //이전글 다음글
+    public MoveDto movePageO(int boardId,int category_id) {
+    	return boardMapper.movePageO(boardId,category_id);
+    }
+    
+    public MoveDto movePageX(int boardId) {
+    	return boardMapper.movePageX(boardId);
+    }
     
     
     
