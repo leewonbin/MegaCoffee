@@ -254,6 +254,7 @@ ng\:form {
 			<div class="modal-content"></div>
 		</div>
 	</div>
+	<!--  -->
 	<div class="wrap">
 		<div class="nav_wrap">
 			<div class="nav">
@@ -319,23 +320,9 @@ ng\:form {
 					</div>
 				</div>
 			</button>
-		</div>
-		
+		</div>		
 	</div>
-	<!-- 게시판 카페고리 색 변경 -->
-	<!-- <script>
-		$(document).ready(function() {
-			$(".cont_tab ul li").eq(0).addClass("check");
-
-		});
-
-		$(function() {
-			$('.cont_tab ul li').click(function() {
-				$('.cont_tab ul li').eq(0).removeClass("check");
-				$(".cont_tab ul li").eq(1).addClass("check");
-			})
-		})
-	</script> -->
+	<!--  -->
 	<div class="cont_wrap bbs_wrap">
 		<div class="cont">
 			<div class="cont_box cont_head">
@@ -458,7 +445,7 @@ ng\:form {
 												<div class="text_wrap">
 													<div class="text">
 														<a
-															href="${path}/boardDetail?id=${board.boardId}&CATEGOGY_ID=${CATEGORY_ID}">
+															href="${path}/boardDetail?id=${board.boardId}&CATEGORY_ID=${CATEGORY_ID}">
 															<em> ${board.title} </em>
 														</a>
 													</div>
@@ -508,8 +495,12 @@ ng\:form {
 											class="page-link">다음</a>
 										</li>
 									</c:if>
-									<li class="fo_re"><a
-										href="/tables?nowPage=${paging.lastPage}&CATEGORY_ID=${CATEGORY_ID}"><span>마지막</span></a></li>
+									<li class="fo_re">
+										<a
+											href="/tables?nowPage=${paging.lastPage}&CATEGORY_ID=${CATEGORY_ID}">
+											<span>마지막</span>
+										</a>
+									</li>
 								</ul>
 							</div>
 						</div>
