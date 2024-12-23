@@ -28,12 +28,13 @@ public interface MenuMapper {
 	public List<TypeDto> getType(int menu_id) throws Exception;
 
 	public List<AllergenDto> getAllergen(int menu_id) throws Exception;
-	
+
 	public List<MenuDto> filterType(int category_id, String typeIdStr) throws Exception;
 
 	public List<TypeDto> getTypeList() throws Exception;
 
-	// public List<AllergenDto> getAllergen(int menu_id) throws Exception;
+	public int insertNutrient(MenuNutrientDto menuNutrientDto) throws Exception;
 
+	public int insertMenu(MenuNutrientDto mnDto, List<String> typeIds, List<String> allergenIds) throws Exception;
 
 }

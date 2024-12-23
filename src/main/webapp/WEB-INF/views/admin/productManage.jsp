@@ -111,7 +111,7 @@ input[type=number] {
 					<tr>
 						<td>카테고리</td>
 						<td>
-							<input type="radio" name="category_id" value='1' ${mnDto.category_id == 1 ? 'checked="checked"' : '' } />
+							<input type="radio" name="category_id" value='1' ${mnDto.category_id == 1 || mnDto.category_id == null  ? 'checked="checked"' : '' } />
 							<label>음료</label>
 							<input type="radio" name="category_id" value='2' ${mnDto.category_id == 2 ? 'checked="checked"' : '' } />
 							<label>푸드</label>
@@ -166,9 +166,9 @@ input[type=number] {
 						<td>
 							<input type="radio" name="menu_ice_hot" value="ICE" ${mnDto.menu_ice_hot == 'ICE' ? 'checked="checked"' : '' } />
 							<label>ICE</label>
-							<input type="radio" name="menu_ice_hot" value="HOT" ${mnDto.menu_ice_hot == 'ICE' ? 'checked="checked"' : '' } />
+							<input type="radio" name="menu_ice_hot" value="HOT" ${mnDto.menu_ice_hot == 'HOT' ? 'checked="checked"' : '' } />
 							<label>HOT</label>
-							<input type="radio" name="menu_ice_hot" value="null" ${mnDto.menu_ice_hot == 'ICE' ? 'checked="checked"' : '' } />
+							<input type="radio" name="menu_ice_hot" value="" ${empty mnDto.menu_ice_hot? 'checked="checked"' : '' } />
 							<label>선택안함</label>
 						</td>
 					</tr>
@@ -181,7 +181,7 @@ input[type=number] {
 					<tr>
 						<td>이미지</td>
 						<td>
-							<%-- <input type="file" name="menu_file_id" value="${mnDto.menu_file_id }"> --%>
+							 <input type="file" name="menu_img"/>
 						</td>
 					</tr>
 				</table>

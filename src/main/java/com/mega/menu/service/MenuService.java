@@ -2,6 +2,8 @@ package com.mega.menu.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.mega.menu.dto.AllergenDto;
 import com.mega.menu.dto.MenuDto;
 import com.mega.menu.dto.MenuNutrientDto;
@@ -30,4 +32,8 @@ public interface MenuService {
 
 	public List<TypeDto> getTypeList() throws Exception;
 
+	public String uploadFile(MultipartFile file) throws Exception;
+
+	public int insertMenu(MenuNutrientDto menuNutrientDto, List<String> typeIds, List<String> allergenIds)
+			throws Exception;
 }

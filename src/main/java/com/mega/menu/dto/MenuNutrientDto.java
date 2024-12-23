@@ -19,8 +19,6 @@ public class MenuNutrientDto {
 	private String nut_high_caffeine = "N";
 	private int nut_size;
 	private String nut_unit;
-//	private List<TypeDto> type_id;
-//	private List<AllergenDto> all_id;
 
 	public MenuNutrientDto() {
 		// TODO Auto-generated constructor stub
@@ -205,22 +203,6 @@ public class MenuNutrientDto {
 				+ nut_calorie + ", nut_high_caffeine=" + nut_high_caffeine + ", nut_size=" + nut_size + ", nut_unit="
 				+ nut_unit + "]";
 	}
-
-//	public List<TypeDto> getType_id() {
-//		return type_id;
-//	}
-//
-//	public void setType_id(List<TypeDto> type_id) {
-//		this.type_id = type_id;
-//	}
-//
-//	public List<AllergenDto> getAll_id() {
-//		return all_id;
-//	}
-//
-//	public void setAll_id(List<AllergenDto> all_id) {
-//		this.all_id = all_id;
-//	}
 
 //	@Override
 //	public String toString() {

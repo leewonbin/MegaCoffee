@@ -1,9 +1,12 @@
 package com.mega.menu.service;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mega.menu.dto.AllergenDto;
 import com.mega.menu.dto.MenuDto;
@@ -14,6 +17,7 @@ import com.mega.menu.mapper.MenuMapper;
 
 @Service
 public class MenuServiceImpl implements MenuService {
+	final String UPLOAD_PATH = System.getProperty("user.dir") + "/src/main/resources/static/img/";
 
 	@Autowired
 	private MenuMapper menuMapper;
@@ -40,9 +44,9 @@ public class MenuServiceImpl implements MenuService {
 
 	@Override
 	public List<MenuDto> filterType(int category_id, String typeIdStr) throws Exception {
-	    return menuMapper.filterType(category_id, typeIdStr);
+		return menuMapper.filterType(category_id, typeIdStr);
 	}
-	
+
 	@Override
 	public List<MenuDto> menuList(Integer category_id) throws Exception {
 		return menuMapper.menuList(category_id);
@@ -69,4 +73,21 @@ public class MenuServiceImpl implements MenuService {
 		return menuMapper.getTypeList();
 	}
 
+	@Override
+	public String uploadFile(MultipartFile file) throws Exception {
+		String saveName = UUID.randomUUID() + file.getOriginalFilename();
+
+		File newFile = new File(UPLOAD_PATH + "/" + saveName);
+		file.transferTo(newFile);
+
+		return saveName;
+	}
+
+	@Override
+	public int insertMenu(MenuNutrientDto menuNutrientDto, List<String> typeIds, List<String> allergenIds)
+			throws Exception {
+		System.out.println(typeIds);
+		System.out.println(allergenIds);
+		return menuMapper.insertMenu(menuNutrientDto, typeIds, allergenIds);
+	}
 }

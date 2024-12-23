@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mega.admin.dto.AdminDto;
@@ -105,33 +106,19 @@ public class AdminController {
 		return redirectUrl;
 	}
 
-	// @RequestParam(value = "menu_file_id", required = false) MultipartFile
-	// menuFile)
 	@PostMapping("/productInsert")
 	public String saveMenu(@ModelAttribute MenuNutrientDto menuNutrientDto,
 			@RequestParam(value = "type_id", required = false) String[] typeIds,
-			@RequestParam(value = "all_id", required = false) String[] allergenIds) {
+			@RequestParam(value = "all_id", required = false) String[] allergenIds,
+			@RequestParam(value = "menu_img") MultipartFile menuFile) throws Exception {
+		String fileSaveName = menuService.uploadFile(menuFile);
+		menuNutrientDto.setMenu_file_id(fileSaveName);
+		menuService.insertMenu(menuNutrientDto, Arrays.asList(typeIds), Arrays.asList(allergenIds));
+		// menuService.insertNutrient(menuNutrientDto);
+		// 파일 정보 받아서 업로드 후 MenuNutrientDto에 추가
+		// DB
 
-//		menuNutrientDto.setType_id(new ArrayList<>());
-//		menuNutrientDto.setAll_id(new ArrayList<>());
-
-		// TypeDto 변환
-//		if (typeIds != null) {
-//			for (String typeId : typeIds) {
-//				TypeDto typeDto = new TypeDto();
-//				typeDto.setType_id(Integer.parseInt(typeId));
-//				menuNutrientDto.getType_id().add(typeDto);
-//			}
-//		}
-//
-//		// AllergenDto 변환
-//		if (allergenIds != null) {
-//			for (String allergenId : allergenIds) {
-//				AllergenDto allergenDto = new AllergenDto();
-//				allergenDto.setAll_id(Integer.parseInt(allergenId));
-//				menuNutrientDto.getAll_id().add(allergenDto);
-//			}
-//		}
+		// typeIds, allergenIds로 DB에 추가
 
 		/*
 		 * // 파일 처리 if (menuFile != null && !menuFile.isEmpty()) { String fileName =
@@ -142,6 +129,7 @@ public class AdminController {
 		System.out.println(menuNutrientDto);
 		System.out.println(Arrays.toString(typeIds));
 		System.out.println(Arrays.toString(allergenIds));
+		System.out.println(menuFile.getOriginalFilename());
 
 		return "redirect:/admin/main";
 	}

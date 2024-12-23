@@ -82,5 +82,28 @@ and m.menu_del = 'N'
 	<select id="getTypeList" resultType="com.mega.menu.dto.TypeDto">
 		select * from type
 	</select>
+	
+	<update id="insertMenu" >
+	BEGIN
+		insert into menu
+		values (menu_num.nextval,#{mnDto.menu_title},#{mnDto.menu_eng_title},#{mnDto.menu_content},sysdate,sysdate,#{mnDto.menu_del},#{mnDto.menu_ice_hot},#{mnDto.menu_onesize},#{mnDto.menu_file_id},1,#{mnDto.category_id});
+		
+		insert into nutrient
+		values (nutrient_num.nextval,#{mnDto.nut_saturated},#{mnDto.nut_sugar},#{mnDto.nut_sodium},#{mnDto.nut_protein},#{mnDto.nut_caffeine},#{mnDto.nut_calorie},#{mnDto.nut_high_caffeine},#{mnDto.nut_size},#{mnDto.nut_unit},menu_num.currval);
+		
+		<if test="typeIds != null">
+			<foreach item="type" collection="typeIds" open="insert all" close="select * from dual;">
+				into menu_type values (menu_num.currval,#{type})
+			</foreach>
+		</if>
+		
+		<if test="allergenIds != null">
+			<foreach item="allergen" collection="allergenIds" open="insert all" close="select * from dual;">
+				into menu_allergen values (menu_num.currval,#{allergen})
+			</foreach>
+		</if>
+	END;
+	</update>
+	
 
 </mapper>
