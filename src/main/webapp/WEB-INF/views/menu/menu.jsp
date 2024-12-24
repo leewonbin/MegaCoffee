@@ -122,135 +122,57 @@ ng\:form {
 	href="/css/swiper.min.css?ver=202307100845">
 <script type="text/javascript"
 	src="https://img.79plus.co.kr/megahp/common/js/swiper.min.js"></script>
+<script src="/js/menu.js"></script>              <!-- -------------------------------------마지막에 작업할거------------------------------------- -->
+
 
 <script>
-	$(document).ready(
-			function() {
-				$(".datepickertime_wrap input").mdtimepicker();
-				$(".detail_flex_slider_wrap").flexslider(
-						{
-							animation : "slide",
-							controlNav : "thumbnails",
-							start : function() {
-								$(".detail_flex_slider_wrap img").css(
-										"visibility", "visible");
-							},
-						});
-				//head_down_menu start
-				$(".head_wrap .head .head_menu > ul > li").hover(
-						function() {
-							if ($(".head_menu_wrap").is(".right0") == false) {
-								$(".head_wrap .head .head_menu > ul > li")
-										.removeClass("check");
-								$(this).addClass("check");
-								$(".head_menu_down_menu").stop().slideDown(
-										"fast");
-							}
-							;
-						},
-						function() {
-							$(".head_wrap .head .head_menu > ul > li")
-									.removeClass("check");
-						});
-
-				$(".head_wrap").hover(
-						function() {
-							$(this).addClass("head_over");
-						},
-						function() {
-							if ($(".head_menu_wrap").is(".right0") == false) {
-								$(this).removeClass("head_over");
-								$(".head_wrap .head .head_menu > ul > li")
-										.removeClass("check");
-								$(".head_menu_down_menu").stop()
-										.slideUp("fast");
-							}
-						});
-				//head_down_menu end
-				//mobile start
-				$(".mobile_menu_icon").click(function() {
-					$(".head_wrap").addClass("head_over");
-					$(this).toggleClass("mobile_menu_icon_open");
-					if ($(this).is(".mobile_menu_icon_open")) {
-						$(".head_menu_wrap").addClass("right0");
-					} else {
-						$(".head_menu_wrap").removeClass("right0");
-					}
-				});
-				$(".head_menu_down").click(
-						function() {
-							$(this).toggleClass("head_menu_down_open");
-							if ($(this).is(".head_menu_down_open")) {
-								$(this).next(".head_menu_down_menu").find("ul")
-										.slideDown("fast");
-							} else {
-								$(this).next(".head_menu_down_menu").find("ul")
-										.slideUp("fast");
-							}
-						});
-				//mobile end
-				cont_gallery_list_img();
-				$(window).resize(
-						function() {
-							$(".head_menu_down_menu > ul").css("display",
-									"block");
-							if ($(window).width() < 760) {
-								$(".head_menu_down_menu > ul").css("display",
-										"none");
-							}
-							;
-							$(".head_menu_down").removeClass(
-									"head_menu_down_open");
-							if ($(window).width() >= 1280) {
-								$(".head_wrap").removeClass("head_over");
-								$(".head_menu_wrap").removeClass("right0");
-								$(".mobile_menu_icon").removeClass(
-										"mobile_menu_icon_open");
-							}
-							;
-							cont_gallery_list_img();
-						});
-			});
-	$(window).scroll(function() {
-		if ($(document).scrollTop() > $(".cont_wrap").offset().top) {
-			$(".head_wrap").addClass("head_fixed");
-		} else {
-			$(".head_wrap").removeClass("head_fixed");
-		}
-	});
-	function cont_gallery_list_img() {
-		$(".cont_gallery_list > ul > li").each(
-				function() {
-					if ($(this).find(".cont_gallery_list_img").length) {
-						$(this).find(".cont_gallery_list_img").css("width",
-								$(this).width());
-					}
-					;
-
-					if ($(this).find(".cont_gallery_list_img_height").length) {
-						$(this).find(".cont_gallery_list_img_height").css(
-								"height", $(this).width());
-					} else {
-						$(this).find(".cont_gallery_list_img").css("height",
-								$(this).width());
-					}
-					;
-				});
-	};
-
-	function login() {
-		location.href = "/login/?ReturnPage=" + window.location.pathname;
-	};
-	function logout() {
-		location.href = "/login/logout.php?ReturnPage="
-				+ window.location.pathname;
-	};
-	function quick(ele) {
-		$(ele).parents(".nav_wrap").find(".nav").fadeToggle("fast");
-		$(".nav_wrap .nav_quick_title, .nav_wrap .nav_quick_close")
-				.slideToggle("fast");
-	}
+$(function() {
+    const allCheckbox = $("input[name='list_checkbox_all']");
+    const checkbox = $("input[name='list_checkbox']");
+    
+    
+    allCheckbox.on('change', function() {
+    	let allCheckValues = $("input[name='list_checkbox_all']:checked");
+    	console.log(checkValues);
+        /* filterType(category_id, values) */
+        if (allCheckbox.is(':checked')) {
+            checkbox.prop('checked', false);
+        }
+    });
+    
+    checkbox.on('change', function() {
+    	let checkValues = $("input[name='list_checkbox']:checked");
+        console.log(checkValues);
+        /* filterType(category_id, values) */
+    	if (checkbox.is(':checked')) {
+    		allCheckbox.prop('checked', false);
+    	}
+    });
+});
 </script>
+
+<script>
+function filterType(category_id, type_id) {
+    $.ajax({
+        type: 'GET',
+        url: '/filterType',
+        data: {
+            category_id: category_id,
+            type_id: type_id
+        },
+        success: function(response) {
+            console.log(response);
+        	callback(response);
+        },
+        error: function() {
+            console.error("ss");
+        }
+    });
+}
+
+</script>
+
+
 </head>
 <body data-aos-easing="ease" data-aos-duration="1200" data-aos-delay="0">
 	<div class="overlay none"></div>
@@ -265,24 +187,25 @@ ng\:form {
 
 		<div class="cont_wrap menu_wrap">
 			<div class="cont">
-			
-			<c:choose>
-			<c:when test="${param.category_id == '1'}">
-			<jsp:include page="../common/menuCategory/drink.jsp" />
-			</c:when>
-			<c:when test="${param.category_id == '2'}">
-			<jsp:include page="../common/menuCategory/food.jsp" />
-			</c:when>
-			<c:when test="${param.category_id == '3'}">
-			<jsp:include page="../common/menuCategory/product.jsp" />
-			</c:when>
-			<c:otherwise>
-			<jsp:include page="../common/menuCategory/main.jsp" />
-			</c:otherwise>
-		</c:choose>
 
-<c:choose>
-<c:when test="${param.category_id == '1' || param.category_id == '2'}">
+				<c:choose>
+					<c:when test="${param.category_id == '1'}">
+						<jsp:include page="../common/menuCategory/drink.jsp" />
+					</c:when>
+					<c:when test="${param.category_id == '2'}">
+						<jsp:include page="../common/menuCategory/food.jsp" />
+					</c:when>
+					<c:when test="${param.category_id == '3'}">
+						<jsp:include page="../common/menuCategory/product.jsp" />
+					</c:when>
+					<c:otherwise>
+						<jsp:include page="../common/menuCategory/main.jsp" />
+					</c:otherwise>
+				</c:choose>
+
+				<c:choose>
+					<c:when
+						test="${param.category_id == '1' || param.category_id == '2'}">
 						<div class="cont_text_wrap list_checkbox_wrap">
 							<div class="cont_text cont_text_title">
 								<b>분류보기</b>
@@ -304,75 +227,75 @@ ng\:form {
 								</div>
 							</c:forEach>
 						</div>
-						</c:when>
-						<c:otherwise>
-						</c:otherwise>
-</c:choose>
+					</c:when>
+					<c:otherwise>
+					</c:otherwise>
+				</c:choose>
 
-							<div class="cont_text_wrap">
-								<div
-									class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2">
-									<ul id="menu_list">
-										<div
-											class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2 wfull">
+				<div class="cont_text_wrap">
+					<div
+						class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2">
+						<ul id="menu_list">
+							<div
+								class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2 wfull">
 
-											<ul id="menu_list">
-												<c:forEach var="menu" items="${menuList}">
-													<li><a class="inner_modal_open">
-															<div class="cont_gallery_list_box">
-																<div class="cont_gallery_list_img"
-																	style="width: 305px; height: 305px;">
-																	<!-- cont_gallery_list_label cont_gallery_list_label1 빨간색, 2가 파란색 -->
-																	<%-- <div
+								<ul id="menu_list">
+									<c:forEach var="menu" items="${menuList}">
+										<li><a class="inner_modal_open">
+												<div class="cont_gallery_list_box">
+													<div class="cont_gallery_list_img"
+														style="width: 305px; height: 305px;">
+														<!-- cont_gallery_list_label cont_gallery_list_label1 빨간색, 2가 파란색 -->
+														<%-- <div
 																	class="cont_gallery_list_label cont_gallery_list_label2">${menu.menu_ice_hot}</div> --%>
-																	<c:choose>
-																		<c:when test="${menu.menu_ice_hot == 'ICE'}">
-																			<div
-																				class="cont_gallery_list_label cont_gallery_list_label2">${menu.menu_ice_hot}</div>
-																		</c:when>
-																		<c:when test="${menu.menu_ice_hot == 'HOT'}">
-																			<div
-																				class="cont_gallery_list_label cont_gallery_list_label1">${menu.menu_ice_hot}</div>
-																		</c:when>
-																		<c:otherwise>
-																			<div class="default">${menu.menu_ice_hot}</div>
-																		</c:otherwise>
-																	</c:choose>
-																	<img src="/img/${menu.menu_file_id}">
-																</div>
-																<!-- 여기가 이미지 나오는 부분 -->
-																<div class="cont_text_box">
-																	<div class="cont_text">
-																		<div class="cont_text_inner text_wrap cont_text_title">
-																			<div class="text text1">
-																				<b>${menu.menu_title}</b>
-																			</div>
-																		</div>
-																		<div class="cont_text_inner text_wrap cont_text_info">
-																			<div class="text text1">${menu.menu_eng_title}</div>
-																		</div>
-																	</div>
-																	<div class="cont_text cont_text_info">
-																		<div class="text_wrap">
-																			<div class="text text2">${menu.menu_content}</div>
-																		</div>
-																	</div>
+														<c:choose>
+															<c:when test="${menu.menu_ice_hot == 'ICE'}">
+																<div
+																	class="cont_gallery_list_label cont_gallery_list_label2">${menu.menu_ice_hot}</div>
+															</c:when>
+															<c:when test="${menu.menu_ice_hot == 'HOT'}">
+																<div
+																	class="cont_gallery_list_label cont_gallery_list_label1">${menu.menu_ice_hot}</div>
+															</c:when>
+															<c:otherwise>
+																<div class="default">${menu.menu_ice_hot}</div>
+															</c:otherwise>
+														</c:choose>
+														<img src="/img/${menu.menu_file_id}">
+													</div>
+													<!-- 여기가 이미지 나오는 부분 -->
+													<div class="cont_text_box">
+														<div class="cont_text">
+															<div class="cont_text_inner text_wrap cont_text_title">
+																<div class="text text1">
+																	<b>${menu.menu_title}</b>
 																</div>
 															</div>
-													</a> <!-- 여기가 이미지 눌렀을때 창 나오는 부분 -->
-														<div class="inner_modal">
-															<div class="cont_text_box">
-																<div class="cont_text inner_modal_title">
-																	<div class="cont_text_inner cont_text_title">
-																		<b>${menu.menu_title}</b>
-																	</div>
-																	<div class="cont_text_inner cont_text_info">
-																		${menu.menu_eng_title}</div>
-																	<div class="close_wrap">
-																		<div class="close"></div>
-																	</div>
-																</div>
-																<%-- <div class="cont_text">
+															<div class="cont_text_inner text_wrap cont_text_info">
+																<div class="text text1">${menu.menu_eng_title}</div>
+															</div>
+														</div>
+														<div class="cont_text cont_text_info">
+															<div class="text_wrap">
+																<div class="text text2">${menu.menu_content}</div>
+															</div>
+														</div>
+													</div>
+												</div>
+										</a> <!-- 여기가 이미지 눌렀을때 창 나오는 부분 -->
+											<div class="inner_modal">
+												<div class="cont_text_box">
+													<div class="cont_text inner_modal_title">
+														<div class="cont_text_inner cont_text_title">
+															<b>${menu.menu_title}</b>
+														</div>
+														<div class="cont_text_inner cont_text_info">
+															${menu.menu_eng_title}</div>
+														<div class="close_wrap">
+															<div class="close"></div>
+														</div>
+													</div>
+													<%-- <div class="cont_text">
 																<div class="cont_text_inner">${menu.menu_size}</div>
 																<div class="cont_text_inner">${menu.menu_calories}</div>
 															</div>
@@ -380,7 +303,10 @@ ng\:form {
 															<div class="cont_text cont_text_info">알레르기 성분 :</div>
 															<!--${menu.menu_allergen}-->
 														</div>--%>
-																<%-- <div
+														
+														
+														
+													<%-- <div
 															class="cont_list cont_list2 cont_list_small cont_list_small2">
 															<ul>
 																<li>포화지방 ${menu.menu_saturated}g</li>
@@ -391,28 +317,29 @@ ng\:form {
 															</ul>--%>
 
 
-															</div>
-														</div></li>
-												</c:forEach>
-											</ul>
+												</div>
+											</div></li>
+									</c:forEach>
+								</ul>
 
 
-
-										</div>
-										<div class="board_page_wrap">
-											<div class="board_page"></div>
-										</div>
-									</ul>
-								</div>
 							</div>
-
-
-
-						</div>
+							<div class="board_page_wrap">
+								<div class="board_page"></div>
+							</div>
+						</ul>
 					</div>
 				</div>
+
+
+
+
+
 			</div>
-			<!-- <script>
+		</div>
+	</div>
+	</div>
+	<!-- <script>
 			var category_change = "";
 			$(document).on(
 					"click",
@@ -482,10 +409,8 @@ ng\:form {
 				});
 			};
 		</script> -->
-			<!-- footer -->
-			<jsp:include page="../common/footer.jsp" />
-			<jsp:include page="../common/header.jsp" />
-			<script src="js/menu.js"></script>
-			<script src="js/common/page.js"></script>
+	<!-- footer -->
+	<jsp:include page="../common/footer.jsp" />
+	<jsp:include page="../common/header.jsp" />
 </body>
 </html>

@@ -29,15 +29,18 @@ public class BoardController {
 	                        Model model,
 	                        @RequestParam(value = "nowPage", required = false) String nowPage,
 	                        @RequestParam(value = "cntPerPage", required = false) String cntPerPage,
-	                        @RequestParam(value = "CATEGORY_ID", required = false) Integer category_id) {
+	                        @RequestParam(value = "CATEGORY_ID", required = false) Integer category_id,
+	                        @RequestParam(value = "searchType",required = false)String searchType,
+	                        @RequestParam(value="keyword", required=false) String keyword) throws Exception {
 	    int total;
-
+		
 	    if (category_id != null) {
 	        // 카테고리별 게시글 총 개수
-	        total = boardService.countBoardByCategory(category_id);
+	        total = boardService.countBoardByCategory(category_id,keyword,searchType);
+	        
 	    } else {
 	        // 전체 게시글 총 개수
-	        total = boardService.countBoard();
+	        total = boardService.countBoard(keyword,searchType);
 	    }
 
 	    // 기본값 설정
@@ -62,14 +65,25 @@ public class BoardController {
 	    List<BoardCategoryDto> boardCategoryList;
 	    if (category_id != null) {
 	        // 카테고리별 게시글 조회
-	        boardList = boardService.boardListByCategory(pageDto, category_id);
+	    	if(searchType != null && keyword != null) {
+	    		boardService.selectSearch(pageDto,searchType,keyword);
+	    		
+	    		System.out.println("type1: "+searchType);
+	    		System.out.println("keyword1: "+keyword);
+	    		System.out.println("카테고리 있는 키워드 갯수: "+pageDto.getTotal());
+	    	}
+	        boardList = boardService.boardListByCategory(pageDto, category_id,searchType,keyword);
 	        System.out.println("cid O: "+category_id);
+	        
 	    } else {
 	        // 전체 게시글 조회
-	        boardList = boardService.boardList(pageDto);
+	        boardList = boardService.boardList(pageDto,searchType,keyword);
 	        System.out.println("cid x: "+category_id);
+	        System.out.println("type2: "+searchType);
+    		System.out.println("keyword2: "+keyword);
+    		System.out.println("카테고리 없는 키워드 갯수: "+pageDto.getTotal());
 	    }
-	    
+	        
 	    boardCategoryList = boardService.boardCategoryList(boardCategoryDto);
 	    
 	    model.addAttribute("paging", pageDto);

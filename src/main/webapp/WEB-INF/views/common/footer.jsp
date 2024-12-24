@@ -239,10 +239,5 @@
 			});
 		});
 	</script>
-	<script>
-		$(function() {
-			createPaging(".board_page", "#menu_list > li");
-		})
-	</script>
 </body>
 </html>
