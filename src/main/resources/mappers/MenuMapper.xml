@@ -47,15 +47,6 @@ and m.menu_id = #{menu_id}
 		and m.menu_del = 'N'
 	</select>
 
-<!-- <select id="filterType" resultType="com.mega.menu.dto.MenuDto">
-select m.*
-from menu m, menu_type mt, type t
-where m.menu_id = mt.menu_id
-and t.type_id = mt.type_id
-and mt.type_id in (#{type_id})
-and m.menu_del = 'N'
-</select>  -->
-
 <select id="filterType" resultType="com.mega.menu.dto.MenuDto">
     select m.*
     from menu m

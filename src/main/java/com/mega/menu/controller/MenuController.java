@@ -84,8 +84,6 @@ public class MenuController {
 	    return "menu/menu";
 	}
 
-	
-	
 	@ResponseBody
 	@GetMapping("/filterType") // List<Integer>
 	public List<MenuDto> filterType(@RequestParam int category_id, @RequestParam List<Integer> type_id)
