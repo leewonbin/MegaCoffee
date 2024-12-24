@@ -31,8 +31,8 @@ public class BoardService {
 	}
 	
 	//게시글 갯수
-    public int countBoard(String searchType,String keyword) {
-    	return boardMapper.countBoard(searchType,keyword);
+    public int countBoard() {
+    	return boardMapper.countBoard();
     }
     
  // 카테고리별 게시글 조회
@@ -41,8 +41,8 @@ public class BoardService {
     }
 
     // 카테고리별 게시글 총 개수
-    public int countBoardByCategory(int category_id,String searchType,String keyword) {
-        return boardMapper.countBoardByCategory(category_id,searchType,keyword);
+    public int countBoardByCategory(int category_id) {
+        return boardMapper.countBoardByCategory(category_id);
     }
     
     //게시글 상세페이지
@@ -66,12 +66,21 @@ public class BoardService {
     	return boardMapper.movePageX(boardId);
     }
     
-    public ArrayList<BoardDto> selectSearch(PageDto pageDto,String searchType,String keyword)throws Exception {
-    	int allCount= boardMapper.selectSearchCount(searchType, keyword);
-    	System.out.println("ssssss: "+allCount);
+    public ArrayList<BoardDto> selectSearch(PageDto pageDto,String searchType,String keyword,int category_id)throws Exception {
+    	int allCount= boardMapper.selectSearchCount(searchType, keyword,category_id);
+    	System.out.println("allCount: "+allCount);
     	return boardMapper.selectSearch(keyword,searchType,pageDto);
     }
-    //public int 
+    public int selectSearchCount(String searchType,String keyword,Integer category_id) {
+    	return boardMapper.selectSearchCount(searchType, keyword, category_id);
+    }
+    
+    public int selectSearchCountAll(String searchType,String keyword) {
+    	int AllCount = boardMapper.selectSearchCountAll(searchType, keyword);
+    	System.out.println(AllCount);
+    	return boardMapper.selectSearchCountAll(searchType, keyword);
+    }
+    
     
    
     
