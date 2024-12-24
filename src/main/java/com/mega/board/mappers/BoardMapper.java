@@ -1,5 +1,6 @@
 package com.mega.board.mappers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -16,16 +17,16 @@ public interface BoardMapper {
 	public int saveBoard(BoardDto boardDto);
 	
 	//페이징 처리 게시글 조회
-	public List<BoardDto> boardList(PageDto pageDto);
+	public List<BoardDto> boardList(PageDto pageDto,String searchType,String keyword);
 		
 	//게시글 총 갯수
-	public int countBoard();
+	public int countBoard(String searchType,String keyword);
 	
 	// 카테고리별 페이징 처리 게시글 조회
-	public List<BoardDto> boardListByCategory(PageDto pageDto,  int category_id);
+	public List<BoardDto> boardListByCategory(PageDto pageDto,  int category_id,String searchType,String keyword);
 
 	// 카테고리별 게시글 총 갯수
-	public int countBoardByCategory( int category_id);
+	public int countBoardByCategory( int category_id,String searchType,String keyword);
 	
 	//게시글 상세 페이지
 	public BoardDto boardDetail(int boardId);
@@ -41,5 +42,8 @@ public interface BoardMapper {
 	
 	public MoveDto movePageX(int board_id);
 		
+	public ArrayList<BoardDto> selectSearch(@Param("bbs_search_category")String searchType,@Param("bbs_search")String keyword,PageDto pageDto) throws Exception; 
+	
+	 public int selectSearchCount(@Param("bbs_search_category")String searchType,@Param("bbs_search")String keyword);
 	
 }
