@@ -257,8 +257,6 @@ ng\:form {
 	<!--  -->
 	<div class="wrap">
 		<jsp:include page="../common/sidebar.jsp" />
-		
-
 	</div>
 	<!--  -->
 	<div class="cont_wrap bbs_wrap">
@@ -312,26 +310,24 @@ ng\:form {
 								<li>
 									<div class="board_search_wrap">
 										<div class="board_search">
-											<form>
-												<input type="hidden" name="bbs_category" id="bbs_category"
-													value="4"> <input type="hidden"
-													name="bbs_detail_category" id="bbs_detail_category"
-													value="">
+											<form action="${contextPath }/tables" method="get">
+												<!-- <input type="hidden" name="bbs_category" id="bbs_category" value="4">  -->
+												<input type="hidden" name="CATEGORY_ID" id="CATEGORY_ID" value="${param.CATEGORY_ID}">
 												<ul>
 													<li class="board_search_select">
 														<div class="input_select_wrap input_wrap2">
-															<select name="bbs_search_category"
-																id="bbs_search_category">
-																<option value="bbs_tbl_title">제목</option>
-																<option value="bbs_tbl_content">내용</option>
-																<option value="bbs_tbl_name">작성자</option>
+															<select name="searchType"
+																id="searchType">
+																<option value="title">제목</option>
+																<option value="content">내용</option>
+																<option value="name">작성자</option>
 															</select>
 														</div>
 													</li>
 													<li>
 														<div class="input_text_wrap input_wrap2">
-															<label> <input type="text" name="bbs_search"
-																id="bbs_search" class="" value=""
+															<label> <input type="text" name="keyword"
+																id="keyword" class="" value=""
 																placeholder="검색어를 입력하세요" required="required">
 															</label>
 														</div>
@@ -347,10 +343,14 @@ ng\:form {
 										</div>
 									</div>
 								</li>
-								<li style="text-align: right"><a href="/boardwrite"><button
-											type="button" class="input_btn_wrap input_wrap2"
-											style="background-color: #FDD000; color: black; font-weight: 600;">
-											게시글 작성</button></a></li>
+								<li style="text-align: right">
+									<a href="/boardwrite">
+										<button type="button" class="input_btn_wrap input_wrap2"
+												style="background-color: #FDD000; color: black; font-weight: 600;">
+												게시글 작성
+										</button>
+									</a>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -378,7 +378,7 @@ ng\:form {
 									<c:forEach var="board" items="${boardList}" varStatus="status">
 										<tr>
 											<!-- 번호 -->
-											<td class=board_pc>${(paging.total-status.index)-((paging.nowPage-1)*paging.cntPerPage) }</td>
+											<td class=board_pc>${(paging.total-status.index)-((paging.nowPage-1)*paging.cntPerPage)}</td>
 											<td>
 												<div class="text_wrap">
 													<div class="text">
@@ -404,8 +404,11 @@ ng\:form {
 						<div class="board_page_wrap">
 							<div class="board_page">
 								<ul class="boardPagination">
-									<li class="fo_re"><a
-										href="/tables?nowPage=1&CATEGORY_ID=${CATEGORY_ID}"><span>처음</span></a></li>
+									<li class="fo_re">
+										<a href="/tables?nowPage=1&CATEGORY_ID=${CATEGORY_ID}">
+											<span>처음</span>
+										</a>
+									</li>
 									<li
 										class="board_page_link <c:if test='${paging.startPage == 1}'>disabled</c:if>"
 										id="dataTable_previous"><c:if
@@ -414,7 +417,8 @@ ng\:form {
 												href="/tables?nowPage=${paging.nowPage-1}&CATEGORY_ID=${CATEGORY_ID}"
 												aria-controls="dataTable" data-dt-idx="0" tabindex="0"
 												class="board_page_link">이전</a>
-										</c:if></li>
+										</c:if>
+									</li>
 									<c:forEach begin="${paging.startPage }"
 										end="${paging.endPage }" var="p">
 										<li
@@ -433,7 +437,7 @@ ng\:form {
 											class="page-link">다음</a>
 										</li>
 									</c:if>
-									<li class="fo_re">
+									<li >
 										<a
 											href="/tables?nowPage=${paging.lastPage}&CATEGORY_ID=${CATEGORY_ID}">
 											<span>마지막</span>
