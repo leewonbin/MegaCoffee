@@ -11,8 +11,8 @@
 	<select id="getMenuNutrient"
 		resultType="com.mega.menu.dto.MenuNutrientDto">
 		select m.*,n.* from menu m, nutrient n
-where n.menu_id = m.menu_id
-and m.menu_id = #{menu_id}
+		where n.menu_id = m.menu_id
+		and m.menu_id = #{menu_id}
 	</select>
 
 	<select id="getType" resultType="com.mega.menu.dto.TypeDto">
@@ -25,7 +25,8 @@ and m.menu_id = #{menu_id}
 	<select id="getAllergen"
 		resultType="com.mega.menu.dto.AllergenDto">
 		select a.* from menu_allergen ma, allergen a
-		where ma.all_id = a.all_id
+		where ma.all_id
+		= a.all_id
 		and ma.menu_id = #{menu_id}
 	</select>
 
@@ -45,26 +46,22 @@ and m.menu_id = #{menu_id}
 			</otherwise>
 		</choose>
 		and m.menu_del = 'N'
+		order by menu_date desc
 	</select>
 
-<!-- <select id="filterType" resultType="com.mega.menu.dto.MenuDto">
-select m.*
-from menu m, menu_type mt, type t
-where m.menu_id = mt.menu_id
-and t.type_id = mt.type_id
-and mt.type_id in (#{type_id})
-and m.menu_del = 'N'
-</select>  -->
+	<!-- <select id="filterType" resultType="com.mega.menu.dto.MenuDto"> select 
+		m.* from menu m, menu_type mt, type t where m.menu_id = mt.menu_id and t.type_id 
+		= mt.type_id and mt.type_id in (#{type_id}) and m.menu_del = 'N' </select> -->
 
-<select id="filterType" resultType="com.mega.menu.dto.MenuDto">
-    select m.*
-    from menu m
-    join menu_type mt on m.menu_id = mt.menu_id
-    join type t on t.type_id = mt.type_id
-    where mt.type_id in (${typeIdStr})
-    and m.menu_del = 'N'
-    and m.category_id = #{category_id}
-</select>
+	<select id="filterType" resultType="com.mega.menu.dto.MenuDto">
+		select m.*
+		from menu m
+		join menu_type mt on m.menu_id = mt.menu_id
+		join type t on t.type_id = mt.type_id
+		where mt.type_id in (${typeIdStr})
+		and m.menu_del = 'N'
+		and m.category_id = #{category_id}
+	</select>
 
 	<select id="getNutrient" parameterType="int"
 		resultType="com.mega.menu.dto.NutrientDto">
@@ -78,32 +75,84 @@ and m.menu_del = 'N'
 		resultType="com.mega.menu.dto.AllergenDto">
 		select * from allergen
 	</select>
-	
+
 	<select id="getTypeList" resultType="com.mega.menu.dto.TypeDto">
 		select * from type
 	</select>
-	
-	<update id="insertMenu" >
-	BEGIN
+
+	<update id="insertMenu">
+		BEGIN
 		insert into menu
-		values (menu_num.nextval,#{mnDto.menu_title},#{mnDto.menu_eng_title},#{mnDto.menu_content},sysdate,sysdate,#{mnDto.menu_del},#{mnDto.menu_ice_hot},#{mnDto.menu_onesize},#{mnDto.menu_file_id},1,#{mnDto.category_id});
-		
+		values
+		(menu_num.nextval,#{mnDto.menu_title},#{mnDto.menu_eng_title},#{mnDto.menu_content},sysdate,sysdate,#{mnDto.menu_del},#{mnDto.menu_ice_hot},#{mnDto.menu_onesize},#{mnDto.menu_file_id},1,#{mnDto.category_id});
+
 		insert into nutrient
-		values (nutrient_num.nextval,#{mnDto.nut_saturated},#{mnDto.nut_sugar},#{mnDto.nut_sodium},#{mnDto.nut_protein},#{mnDto.nut_caffeine},#{mnDto.nut_calorie},#{mnDto.nut_high_caffeine},#{mnDto.nut_size},#{mnDto.nut_unit},menu_num.currval);
-		
-		<if test="typeIds != null">
-			<foreach item="type" collection="typeIds" open="insert all" close="select * from dual;">
-				into menu_type values (menu_num.currval,#{type})
+		values
+		(nutrient_num.nextval,#{mnDto.nut_saturated},#{mnDto.nut_sugar},#{mnDto.nut_sodium},#{mnDto.nut_protein},#{mnDto.nut_caffeine},#{mnDto.nut_calorie},#{mnDto.nut_high_caffeine},#{mnDto.nut_size},#{mnDto.nut_unit},menu_num.currval);
+
+		<if test="typeIdList != null or typeIdList.size != 0">
+			<foreach item="type" collection="typeIdList"
+				open="insert all" close="select * from dual;">
+				into menu_type values
+				(menu_num.currval,#{type})
 			</foreach>
 		</if>
-		
-		<if test="allergenIds != null">
-			<foreach item="allergen" collection="allergenIds" open="insert all" close="select * from dual;">
-				into menu_allergen values (menu_num.currval,#{allergen})
+
+		<if test="allergenIdList != null or allergenIdList.size != 0">
+			<foreach item="allergen" collection="allergenIdList"
+				open="insert all" close="select * from dual;">
+				into menu_allergen values
+				(menu_num.currval,#{allergen})
 			</foreach>
 		</if>
-	END;
+		END;
+	</update>
+
+	<update id="modifyMenu">
+		BEGIN
+		update menu
+		set
+		menu_title=#{menu_title},menu_eng_title=#{menu_eng_title},menu_content=#{menu_content},menu_update=sysdate,menu_ice_hot=#{menu_ice_hot},menu_onesize=#{menu_onesize},menu_file_id=#{menu_file_id},category_id=#{category_id},menu_del=#{menu_del}
+		where menu_id=#{menu_id};
+
+		update nutrient
+		set
+		nut_saturated=#{nut_saturated},nut_sugar=#{nut_sugar},nut_sodium=#{nut_sodium},nut_protein=#{nut_protein},nut_caffeine=#{nut_caffeine},nut_calorie=#{nut_calorie},nut_high_caffeine=#{nut_high_caffeine},nut_size=#{nut_size},nut_unit=#{nut_unit}
+		where nut_id=#{nut_id};
+		END;
+	</update>
+
+	<update id="modifyType">
+		BEGIN
+		delete from menu_type where menu_id=#{menu_id};
+		<if test="typeIdList != null or typeIdList.size != 0">
+			<foreach item="type" collection="typeIdList" open="insert all" close="select * from dual;">
+				into menu_type values
+				(#{menu_id},#{type})
+			</foreach>
+		</if>
+		END;
 	</update>
 	
+	<update id="modifyallergen">
+		BEGIN
+		delete from menu_allergen where menu_id=#{menu_id};
+		<if test="allergenIdList != null or allergenIdList.size != 0">
+			<foreach item="allergen" collection="allergenIdList"
+				open="insert all" close="select * from dual;">
+				into menu_allergen values
+				(#{menu_id},#{allergen})
+			</foreach>
+		</if>
+		END;
+	</update>
+	
+	<select id="getMenuAllList" resultType="com.mega.menu.dto.MenuDto">
+		select * from menu order by menu_date desc
+	</select>
+	
+	<delete id="deleteMenu">
+		delete from menu where menu_id=#{menu_id}
+	</delete>
 
 </mapper>

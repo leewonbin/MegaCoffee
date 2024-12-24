@@ -70,6 +70,13 @@ input[type=checkbox], input[type=radio] {
 	border: 0;
 }
 
+.img_name {
+	width: 200px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
 .buttonsDiv {
 	float: right;
 	margin-top: 15px;
@@ -83,9 +90,18 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 }
 
 input[type=number] {
-	width: 30px;
+	width: 40px;
 	text-align: right;
+	border: none; border-bottom : 1px solid #CCC;
 	-moz-appearance: textfield;
+	border-bottom: 1px solid #CCC;
+}
+
+input:focus, textarea:focus {
+	border : 2px solid #FAD000; 
+	border-radius : 5px;
+	outline : none;
+	
 }
 </style>
 </head>
@@ -101,11 +117,13 @@ input[type=number] {
 		<h2 id="content-title">${mnDto eq null ? '상품 추가' : '상품 수정' }</h2>
 
 		<!-- 폼 태그 시작 -->
-		<form action="${mnDto eq null ? '/admin/productInsert' : '/admin/productUpdate'}" method="post" enctype="multipart/form-data">
+		<form action="${mnDto eq null ? '/admin/productInsert' : '/admin/productModify'}" method="post" enctype="multipart/form-data">
 			<div class="product-info info-wrap">
 				<span class="wrap-Info"> 상품 정보 </span>
 				<c:if test="${mnDto ne null }">
 					<input type="hidden" name="menu_id" value="${mnDto.menu_id }" />
+					<input type="hidden" name="nut_id" value="${mnDto.nut_id }" />
+					<input type="hidden" name="menu_file_id" value="${mnDto.menu_file_id }"/>
 				</c:if>
 				<table>
 					<tr>
@@ -181,7 +199,18 @@ input[type=number] {
 					<tr>
 						<td>이미지</td>
 						<td>
-							 <input type="file" name="menu_img"/>
+							<input type="text" value="${mnDto.menu_file_id }" readonly />
+							<input type="file" name="menu_img" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td>활성화 여부</td>
+						<td>
+							<select name="menu_del">
+								<option value="N" ${mnDto.menu_del == 'N' ? 'selected="selected"' : '' }>N</option>
+								<option value="Y" ${mnDto.menu_del == 'Y' ? 'selected="selected"' : '' }>Y</option>
+							</select>
 						</td>
 					</tr>
 				</table>

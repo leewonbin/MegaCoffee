@@ -70,7 +70,6 @@ div.childrenMenu a {
 	</nav>
 	<script>
 	$(function() {
-	    console.log("${param.category}")
 	    let cateElement = $('li[data-category="'+"${param.category}"+'"]')
 	    if(cateElement != null) {
 	  		let sameMenu = cateElement.closest("div");		// 형제 메뉴 모두 표시

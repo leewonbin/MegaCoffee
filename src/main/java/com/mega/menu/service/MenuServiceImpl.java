@@ -84,10 +84,43 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public int insertMenu(MenuNutrientDto menuNutrientDto, List<String> typeIds, List<String> allergenIds)
-			throws Exception {
-		System.out.println(typeIds);
-		System.out.println(allergenIds);
-		return menuMapper.insertMenu(menuNutrientDto, typeIds, allergenIds);
+	public void deleteFile(String menu_file_id) throws Exception {
+		File beforeFile = new File(UPLOAD_PATH + "/" + menu_file_id);
+		if (beforeFile.exists())
+			beforeFile.delete();
 	}
+
+	@Override
+	public int insertMenu(MenuNutrientDto menuNutrientDto, List<String> typeIdList, List<String> allergenIdList)
+			throws Exception {
+		return menuMapper.insertMenu(menuNutrientDto, typeIdList, allergenIdList);
+	}
+
+	@Override
+	public int modifyMenu(MenuNutrientDto menuNutrientDto) throws Exception {
+		return menuMapper.modifyMenu(menuNutrientDto);
+	}
+
+	@Override
+	public int modifyType(int menu_id, List<String> typeIdList) throws Exception {
+		return menuMapper.modifyType(menu_id, typeIdList);
+
+	}
+
+	@Override
+	public int modifyallergen(int menu_id, List<String> allergenIdList) throws Exception {
+		return menuMapper.modifyallergen(menu_id, allergenIdList);
+	}
+
+	@Override
+	public List<MenuDto> getMenuAllList() throws Exception {
+		return menuMapper.getMenuAllList();
+	}
+
+	@Override
+	public int deleteMenu(int menu_id) throws Exception {
+		// TODO Auto-generated method stub
+		return menuMapper.deleteMenu(menu_id);
+	}
+
 }
