@@ -83,14 +83,10 @@ div.childrenMenu a {
 	    let category = $(e.target).attr("data-category");
 	    location.href='/admin/moveMenu?category=' + category;
 	})
-	
 	$(".parentMenu").on("click",function(e) {
 	    let element = $(e.target); 
-	    //let toggleColor = element.next().css("display") == "none" ? "white" : "#FAD000";
 	    
 	    element.next().slideToggle();
-	    //element.css('background-color',toggleColor);
-	    //element.siblings("li.parentMenu").css('background-color',"white");
 	    element.siblings("li.parentMenu").next().hide();
 
 	})

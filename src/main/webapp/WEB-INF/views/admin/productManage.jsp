@@ -117,7 +117,7 @@ input:focus, textarea:focus {
 		<h2 id="content-title">${mnDto eq null ? '상품 추가' : '상품 수정' }</h2>
 
 		<!-- 폼 태그 시작 -->
-		<form action="${mnDto eq null ? '/admin/productInsert' : '/admin/productModify'}" method="post" enctype="multipart/form-data">
+		<form action="${mnDto eq null ? '/admin/productInsert' : '/admin/productModify'}" method="post" enctype="multipart/form-data" onsubmit="return validate()">
 			<div class="product-info info-wrap">
 				<span class="wrap-Info"> 상품 정보 </span>
 				<c:if test="${mnDto ne null }">
@@ -327,5 +327,6 @@ input:focus, textarea:focus {
 		</form>
 		<!-- 폼 태그 끝 -->
 	</div>
+	<script src="/js/common/validate.js"></script>
 </body>
 </html>
