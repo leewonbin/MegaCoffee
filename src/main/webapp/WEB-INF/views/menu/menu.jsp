@@ -80,14 +80,104 @@ ng\:form {
 	href="/css/swiper.min.css?ver=202307100845">
 <script type="text/javascript"
 	src="https://img.79plus.co.kr/megahp/common/js/swiper.min.js"></script>
-	
-	
-	
-<script src="/js/menu.js"></script>              <!-- -------------------------------------마지막에 작업할거------------------------------------- -->
 
+
+
+<script src="/js/menu.js"></script>
+<!-- -------------------------------------마지막에 작업할거------------------------------------- -->
 
 
 <script>
+$(document).ready(function () {
+    const allCheckbox = $("input[name='list_checkbox_all']");
+    const checkbox = $("input[name='list_checkbox']");
+
+    loadList();						//전체 리스트 표시
+
+    allCheckbox.on('change', function () {
+        if (allCheckbox.is(':checked')) {
+            checkbox.prop('checked', false);
+            select(["0"]); 					//전체 보기
+        } else {
+            hideLi(); 				//전체 선택 해제= 리스트 숨기기
+        }
+    });
+
+    checkbox.on('change', function () {
+        if (checkbox.is(':checked')) {
+            allCheckbox.prop('checked', false);
+        }
+
+        const selectType = [];
+        $("input[name='list_checkbox']:checked").each(function () {
+            selectType.push($(this).val());
+        });
+
+        if (selectType.length === 0) {
+            hideLi(); 
+        } else {
+            select(selectType);
+        }
+    });
+
+    function loadList() {
+        $.ajax({
+            url: '/filterType',
+            type: 'GET',
+            data: {
+                category_id: "${param.category_id}",
+                type_id: ["0"] 				//처음엔 전체선택으로 전체 리스트가 나옴
+            },
+            traditional: true,
+            success: function (response) {
+                displayItems(response);
+            },
+            error: function (error) {
+                console.error("초기 로딩 오류 발생:", error);
+            }
+        });
+    }
+
+    function select(selectType) {
+        console.log("선택된 타입:", selectType);
+
+        $.ajax({
+            url: '/filterType',
+            type: 'GET',
+            data: {
+                category_id: "${param.category_id}",
+                type_id: selectType
+            },
+            traditional: true,
+            success: function (response) {
+                displayItems(response);
+            },
+            error: function (error) {
+                console.error("필터 오류 발생:", error);
+            }
+        });
+    }
+
+    function displayItems(items) {
+        $("#menu_list li").hide();
+
+        items.forEach(function (menuInfo) {						//전달받은 데이터 표시
+            $("#menu_list li[data-key='" + menuInfo.menu_id + "']").show();
+        });
+    }
+
+    function hideLi() {
+        $("#menu_list li").hide();
+    }
+});
+
+</script>
+
+
+
+
+
+<!-- <script>
 $(document).ready(function() {
     const allCheckbox = $("input[name='list_checkbox_all']");
     const checkbox = $("input[name='list_checkbox']");
@@ -136,7 +226,7 @@ $(document).ready(function() {
     }
 });
 </script>
-
+ -->
 
 
 </head>
@@ -207,13 +297,11 @@ $(document).ready(function() {
 
 								<ul id="menu_list">
 									<c:forEach var="menuInfo" items="${menuList}">
-										<li><a class="inner_modal_open">
+										<li data-key="${menuInfo.menu_id}" style="display: none;"><a
+											class="inner_modal_open">
 												<div class="cont_gallery_list_box">
 													<div class="cont_gallery_list_img"
 														style="width: 305px; height: 305px;">
-														<!-- cont_gallery_list_label cont_gallery_list_label1 빨간색, 2가 파란색 -->
-														<%-- <div
-																	class="cont_gallery_list_label cont_gallery_list_label2">${menu.menu_ice_hot}</div> --%>
 														<c:choose>
 															<c:when test="${menuInfo.menu_ice_hot == 'ICE'}">
 																<div
@@ -261,28 +349,36 @@ $(document).ready(function() {
 															<div class="close"></div>
 														</div>
 													</div>
-													<%-- <div class="cont_text">
-																<div class="cont_text_inner">${menuInfo.menu_size}</div>
-																<div class="cont_text_inner">${menuInfo.menu_calories}</div>
-															</div>
-															<div class="cont_text">${menuInfo.menu_content}</div>
-															<div class="cont_text cont_text_info">알레르기 성분 :${menuInfo.all_name}</div>
-														</div>
-														
-														
-														
-													<div
-															class="cont_list cont_list2 cont_list_small cont_list_small2">
-															<ul>
-																<li>포화지방 ${menuInfo.menu_saturated}g</li>
-																<li>당류 ${menuInfo.menu_sugar}g</li>
-																<li>나트륨 ${menuInfo.menu_sodium}mg</li>
-																<li>단백질 ${menuInfo.menu_protein}g</li>
-																<li>카페인 ${menuInfo.menu_caffeine}mg</li>
-															</ul>
+													<div class="cont_text">
+														<c:choose>
+															<c:when test="${menuInfo.menu_onesize == 'N'}">
+																<div class="cont_text_inner"></div>
+																<%-- ${menuInfo.nut_size}${menuInfo.nut_unit} --%>
+															</c:when>
+															<c:when test="${menuInfo.menu_onesize == 'Y'}">
+																<div class="cont_text_inner">One size</div>
+															</c:when>
+															<c:otherwise>
+															</c:otherwise>
+														</c:choose>
+														<%-- <div class="cont_text_inner">${menuInfo.menu_onesize}</div> --%>
+														<%-- <div class="cont_text_inner">${menuInfo.nut_calorie}</div> --%>
+													</div>
+													<div class="cont_text">${menuInfo.menu_content}</div>
+													<%-- <div class="cont_text cont_text_info">알레르기 성분 :${menuInfo.all_name}</div> --%>
+												</div>
+												<div
+													class="cont_list cont_list2 cont_list_small cont_list_small2">
+													<ul>
+														<li>포화지방 ${menuInfo.nut_saturated}g</li>
+														<li>당류 ${menuInfo.nut_sugar}g</li>
+														<li>나트륨 ${menuInfo.nut_sodium}mg</li>
+														<li>단백질 ${menuInfo.nut_protein}g</li>
+														<li>카페인 ${menuInfo.nut_caffeine}mg</li>
+													</ul>
 
 
-												</div> --%>
+												</div>
 											</div></li>
 									</c:forEach>
 								</ul>

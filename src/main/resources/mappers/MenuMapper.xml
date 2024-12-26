@@ -32,7 +32,7 @@
 
 
 	<!-- 카테고리 메뉴 항목을 눌렀을때 카테고리별로 상품 출력 -->
-	<select id="menuList" resultType="com.mega.menu.dto.MenuDto">
+	<select id="menuList" resultType="com.mega.menu.dto.MenuNutrientDto">
 		select m.* from menu m
 		<choose>
 			<when test="category_id != null">
@@ -49,7 +49,7 @@
 		order by menu_date desc
 	</select>
 
-<select id="filterType" resultType="com.mega.menu.dto.MenuInfoDto">
+<select id="filterType" resultType="com.mega.menu.dto.MenuDto">
     select m.*
     from menu m
     join menu_type mt on m.menu_id = mt.menu_id

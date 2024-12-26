@@ -45,12 +45,12 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public List<MenuDto> filterType(int category_id, String typeIdStr) throws Exception {
+	public List<MenuInfoDto> filterType(int category_id, String typeIdStr) throws Exception {
 		return menuMapper.filterType(category_id, typeIdStr);
 	}
 
 	@Override
-	public List<MenuDto> menuList(Integer category_id) throws Exception {
+	public List<MenuInfoDto> menuList(Integer category_id) throws Exception {
 		return menuMapper.menuList(category_id);
 	}
 
