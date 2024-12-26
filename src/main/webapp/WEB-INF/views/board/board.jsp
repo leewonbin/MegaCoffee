@@ -327,7 +327,7 @@ ng\:form {
 													<li>
 														<div class="input_text_wrap input_wrap2">
 															<label> <input type="text" name="keyword"
-																id="keyword" class="" value=""
+																id="keyword" class="" value="${keyword}"
 																placeholder="검색어를 입력하세요" required="required">
 															</label>
 														</div>
@@ -374,6 +374,27 @@ ng\:form {
 									</tr>
 								</thead>
 								<tbody>
+									<c:forEach var="notice" items="${notice}">
+										<tr>
+										<td class=board_pc>공지</td>
+										<td>
+												<div class="text_wrap">
+													<div class="text">
+														<a
+															href="${path}/boardDetail?id=${notice.boardId}&CATEGORY_ID=${CATEGORY_ID}">
+															<em> ${notice.title} </em>
+														</a>
+													</div>
+												</div>
+											</td>
+											<!-- 작성자 -->
+											<td class=board_pc>${notice.writer}</td>
+											<!-- 작성일 -->
+											<td>${notice.upload_at}</td>
+											<!-- 조회수 -->
+											<td class=board_pc>${notice.hits}</td>
+										</tr>
+									</c:forEach>
 									<!-- 게시물 리스트 반복문 -->
 									<c:forEach var="board" items="${boardList}" varStatus="status">
 										<tr>
@@ -432,9 +453,9 @@ ng\:form {
 									<c:if test='${paging.nowPage!=paging.lastPage}'>
 										<li class="paginate_button page-item next" id="dataTable_next">
 											<a
-											href="/tables?nowPage=${paging.nowPage+1 }&cntPerPage=${paging.cntPerPage}&CATEGORY_ID=${CATEGORY_ID}"
-											aria-controls="dataTable" data-dt-idx="7" tabindex="0"
-											class="page-link">다음</a>
+												href="/tables?nowPage=${paging.nowPage+1 }&cntPerPage=${paging.cntPerPage}&CATEGORY_ID=${CATEGORY_ID}"
+												aria-controls="dataTable" data-dt-idx="7" tabindex="0"
+												class="page-link">다음</a>
 										</li>
 									</c:if>
 									<li >
