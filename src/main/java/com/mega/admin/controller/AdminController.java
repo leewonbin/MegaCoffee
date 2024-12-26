@@ -1,5 +1,6 @@
 package com.mega.admin.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,11 +32,6 @@ public class AdminController {
 
 	@Autowired
 	private MenuService menuService;
-
-	@GetMapping("/main")
-	public String moveAdminPage() throws Exception {
-		return "redirect:/admin/product";
-	}
 
 	@GetMapping("/moveLogin")
 	public String moveLoginPage() throws Exception {
@@ -71,7 +67,7 @@ public class AdminController {
 
 	@GetMapping("/product")
 	public String moveProduct(Model model) throws Exception {
-		List<MenuDto> menuList = menuService.menuList();
+		List<MenuDto> menuList = menuService.getMenuAllList();
 		model.addAttribute("menuList", menuList);
 		return "/admin/product";
 	}
@@ -99,7 +95,7 @@ public class AdminController {
 			RedirectAttributes rttr) throws Exception {
 		AdminDto dto = adminService.loginProcess(admin_id, admin_pw);
 
-		String redirectUrl = dto == null ? "redirect:/admin/moveLogin" : "redirect:/admin/main";
+		String redirectUrl = dto == null ? "redirect:/admin/moveLogin" : "redirect:/admin/product";
 		String msg = dto == null ? "아이디 또는 패스워드가 일치하지 않습니다." : "로그인 되었습니다.";
 
 		rttr.addFlashAttribute("msg", msg);
@@ -113,25 +109,41 @@ public class AdminController {
 			@RequestParam(value = "menu_img") MultipartFile menuFile) throws Exception {
 		String fileSaveName = menuService.uploadFile(menuFile);
 		menuNutrientDto.setMenu_file_id(fileSaveName);
-		menuService.insertMenu(menuNutrientDto, Arrays.asList(typeIds), Arrays.asList(allergenIds));
-		// menuService.insertNutrient(menuNutrientDto);
-		// 파일 정보 받아서 업로드 후 MenuNutrientDto에 추가
-		// DB
+		List<String> typeIdList = typeIds == null ? new ArrayList<String>() : Arrays.asList(typeIds);
+		List<String> allergenIdList = allergenIds == null ? new ArrayList<String>() : Arrays.asList(allergenIds);
 
-		// typeIds, allergenIds로 DB에 추가
+		int result = menuService.insertMenu(menuNutrientDto, typeIdList, allergenIdList);
+		System.out.println(result);
+		return "redirect:/admin/product";
+	}
 
-		/*
-		 * // 파일 처리 if (menuFile != null && !menuFile.isEmpty()) { String fileName =
-		 * menuFile.getOriginalFilename(); menuNutrientDto.setMenu_file_id(fileName); //
-		 * 파일명 저장 또는 처리 }
-		 */
+	@PostMapping("/productModify")
+	public String modifyMenu(@ModelAttribute MenuNutrientDto menuNutrientDto,
+			@RequestParam(value = "type_id") String[] typeIds,
+			@RequestParam(value = "all_id", required = false) String[] allergenIds,
+			@RequestParam(value = "menu_img", required = false) MultipartFile menuFile) throws Exception {
 
-		System.out.println(menuNutrientDto);
-		System.out.println(Arrays.toString(typeIds));
-		System.out.println(Arrays.toString(allergenIds));
-		System.out.println(menuFile.getOriginalFilename());
+		if (menuFile != null) {
+			menuService.deleteFile(menuNutrientDto.getMenu_file_id());
+			String fileSaveName = menuService.uploadFile(menuFile);
+			menuNutrientDto.setMenu_file_id(fileSaveName);
+		}
 
-		return "redirect:/admin/main";
+		List<String> typeIdList = typeIds == null ? new ArrayList<String>() : Arrays.asList(typeIds);
+		List<String> allergenIdList = allergenIds == null ? new ArrayList<String>() : Arrays.asList(allergenIds);
+
+		menuService.modifyMenu(menuNutrientDto);
+		menuService.modifyType(menuNutrientDto.getMenu_id(), typeIdList);
+		menuService.modifyallergen(menuNutrientDto.getMenu_id(), allergenIdList);
+		return "redirect:/admin/product";
+	}
+
+	@GetMapping("/productDelete")
+	public String deleteMenu(@RequestParam("menu_id") int menu_id, RedirectAttributes rttr) throws Exception {
+		int result = menuService.deleteMenu(menu_id);
+		String msg = result == 1 ? "삭제 완료 되었습니다." : "삭제에 실패했습니다. 다시 시도해주세요.";
+		rttr.addFlashAttribute("msg", msg);
+		return "redirect:/admin/product";
 	}
 
 }

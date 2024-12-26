@@ -29,7 +29,7 @@
 </head>
 <body>
 	<div class="topbar">
-		<img class="logo" src="/img/logo.png" onclick="location.href='/admin/main'">
+		<img class="logo" src="/img/logo.png" onclick="location.href='/admin/product'">
 		<p class="nickName">관리자 닉네임</p>
 	</div>
 </body>

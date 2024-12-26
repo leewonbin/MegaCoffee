@@ -70,7 +70,6 @@ div.childrenMenu a {
 	</nav>
 	<script>
 	$(function() {
-	    console.log("${param.category}")
 	    let cateElement = $('li[data-category="'+"${param.category}"+'"]')
 	    if(cateElement != null) {
 	  		let sameMenu = cateElement.closest("div");		// 형제 메뉴 모두 표시
@@ -84,14 +83,10 @@ div.childrenMenu a {
 	    let category = $(e.target).attr("data-category");
 	    location.href='/admin/moveMenu?category=' + category;
 	})
-	
 	$(".parentMenu").on("click",function(e) {
 	    let element = $(e.target); 
-	    //let toggleColor = element.next().css("display") == "none" ? "white" : "#FAD000";
 	    
 	    element.next().slideToggle();
-	    //element.css('background-color',toggleColor);
-	    //element.siblings("li.parentMenu").css('background-color',"white");
 	    element.siblings("li.parentMenu").next().hide();
 
 	})

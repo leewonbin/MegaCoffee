@@ -12,6 +12,11 @@
 	<nav>
 		<%@include file="./common/sidebar.jsp"%>
 	</nav>
+	<c:if test="${not empty msg }">
+		<script>
+			showAlert("${msg}");
+		</script>
+	</c:if>
 	<div class="content">
 		<h2 id="content-title">상품 관리</h2>
 		<div id="content-table">

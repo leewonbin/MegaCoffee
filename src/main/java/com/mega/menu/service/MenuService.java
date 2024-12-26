@@ -34,9 +34,21 @@ public interface MenuService {
 
 	public List<TypeDto> getTypeList() throws Exception;
 
+	public List<MenuDto> getMenuAllList() throws Exception;
+
 	public String uploadFile(MultipartFile file) throws Exception;
 
-	public int insertMenu(MenuNutrientDto menuNutrientDto, List<String> typeIds, List<String> allergenIds)
+	public void deleteFile(String menu_file_id) throws Exception;
+
+	public int insertMenu(MenuNutrientDto menuNutrientDto, List<String> typeIdList, List<String> allergenIdList)
 			throws Exception;
+
+	public int modifyMenu(MenuNutrientDto menuNutrientDto) throws Exception;
+
+	public int modifyType(int menu_id, List<String> typeIdList) throws Exception;
+
+	public int modifyallergen(int menu_id, List<String> allergenIdList) throws Exception;
+
+	public int deleteMenu(int menu_id) throws Exception;
 
 }

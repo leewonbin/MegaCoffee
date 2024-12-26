@@ -266,11 +266,18 @@ h2.pageInfo {
 					</span><br>
 					<div style="float: right">
 						<button type="button" onclick="location.href='/admin/moveModify?menu_id=${mnDto.menu_id}'">수정</button>
-						<button type="button">삭제</button>
+						<button type="button" onclick="productDelete(${mnDto.menu_id})">삭제</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script>
+		function productDelete(menu_id) {
+		    if(confirm("삭제하시겠습니까 ?")) {
+				location.href="/admin/productDelete?menu_id="+menu_id;
+		    }
+		}
+	</script>
 </body>
 </html>
