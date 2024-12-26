@@ -34,13 +34,25 @@ public class BoardController {
 	                        @RequestParam(value="keyword", required=false) String keyword) throws Exception {
 	    int total;
 		
-	    if (category_id != null) {
-	        // 카테고리별 게시글 총 개수
-	        total = boardService.countBoardByCategory(category_id,keyword,searchType);
+	    if (category_id != null) {	       
+	        if(keyword != null && searchType != null) {
+	        	total = boardService.selectSearchCount(searchType, keyword,category_id);
+	        }
+	        else {
+	        	// 카테고리별 게시글 총 개수
+		        total = boardService.countBoardByCategory(category_id);
+	        }       
+	    }
+	    else {	       
+	        if(keyword != null && searchType != null) {
+	        	total = boardService.selectSearchCountAll(keyword,searchType);
+	        	System.out.println("total: "+total);
+	        }
+	        else {
+	        	// 전체 게시글 총 개수
+		        total = boardService.countBoard();
+	        }
 	        
-	    } else {
-	        // 전체 게시글 총 개수
-	        total = boardService.countBoard(keyword,searchType);
 	    }
 
 	    // 기본값 설정
@@ -63,19 +75,20 @@ public class BoardController {
 
 	    List<BoardDto> boardList;
 	    List<BoardCategoryDto> boardCategoryList;
+	    
 	    if (category_id != null) {
 	        // 카테고리별 게시글 조회
 	    	if(searchType != null && keyword != null) {
-	    		boardService.selectSearch(pageDto,searchType,keyword);
-	    		
+	    		boardService.selectSearch(pageDto,searchType,keyword,category_id);	    		
 	    		System.out.println("type1: "+searchType);
 	    		System.out.println("keyword1: "+keyword);
 	    		System.out.println("카테고리 있는 키워드 갯수: "+pageDto.getTotal());
 	    	}
+	    	
 	        boardList = boardService.boardListByCategory(pageDto, category_id,searchType,keyword);
-	        System.out.println("cid O: "+category_id);
-	        
-	    } else {
+	        System.out.println("cid O: "+category_id);	        
+	    } 
+	    else {
 	        // 전체 게시글 조회
 	        boardList = boardService.boardList(pageDto,searchType,keyword);
 	        System.out.println("cid x: "+category_id);

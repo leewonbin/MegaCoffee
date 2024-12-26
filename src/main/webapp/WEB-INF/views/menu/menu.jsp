@@ -20,48 +20,6 @@ ng\:form {
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<meta name="title" content="메가MGC커피">
-<meta name="Subject"
-	content="메가커피 커피전문점, 프랜차이즈, 메가엠지씨커피, 빅사이즈 투샷, 가맹안내, 테이크아웃">
-<meta name="keywords"
-	content="메가커피 커피전문점, 프랜차이즈, 메가엠지씨커피, 빅사이즈 투샷, 가맹안내, 테이크아웃">
-<meta name="Descript-xion"
-	content="메가커피 커피전문점, 프랜차이즈, 메가엠지씨커피, 빅사이즈 투샷, 가맹안내, 테이크아웃">
-<meta name="Description"
-	content="메가커피 커피전문점, 프랜차이즈, 메가엠지씨커피, 빅사이즈 투샷, 가맹안내, 테이크아웃">
-<meta name="Publisher" content="chingooplus">
-<meta name="Other Agent" content="chingooplus">
-<meta name="Distribution" content="chingooplus">
-<meta name="Copyright" content="chingooplus">
-<meta name="Author" content="chingooplus">
-<meta name="Robots" content="ALL">
-<!-- <meta name="Robots" content="noindex"> -->
-<!-- naver start -->
-<meta name="naver-site-verification"
-	content="855dc64a4a2ca80c4cb373c1b30a054d1807804e">
-<!-- naver end -->
-<!-- webmaster start -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="메가MGC커피">
-<meta property="og:site_name"
-	content="메가커피 커피전문점, 프랜차이즈, 메가엠지씨커피, 빅사이즈 투샷, 가맹안내, 테이크아웃">
-<meta property="og:description"
-	content="메가커피 커피전문점, 프랜차이즈, 메가엠지씨커피, 빅사이즈 투샷, 가맹안내, 테이크아웃">
-<meta property="og:url" content="https://www.mega-mgccoffee.com/">
-<meta property="og:image" content="/thumbnail.png?ver=202307100845">
-<!-- webmaster end -->
-<!-- app start-->
-<meta property="al:ios:url" content="applinks://docs">
-<meta property="al:ios:app_store_id" content="12345">
-<meta property="al:ios:app_name" content="App Links">
-<meta property="al:android:url" content="applinks://docs">
-<meta property="al:android:app_name" content="App Links">
-<meta property="al:android:package" content="org.applinks">
-<meta property="al:web:url" content="http://applinks.org/documentation">
-<!-- app end-->
-<link rel="canonical" href="https://www.mega-mgccoffee.com/">
-<link rel="icon" href="/favicon.ico?ver=202307100845" sizes="16x16">
-<link rel="icon" href="/favicon.ico?ver=202307100845" sizes="32x32">
 
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&amp;display=swap">
@@ -122,55 +80,63 @@ ng\:form {
 	href="/css/swiper.min.css?ver=202307100845">
 <script type="text/javascript"
 	src="https://img.79plus.co.kr/megahp/common/js/swiper.min.js"></script>
+	
+	
+	
 <script src="/js/menu.js"></script>              <!-- -------------------------------------마지막에 작업할거------------------------------------- -->
 
 
+
 <script>
-$(function() {
+$(document).ready(function() {
     const allCheckbox = $("input[name='list_checkbox_all']");
     const checkbox = $("input[name='list_checkbox']");
-    
-    
+
     allCheckbox.on('change', function() {
-    	let allCheckValues = $("input[name='list_checkbox_all']:checked");
-    	console.log(checkValues);
-        /* filterType(category_id, values) */
         if (allCheckbox.is(':checked')) {
             checkbox.prop('checked', false);
+            select([0]);
         }
     });
-    
+
     checkbox.on('change', function() {
-    	let checkValues = $("input[name='list_checkbox']:checked");
-        console.log(checkValues);
-        /* filterType(category_id, values) */
-    	if (checkbox.is(':checked')) {
-    		allCheckbox.prop('checked', false);
-    	}
+        if (checkbox.is(':checked')) {
+            allCheckbox.prop('checked', false);
+        }
+
+        const selectType = [];
+        $("input[name='list_checkbox']:checked").each(function() {
+            selectType.push($(this).val());
+        });
+
+        if (selectType.length === 0) {
+            selectType.push('0');
+        }
+        select(selectType);
     });
+
+    function select(selectType) {
+        console.log("선택된 타입:", selectType);
+
+        $.ajax({
+            url: '/filterType',
+            type: 'GET',
+            data: {
+                category_id: ${param.category_id},
+                type_id: selectType
+            },
+            traditional: true,
+            success: function(response) {
+                console.log("메뉴:", response);
+            },
+            error: function(error) {
+                console.log("오류:", error);
+            }
+        });
+    }
 });
 </script>
 
-<script>
-function filterType(category_id, type_id) {
-    $.ajax({
-        type: 'GET',
-        url: '/filterType',
-        data: {
-            category_id: category_id,
-            type_id: type_id
-        },
-        success: function(response) {
-            console.log(response);
-        	callback(response);
-        },
-        error: function() {
-            console.error("ss");
-        }
-    });
-}
-
-</script>
 
 
 </head>
@@ -212,7 +178,7 @@ function filterType(category_id, type_id) {
 							</div>
 							<div class="checkbox_wrap">
 								<label class="checkbox"> <input type="checkbox" id=""
-									name="list_checkbox_all" value="all" checked=""> <span
+									name="list_checkbox_all" value="0" checked=""> <span
 									class="check_mark"></span>
 									<div class="checkbox_text">전체 상품보기</div>
 								</label>
@@ -240,7 +206,7 @@ function filterType(category_id, type_id) {
 								class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2 wfull">
 
 								<ul id="menu_list">
-									<c:forEach var="menu" items="${menuList}">
+									<c:forEach var="menuInfo" items="${menuList}">
 										<li><a class="inner_modal_open">
 												<div class="cont_gallery_list_box">
 													<div class="cont_gallery_list_img"
@@ -249,35 +215,35 @@ function filterType(category_id, type_id) {
 														<%-- <div
 																	class="cont_gallery_list_label cont_gallery_list_label2">${menu.menu_ice_hot}</div> --%>
 														<c:choose>
-															<c:when test="${menu.menu_ice_hot == 'ICE'}">
+															<c:when test="${menuInfo.menu_ice_hot == 'ICE'}">
 																<div
-																	class="cont_gallery_list_label cont_gallery_list_label2">${menu.menu_ice_hot}</div>
+																	class="cont_gallery_list_label cont_gallery_list_label2">${menuInfo.menu_ice_hot}</div>
 															</c:when>
-															<c:when test="${menu.menu_ice_hot == 'HOT'}">
+															<c:when test="${menuInfo.menu_ice_hot == 'HOT'}">
 																<div
-																	class="cont_gallery_list_label cont_gallery_list_label1">${menu.menu_ice_hot}</div>
+																	class="cont_gallery_list_label cont_gallery_list_label1">${menuInfo.menu_ice_hot}</div>
 															</c:when>
 															<c:otherwise>
-																<div class="default">${menu.menu_ice_hot}</div>
+																<div class="default">${menuInfo.menu_ice_hot}</div>
 															</c:otherwise>
 														</c:choose>
-														<img src="/img/${menu.menu_file_id}">
+														<img src="/img/${menuInfo.menu_file_id}">
 													</div>
 													<!-- 여기가 이미지 나오는 부분 -->
 													<div class="cont_text_box">
 														<div class="cont_text">
 															<div class="cont_text_inner text_wrap cont_text_title">
 																<div class="text text1">
-																	<b>${menu.menu_title}</b>
+																	<b>${menuInfo.menu_title}</b>
 																</div>
 															</div>
 															<div class="cont_text_inner text_wrap cont_text_info">
-																<div class="text text1">${menu.menu_eng_title}</div>
+																<div class="text text1">${menuInfo.menu_eng_title}</div>
 															</div>
 														</div>
 														<div class="cont_text cont_text_info">
 															<div class="text_wrap">
-																<div class="text text2">${menu.menu_content}</div>
+																<div class="text text2">${menuInfo.menu_content}</div>
 															</div>
 														</div>
 													</div>
@@ -287,37 +253,37 @@ function filterType(category_id, type_id) {
 												<div class="cont_text_box">
 													<div class="cont_text inner_modal_title">
 														<div class="cont_text_inner cont_text_title">
-															<b>${menu.menu_title}</b>
+															<b>${menuInfo.menu_title}</b>
 														</div>
 														<div class="cont_text_inner cont_text_info">
-															${menu.menu_eng_title}</div>
+															${menuInfo.menu_eng_title}</div>
 														<div class="close_wrap">
 															<div class="close"></div>
 														</div>
 													</div>
 													<%-- <div class="cont_text">
-																<div class="cont_text_inner">${menu.menu_size}</div>
-																<div class="cont_text_inner">${menu.menu_calories}</div>
+																<div class="cont_text_inner">${menuInfo.menu_size}</div>
+																<div class="cont_text_inner">${menuInfo.menu_calories}</div>
 															</div>
-															<div class="cont_text">${menu.menu_content}</div>
-															<div class="cont_text cont_text_info">알레르기 성분 :</div>
-															<!--${menu.menu_allergen}-->
-														</div>--%>
+															<div class="cont_text">${menuInfo.menu_content}</div>
+															<div class="cont_text cont_text_info">알레르기 성분 :${menuInfo.all_name}</div>
+														</div>
 														
 														
 														
-													<%-- <div
+													<div
 															class="cont_list cont_list2 cont_list_small cont_list_small2">
 															<ul>
-																<li>포화지방 ${menu.menu_saturated}g</li>
-																<li>당류 ${menu.menu_sugar}g</li>
-																<li>나트륨 ${menu.menu_sodium}mg</li>
-																<li>단백질 ${menu.menu_protein}g</li>
-																<li>카페인 ${menu.menu_caffeine}mg</li>
-															</ul>--%>
-												</div>
-											</div>
-											</li>
+																<li>포화지방 ${menuInfo.menu_saturated}g</li>
+																<li>당류 ${menuInfo.menu_sugar}g</li>
+																<li>나트륨 ${menuInfo.menu_sodium}mg</li>
+																<li>단백질 ${menuInfo.menu_protein}g</li>
+																<li>카페인 ${menuInfo.menu_caffeine}mg</li>
+															</ul>
+
+
+												</div> --%>
+											</div></li>
 									</c:forEach>
 								</ul>
 

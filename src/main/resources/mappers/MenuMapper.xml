@@ -3,13 +3,13 @@
 
 <mapper namespace="com.mega.menu.mapper.MenuMapper">
 
-	<select id="menuRead" resultType="com.mega.menu.dto.MenuDto">
+	<select id="menuRead" resultType="com.mega.menu.dto.MenuInfoDto">
 		select * from menu where
 		menu_id = #{menu_id}
 	</select>
 
 	<select id="getMenuNutrient"
-		resultType="com.mega.menu.dto.MenuNutrientDto">
+		resultType="map">
 		select m.*,n.* from menu m, nutrient n
 		where n.menu_id = m.menu_id
 		and m.menu_id = #{menu_id}
@@ -49,15 +49,20 @@
 		order by menu_date desc
 	</select>
 
-
-<select id="filterType" resultType="com.mega.menu.dto.MenuDto">
+<select id="filterType" resultType="com.mega.menu.dto.MenuInfoDto">
     select m.*
     from menu m
     join menu_type mt on m.menu_id = mt.menu_id
     join type t on t.type_id = mt.type_id
-    where mt.type_id in (${typeIdStr})
-    and m.menu_del = 'N'
+    where m.menu_del = 'N'
     and m.category_id = #{category_id}
+    <choose>
+        <when test="typeIdStr != null and !typeIdStr.isEmpty()">
+            and mt.type_id in (${typeIdStr})
+        </when>
+        <otherwise>
+        </otherwise>
+    </choose>
 </select>
 
 	<select id="getNutrient" parameterType="int"

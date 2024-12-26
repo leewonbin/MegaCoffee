@@ -2,6 +2,7 @@ package com.mega.menu.service;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mega.menu.dto.AllergenDto;
 import com.mega.menu.dto.MenuDto;
+import com.mega.menu.dto.MenuInfoDto;
 import com.mega.menu.dto.MenuNutrientDto;
 import com.mega.menu.dto.NutrientDto;
 import com.mega.menu.dto.TypeDto;
@@ -22,20 +24,20 @@ public class MenuServiceImpl implements MenuService {
 	@Autowired
 	private MenuMapper menuMapper;
 
-	@Override
-	public List<MenuDto> menuList() throws Exception {
-		return menuMapper.menuList();
-	}
+//	@Override
+//	public List<MenuDto> menuList() throws Exception {
+//		return menuMapper.menuList();
+//	}
 
-	@Override
-	public MenuDto menuRead(int menu_id) throws Exception {
-		return menuMapper.menuRead(menu_id);
-	}
+//	@Override
+//	public MenuInfoDto menuRead(int menu_id) throws Exception {
+//		return menuMapper.menuRead(menu_id);
+//	}
 
 	@Override
 	public NutrientDto getNutrient(int menu_id) throws Exception {
 		return menuMapper.getNutrient(menu_id);
-	}
+	}//
 
 	@Override
 	public List<AllergenDto> getAllegenList() throws Exception {
@@ -53,7 +55,7 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public MenuNutrientDto getMenuNutrient(int menu_id) throws Exception {
+	public Map<String, Object> getMenuNutrient(int menu_id) throws Exception {
 		return menuMapper.getMenuNutrient(menu_id);
 	}
 
