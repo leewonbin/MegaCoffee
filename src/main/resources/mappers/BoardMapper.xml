@@ -8,10 +8,19 @@
 	
 	<!-- 게시글 갯수 -->
 	 <select id="countBoard" resultType="int">
-    	SELECT COUNT(*) FROM BOARD WHERE DEL_YN = 'N'
-    	
+    	SELECT COUNT(*) FROM BOARD WHERE DEL_YN = 'N' AND SEPARATION ='일반'
     </select>
     
+     <select id="countBoardByCategory" parameterType="com.mega.board.dto.SearchDto" resultType="int">
+	    SELECT COUNT(BOARD_ID) 
+	    FROM BOARD
+	    WHERE CATEGORY_ID = #{category_id} AND SEPARATION ='일반'     	      
+	</select>
+    
+    <!-- 공지 조회 -->
+    <select id="notice" resultType="com.mega.board.dto.BoardDto">
+    	<![CDATA[select * from (select * from BOARD where SEPARATION = '공지' order by UPLOAD_AT desc) where ROWNUM <=2 order by BOARD_ID desc]]>
+    </select>
     <!-- 게시글 리스트 조회(페이징 처리 후) -->
       <select id="boardList" resultType="com.mega.board.dto.BoardDto">
     SELECT * FROM (
@@ -26,19 +35,11 @@
             ROW_NUMBER() OVER (ORDER BY b.UPLOAD_AT DESC) AS RNM 
         FROM BOARD b 
         JOIN ADMIN a ON a.ADMIN_NUM = b.ADMIN_NUM 
-        WHERE b.DEL_YN = 'N'
+        WHERE b.DEL_YN = 'N' AND SEPARATION ='일반'
         <include refid="search1"></include>
     ) t
     WHERE RNM BETWEEN #{pageDto.start} AND #{pageDto.end}
     </select> 
-    
-    <select id="countBoardByCategory" parameterType="com.mega.board.dto.SearchDto" resultType="int">
-	    SELECT COUNT(BOARD_ID) 
-	    FROM BOARD
-	    WHERE CATEGORY_ID = #{category_id}
-	      
-	      
-	</select>
 
 	<select id="boardListByCategory" resultType="com.mega.board.dto.BoardDto">
 	    SELECT * 
@@ -55,7 +56,7 @@
 	        FROM BOARD b
 	        JOIN ADMIN a ON a.ADMIN_NUM = b.ADMIN_NUM
 	        WHERE b.CATEGORY_ID = #{category_id}
-	          AND b.DEL_YN = 'N'
+	          AND b.DEL_YN = 'N' AND SEPARATION ='일반'
 	          <include refid="search1"></include>
 	    ) g
 	    WHERE RNM BETWEEN #{pageDto.start} AND #{pageDto.end}
@@ -106,12 +107,11 @@
      	   ROW_NUMBER() OVER (ORDER BY UPLOAD_AT DESC) AS RNM
      	   FROM BOARD
      	   WHERE CATEGORY_ID = #{category_id} 
-     	   ORDER BY BOARD_ID DESC
-     	    
+     	   ORDER BY BOARD_ID DESC    	    
      	)k
      	WHERE BOARD_ID = #{board_id}      	
      </select>
-     
+     <!-- 카테고리O 이전글 다음글 -->
      <select id="movePageX" parameterType="int" resultType="com.mega.board.dto.MoveDto">
      	SELECT * FROM 
      	(SELECT
@@ -125,31 +125,11 @@
      	   CATEGORY_ID,     	   
      	   ROW_NUMBER() OVER (ORDER BY UPLOAD_AT DESC) AS RNM
      	   FROM BOARD 
-     	   ORDER BY BOARD_ID DESC
-     	    
+     	   ORDER BY BOARD_ID DESC     	    
      	)k
      	WHERE BOARD_ID = #{board_id}      	
      </select>
      
-      <select id="selectSearch" parameterType="com.mega.board.dto.SearchDto" resultType="com.mega.board.dto.BoardDto" >
-     	SELECT BOARD_ID,TITLE,CONTENT,WRITER,UPLOAD_AT FROM (
-        SELECT 
-            b.BOARD_ID, 
-            b.TITLE, 
-            b.CONTENT,  
-            b.ADMIN_NUM , 
-            b.UPLOAD_AT, 
-            b.HITS,
-            a.ADMIN_NAME AS writer,
-            ROW_NUMBER() OVER (ORDER BY b.UPLOAD_AT DESC) AS RNM 
-        FROM BOARD b 
-        JOIN ADMIN a ON a.ADMIN_NUM = b.ADMIN_NUM 
-        WHERE b.DEL_YN = 'N' AND 1=1
-        <include refid="search1"></include>
-    ) v
-    WHERE RNM BETWEEN #{pageDto.start} AND #{pageDto.end}     	
-     </select> 
-    
     <select id="selectSearchCount" parameterType="com.mega.board.dto.SearchDto" resultType="int">
     	SELECT COUNT(BOARD_ID) FROM BOARD WHERE CATEGORY_ID = #{category_id}
     	<include refid="search1"></include>    	
@@ -158,13 +138,14 @@
     <select id="selectSearchCountAll" parameterType="com.mega.board.dto.SearchDto" resultType="int">
     	SELECT COUNT(BOARD_ID) FROM BOARD WHERE DEL_YN = 'N'
     	<include refid="search1"></include>    	
+    	
     </select>
 
     <sql id="search1">
-		<if test="searchType != null">
-			<if test="searchType == 'title'.toString()">AND TITLE LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'content'.toString()">AND CONTENT LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'name'.toString()">AND WRITER LIKE '%' || #{keyword} || '%'</if>
+		<if test="searchType != null and keyword != null">
+			<if test="searchType == 'title'"> AND TITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'content'">AND CONTENT LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'name'">AND WRITER LIKE '%' || #{keyword} || '%'</if>
 		</if>
 	</sql>
 </mapper>
