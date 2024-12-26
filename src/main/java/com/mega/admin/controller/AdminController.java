@@ -62,21 +62,16 @@ public class AdminController {
 
 	@GetMapping("/moveMenu")
 	public String moveMenu(@RequestParam("category") String category) throws Exception {
-		return "redirect:/admin/" + category;
+		return "redirect:/admin/product?category=" + category;
 	}
 
 	@GetMapping("/product")
-	public String moveProduct(Model model) throws Exception {
-		List<MenuDto> menuList = menuService.getMenuAllList();
+	public String moveProduct(@RequestParam(value = "category", required = false) String category, Model model)
+			throws Exception {
+		category = category == null ? "" : category;
+		List<MenuDto> menuList = menuService.getMenuAllList(category);
 		model.addAttribute("menuList", menuList);
 		return "/admin/product";
-	}
-
-	@GetMapping("/allergen")
-	public String moveallergen(Model model) throws Exception {
-		List<AllergenDto> allergenList = menuService.getAllegenList();
-		model.addAttribute("allergenList", allergenList);
-		return "/admin/allergen";
 	}
 
 	@GetMapping("/productDetail")

@@ -1,40 +1,40 @@
 package com.mega.menu.dto;
 
-public class MenuInfoDto {
+import java.util.List;
+import java.util.Map;
 
-	private MenuDto menuDto; // 기존 메뉴 정보
-	private NutrientDto nutrientDto; // 영양 성분
-	// private List<AllergenDto> allergens; // 알레르기
+public class MenuInfoDto {
+	
+	private Map<String,Object> menuNutrientDto; // 메뉴+영양성분 정보
+	private List<AllergenDto> allergen; // 알레르기
 
 	public MenuInfoDto() {
 	}
-
-	public MenuInfoDto(MenuDto menuDto, NutrientDto nutrientDto) {
+	
+	public MenuInfoDto(Map<String, Object> menuNutrientDto, List<AllergenDto> allergen) {
 		super();
-		this.menuDto = menuDto;
-		this.nutrientDto = nutrientDto;
+		this.menuNutrientDto = menuNutrientDto;
+		this.allergen = allergen;
 	}
 
-//-----------------------------------------------------------------------------------------
-	public MenuDto getMenuDto() {
-		return menuDto;
+	public Map<String, Object> getMenuNutrientDto() {
+		return menuNutrientDto;
 	}
 
-	public void setMenuDto(MenuDto menuDto) {
-		this.menuDto = menuDto;
+	public void setMenuNutrientDto(Map<String, Object> menuNutrientDto) {
+		this.menuNutrientDto = menuNutrientDto;
 	}
 
-	public NutrientDto getNutrientDto() {
-		return nutrientDto;
+	public List<AllergenDto> getAllergen() {
+		return allergen;
 	}
 
-	public void setNutrientDto(NutrientDto nutrientDto) {
-		this.nutrientDto = nutrientDto;
+	public void setAllergen(List<AllergenDto> allergen) {
+		this.allergen = allergen;
 	}
 
 	@Override
 	public String toString() {
-		return "MenuInfoDto [menuDto=" + menuDto + ", nutrientDto=" + nutrientDto + "]";
+		return "MenuInfoDto [menuNutrientDto=" + menuNutrientDto + ", allergen=" + allergen + "]";
 	}
-
 }

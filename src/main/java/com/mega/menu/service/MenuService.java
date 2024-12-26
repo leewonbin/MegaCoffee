@@ -1,24 +1,26 @@
 package com.mega.menu.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mega.menu.dto.AllergenDto;
 import com.mega.menu.dto.MenuDto;
+import com.mega.menu.dto.MenuInfoDto;
 import com.mega.menu.dto.MenuNutrientDto;
 import com.mega.menu.dto.NutrientDto;
 import com.mega.menu.dto.TypeDto;
 
 public interface MenuService {
 
-	public List<MenuDto> menuList() throws Exception;
+//	public List<MenuDto> menuList() throws Exception;
 
-	public MenuDto menuRead(int menu_id) throws Exception;
+//	public MenuInfoDto menuRead(int menu_id) throws Exception;
+	
+	public NutrientDto getNutrient(int menu_id) throws Exception;//
 
-	public NutrientDto getNutrient(int menu_id) throws Exception;
-
-	public MenuNutrientDto getMenuNutrient(int menu_id) throws Exception;
+	public Map<String, Object> getMenuNutrient(int menu_id) throws Exception;
 
 	public List<TypeDto> getType(int menu_id) throws Exception;
 
@@ -32,7 +34,7 @@ public interface MenuService {
 
 	public List<TypeDto> getTypeList() throws Exception;
 
-	public List<MenuDto> getMenuAllList() throws Exception;
+	public List<MenuDto> getMenuAllList(String category) throws Exception;
 
 	public String uploadFile(MultipartFile file) throws Exception;
 

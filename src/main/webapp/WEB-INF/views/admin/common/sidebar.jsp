@@ -54,8 +54,9 @@ div.childrenMenu a {
 			<li class="parentMenu">메뉴</li>
 			<div class="childrenMenu" style="display: none;">
 				<ul>
+					<li data-category='drink'><a>음료</a></li>
+					<li data-category='food'><a>푸드</a></li>
 					<li data-category='product'><a>상품</a></li>
-					<li data-category='allergen'><a>알레르기</a></li>
 				</ul>
 			</div>
 			<li class="parentMenu">게시판</li>
