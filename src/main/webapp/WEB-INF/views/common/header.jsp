@@ -84,7 +84,7 @@
 								<ul>
 									<li><a href="/bbs/?bbs_category=1"> 공지사항 </a></li>
 									<li><a href="/bbs/?bbs_category=3"> 이벤트 </a></li>
-									<li><a href="/bbs/?bbs_category=4"> FAQ </a></li>
+									<li><a href="/tables"> FAQ </a></li>
 									<li><a href="/news/voc/"> 고객의 소리 </a></li>
 								</ul>
 							</div></li>

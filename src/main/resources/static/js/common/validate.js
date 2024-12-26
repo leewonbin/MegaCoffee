@@ -46,6 +46,8 @@ $("form").on("submit", function(e) {
 		isValid = false;
 		return false;
 	}
+	
+	// 널 허용 값 처리
 
 	if (!isValid) {
 		e.preventDefault();

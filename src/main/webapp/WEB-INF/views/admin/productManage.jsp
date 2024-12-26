@@ -92,15 +92,16 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 input[type=number] {
 	width: 40px;
 	text-align: right;
-	border: none; border-bottom : 1px solid #CCC;
+	border: none;
+	border-bottom: 1px solid #CCC;
 	-moz-appearance: textfield;
 	border-bottom: 1px solid #CCC;
 }
 
 input:focus, textarea:focus {
-	border : 2px solid #FAD000; 
-	border-radius : 5px;
-	outline : none;
+	border: 2px solid #FAD000;
+	border-radius: 5px;
+	outline: none;
 }
 </style>
 </head>
@@ -116,21 +117,21 @@ input:focus, textarea:focus {
 		<h2 id="content-title">${mnDto eq null ? '상품 추가' : '상품 수정' }</h2>
 
 		<!-- 폼 태그 시작 -->
-		<form action="${mnDto eq null ? '/admin/productInsert' : '/admin/productModify'}" method="post" enctype="multipart/form-data">
+		<form action="${MENU_ID eq null ? '/admin/productInsert' : '/admin/productModify'}" method="post" enctype="multipart/form-data">
 			<div class="product-info info-wrap">
 				<span class="wrap-Info"> 상품 정보 </span>
-				<c:if test="${mnDto ne null }">
-					<input type="hidden" name="menu_id" value="${mnDto.menu_id }" />
-					<input type="hidden" name="nut_id" value="${mnDto.nut_id }" />
-					<input type="hidden" name="menu_file_id" value="${mnDto.menu_file_id }"/>
+				<c:if test="${MENU_ID ne null }">
+					<input type="hidden" name="menu_id" value="${MENU_ID }" />
+					<input type="hidden" name="nut_id" value="${NUT_ID }" />
+					<input type="hidden" name="menu_file_id" value="${MENU_FILE_ID }" />
 				</c:if>
 				<table>
 					<tr>
 						<td>카테고리</td>
 						<td>
-							<input type="radio" name="category_id" value='1' ${mnDto.category_id == 1 || mnDto.category_id == null  ? 'checked="checked"' : '' } />
+							<input type="radio" name="category_id" value='1' ${CATEGORY_ID == 1 || CATEGORY_ID == null  ? 'checked="checked"' : '' } />
 							<label>음료</label>
-							<input type="radio" name="category_id" value='2' ${mnDto.category_id == 2 ? 'checked="checked"' : '' } />
+							<input type="radio" name="category_id" value='2' ${CATEGORY_ID == 2 ? 'checked="checked"' : '' } />
 							<label>푸드</label>
 						</td>
 					</tr>
@@ -152,7 +153,6 @@ input:focus, textarea:focus {
 										</c:choose>
 									</c:if>
 								</c:forEach>
-								<script>console.log("${check}")</script>
 								<input type="checkbox" name="type_id" value="${type.type_id }" ${check } />
 								<label>${type.type_name }</label>
 								<c:if test="${status.count % 4 == 0 }">
@@ -164,52 +164,52 @@ input:focus, textarea:focus {
 					<tr>
 						<td>메뉴 제목(K)</td>
 						<td>
-							<input type="text" name="menu_title" value="${mnDto.menu_title }" />
+							<input type="text" name="menu_title" value="${MENU_TITLE }" />
 						</td>
 					</tr>
 					<tr>
 						<td>메뉴 제목(E)</td>
 						<td>
-							<input type="text" name="menu_eng_title" value="${mnDto.menu_eng_title }" />
+							<input type="text" name="menu_eng_title" value="${MENU_ENG_TITLE }" />
 						</td>
 					</tr>
 					<tr>
 						<td>메뉴 내용</td>
 						<td>
-							<textarea cols="50" rows="4" name="menu_content">${mnDto.menu_content }</textarea>
+							<textarea cols="50" rows="4" name="menu_content">${MENU_CONTENT }</textarea>
 						</td>
 					</tr>
 					<tr>
 						<td>냉온 여부</td>
 						<td>
-							<input type="radio" name="menu_ice_hot" value="ICE" ${mnDto.menu_ice_hot == 'ICE' ? 'checked="checked"' : '' } />
+							<input type="radio" name="menu_ice_hot" value="ICE" ${MENU_ICE_HOT == 'ICE' ? 'checked="checked"' : '' } />
 							<label>ICE</label>
-							<input type="radio" name="menu_ice_hot" value="HOT" ${mnDto.menu_ice_hot == 'HOT' ? 'checked="checked"' : '' } />
+							<input type="radio" name="menu_ice_hot" value="HOT" ${MENU_ICE_HOT == 'HOT' ? 'checked="checked"' : '' } />
 							<label>HOT</label>
-							<input type="radio" name="menu_ice_hot" value="" ${empty mnDto.menu_ice_hot? 'checked="checked"' : '' } />
+							<input type="radio" name="menu_ice_hot" value="" ${empty MENU_ICE_HOT ? 'checked="checked"' : '' } />
 							<label>선택안함</label>
 						</td>
 					</tr>
 					<tr>
 						<td>원사이즈 여부</td>
 						<td>
-							<input type="checkbox" name="menu_onesize" value="Y" ${mnDto.menu_onesize == 'Y' ? 'checked="checked"' : '' } />
+							<input type="checkbox" name="menu_onesize" value="Y" ${MENU_ONESIZE == 'Y' ? 'checked="checked"' : '' } />
 						</td>
 					</tr>
 					<tr>
 						<td>이미지</td>
 						<td>
-							<input type="text" name="menu_file_id" value="${mnDto.menu_file_id }" readonly />
-							<input type="file" name="menu_img" onchange="fileSelect(this)"/>
+							<input type="text" name="menu_file_id" value="${MENU_FILE_ID }" readonly />
+							<input type="file" name="menu_img" onchange="fileSelect(this)" />
 						</td>
 					</tr>
-					
+
 					<tr>
 						<td>활성화 여부</td>
 						<td>
 							<select name="menu_del">
-								<option value="N" ${mnDto.menu_del == 'N' ? 'selected="selected"' : '' }>활성화</option>
-								<option value="Y" ${mnDto.menu_del == 'Y' ? 'selected="selected"' : '' }>비활성화</option>
+								<option value="N" ${MENU_DEL == 'N' ? 'selected="selected"' : '' }>활성화</option>
+								<option value="Y" ${MENU_DEL == 'Y' ? 'selected="selected"' : '' }>비활성화</option>
 							</select>
 						</td>
 					</tr>
@@ -221,17 +221,17 @@ input:focus, textarea:focus {
 					<tr>
 						<td>용량 / 단위</td>
 						<td>
-							<input type="number" name="nut_size" value="${mnDto.nut_size }" />
+							<input type="number" name="nut_size" value="${NUT_SIZE eq null ? 0 : NUT_SIZE }" />
 							<select name="nut_unit">
-								<option value="oz" ${mnDto.nut_unit == 'oz' ? 'selected="selected"' : '' }>oz</option>
-								<option value="g" ${mnDto.nut_unit == 'g' ? 'selected="selected"' : '' }>g</option>
+								<option value="oz" ${NUT_UNIT == 'oz' ? 'selected="selected"' : '' }>oz</option>
+								<option value="g" ${NUT_UNIT == 'g' ? 'selected="selected"' : '' }>g</option>
 							</select>
 						</td>
 					</tr>
 					<tr>
 						<td>고카페인 여부</td>
 						<td>
-							<input type="checkbox" name="nut_high_caffeine" value="Y" ${mnDto.nut_high_caffeine == 'Y' ? 'checked="checked"' : '' } />
+							<input type="checkbox" name="nut_high_caffeine" value="Y" ${NUT_HIGH_CAFFEINE == 'Y' ? 'checked="checked"' : '' } />
 						</td>
 					</tr>
 					<tr>
@@ -268,7 +268,7 @@ input:focus, textarea:focus {
 									<dl>
 										<dt>1회 제공량(kcal)</dt>
 										<dd>
-											<input type="number" name="nut_calorie" step="0.01" value="${mnDto.nut_calorie }" />
+											<input type="number" name="nut_calorie" step="0.01" value="${NUT_CALORIE eq null ? 0 : NUT_CALORIE }" />
 										</dd>
 									</dl>
 								</li>
@@ -276,7 +276,7 @@ input:focus, textarea:focus {
 									<dl>
 										<dt>포화지방(g)</dt>
 										<dd>
-											<input type="number" name="nut_saturated" step="0.01" value="${mnDto.nut_saturated}" />
+											<input type="number" name="nut_saturated" step="0.01" value="${NUT_SATURATED eq null ? 0 : NUT_SATURATED}" />
 										</dd>
 									</dl>
 								</li>
@@ -284,7 +284,7 @@ input:focus, textarea:focus {
 									<dl>
 										<dt>당류(g)</dt>
 										<dd>
-											<input type="number" name="nut_sugar" step="0.01" value="${mnDto.nut_sugar }" />
+											<input type="number" name="nut_sugar" step="0.01" value="${NUT_SUGAR eq null ? 0 : NUT_SUGAR }" />
 										</dd>
 									</dl>
 								</li>
@@ -295,7 +295,7 @@ input:focus, textarea:focus {
 									<dl>
 										<dt>나트륨(mg)</dt>
 										<dd>
-											<input type="number" name="nut_sodium" step="0.01" value="${mnDto.nut_sodium }" />
+											<input type="number" name="nut_sodium" step="0.01" value="${NUT_SODIUM eq null ? 0 : NUT_SODIUM }" />
 										</dd>
 									</dl>
 								</li>
@@ -303,7 +303,7 @@ input:focus, textarea:focus {
 									<dl>
 										<dt>단백질(g)</dt>
 										<dd>
-											<input type="number" name="nut_protein" step="0.01" value="${mnDto.nut_protein }" />
+											<input type="number" name="nut_protein" step="0.01" value="${NUT_PROTEIN eq null ? 0 : NUT_PROTEIN }" />
 										</dd>
 									</dl>
 								</li>
@@ -311,7 +311,7 @@ input:focus, textarea:focus {
 									<dl>
 										<dt>카페인(mg)</dt>
 										<dd>
-											<input type="number" name="nut_caffeine" step="0.01" value="${mnDto.nut_caffeine }" />
+											<input type="number" name="nut_caffeine" step="0.01" value="${NUT_CAFFEINE eq null ? 0 : NUT_CAFFEINE }" />
 										</dd>
 									</dl>
 								</li>
@@ -321,16 +321,16 @@ input:focus, textarea:focus {
 				</table>
 			</div>
 			<div class="buttonsDiv">
-				<button type="submit">${mnDto eq null ? '상품 추가' : '상품 수정' }</button>
+				<button type="submit">${MENU_ID eq null ? '상품 추가' : '상품 수정' }</button>
 				<button type="reset">취소</button>
 			</div>
 		</form>
 		<!-- 폼 태그 끝 -->
 	</div>
-	
+
 	<!-- validate JavsScript -->
 	<script src="/js/common/validate.js"></script>
-	
+
 	<!-- optionSet JavaScript -->
 	<script src="/js/common/optionSet.js"></script>
 </body>

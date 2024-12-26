@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.mega.menu.dto.AllergenDto;
 import com.mega.menu.dto.MenuDto;
-import com.mega.menu.dto.MenuInfoDto;
 import com.mega.menu.dto.MenuNutrientDto;
 import com.mega.menu.dto.NutrientDto;
 import com.mega.menu.dto.TypeDto;
@@ -48,6 +47,5 @@ public interface MenuMapper {
 	public int modifyallergen(int menu_id, List<String> allergenIdList) throws Exception;
 
 	public int deleteMenu(int menu_id) throws Exception;
-
 
 }

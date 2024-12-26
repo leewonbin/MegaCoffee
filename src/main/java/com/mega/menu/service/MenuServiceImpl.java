@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mega.menu.dto.AllergenDto;
 import com.mega.menu.dto.MenuDto;
-import com.mega.menu.dto.MenuInfoDto;
 import com.mega.menu.dto.MenuNutrientDto;
 import com.mega.menu.dto.NutrientDto;
 import com.mega.menu.dto.TypeDto;
