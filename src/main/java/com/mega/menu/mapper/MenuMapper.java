@@ -33,7 +33,7 @@ public interface MenuMapper {
 
 	public List<TypeDto> getTypeList() throws Exception;
 
-	public List<MenuDto> getMenuAllList() throws Exception;
+	public List<MenuDto> getMenuAllList(String category) throws Exception;
 
 	public int insertNutrient(MenuNutrientDto menuNutrientDto) throws Exception;
 

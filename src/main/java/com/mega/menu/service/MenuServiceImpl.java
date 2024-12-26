@@ -113,8 +113,8 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public List<MenuDto> getMenuAllList() throws Exception {
-		return menuMapper.getMenuAllList();
+	public List<MenuDto> getMenuAllList(String category) throws Exception {
+		return menuMapper.getMenuAllList(category);
 	}
 
 	@Override

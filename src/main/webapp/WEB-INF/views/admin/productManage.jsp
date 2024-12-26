@@ -101,7 +101,6 @@ input:focus, textarea:focus {
 	border : 2px solid #FAD000; 
 	border-radius : 5px;
 	outline : none;
-	
 }
 </style>
 </head>
@@ -117,7 +116,7 @@ input:focus, textarea:focus {
 		<h2 id="content-title">${mnDto eq null ? '상품 추가' : '상품 수정' }</h2>
 
 		<!-- 폼 태그 시작 -->
-		<form action="${mnDto eq null ? '/admin/productInsert' : '/admin/productModify'}" method="post" enctype="multipart/form-data" onsubmit="return validate()">
+		<form action="${mnDto eq null ? '/admin/productInsert' : '/admin/productModify'}" method="post" enctype="multipart/form-data">
 			<div class="product-info info-wrap">
 				<span class="wrap-Info"> 상품 정보 </span>
 				<c:if test="${mnDto ne null }">
@@ -153,6 +152,7 @@ input:focus, textarea:focus {
 										</c:choose>
 									</c:if>
 								</c:forEach>
+								<script>console.log("${check}")</script>
 								<input type="checkbox" name="type_id" value="${type.type_id }" ${check } />
 								<label>${type.type_name }</label>
 								<c:if test="${status.count % 4 == 0 }">
@@ -199,8 +199,8 @@ input:focus, textarea:focus {
 					<tr>
 						<td>이미지</td>
 						<td>
-							<input type="text" value="${mnDto.menu_file_id }" readonly />
-							<input type="file" name="menu_img" />
+							<input type="text" name="menu_file_id" value="${mnDto.menu_file_id }" readonly />
+							<input type="file" name="menu_img" onchange="fileSelect(this)"/>
 						</td>
 					</tr>
 					
@@ -208,8 +208,8 @@ input:focus, textarea:focus {
 						<td>활성화 여부</td>
 						<td>
 							<select name="menu_del">
-								<option value="N" ${mnDto.menu_del == 'N' ? 'selected="selected"' : '' }>N</option>
-								<option value="Y" ${mnDto.menu_del == 'Y' ? 'selected="selected"' : '' }>Y</option>
+								<option value="N" ${mnDto.menu_del == 'N' ? 'selected="selected"' : '' }>활성화</option>
+								<option value="Y" ${mnDto.menu_del == 'Y' ? 'selected="selected"' : '' }>비활성화</option>
 							</select>
 						</td>
 					</tr>
@@ -327,6 +327,11 @@ input:focus, textarea:focus {
 		</form>
 		<!-- 폼 태그 끝 -->
 	</div>
+	
+	<!-- validate JavsScript -->
 	<script src="/js/common/validate.js"></script>
+	
+	<!-- optionSet JavaScript -->
+	<script src="/js/common/optionSet.js"></script>
 </body>
 </html>

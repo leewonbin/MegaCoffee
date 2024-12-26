@@ -17,8 +17,22 @@
 			showAlert("${msg}");
 		</script>
 	</c:if>
+	<c:choose>
+		<c:when test="${param.category eq 'drink' }">
+			<c:set var="title" value="음료"/>	
+		</c:when>
+		<c:when test="${param.category eq 'food' }">
+			<c:set var="title" value="푸드"/>
+		</c:when>
+		<c:when test="${param.category eq 'product' }">
+			<c:set var="title" value="상품"/>
+		</c:when>
+		<c:otherwise>
+			<c:set var="title" value="메뉴"/>
+		</c:otherwise>
+	</c:choose>
 	<div class="content">
-		<h2 id="content-title">상품 관리</h2>
+		<h2 id="content-title">${title } 관리</h2>
 		<div id="content-table">
 			<table class="list">
 				<tr>

@@ -315,10 +315,9 @@ function filterType(category_id, type_id) {
 																<li>단백질 ${menu.menu_protein}g</li>
 																<li>카페인 ${menu.menu_caffeine}mg</li>
 															</ul>--%>
-
-
 												</div>
-											</div></li>
+											</div>
+											</li>
 									</c:forEach>
 								</ul>
 

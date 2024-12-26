@@ -145,7 +145,22 @@
 	</update>
 	
 	<select id="getMenuAllList" resultType="com.mega.menu.dto.MenuDto">
-		select * from menu order by menu_date desc
+		select * from menu where
+		<choose>
+			<when test="category=='drink'">
+				category_id=1
+			</when>
+			<when test="category=='food'">
+				category_id=2
+			</when>
+			<when test="category=='product'">
+				category_id=3
+			</when>
+			<otherwise>
+				1=1
+			</otherwise>
+		</choose>
+		 order by menu_date desc
 	</select>
 	
 	<delete id="deleteMenu">

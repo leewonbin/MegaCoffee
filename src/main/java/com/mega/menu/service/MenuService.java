@@ -32,7 +32,7 @@ public interface MenuService {
 
 	public List<TypeDto> getTypeList() throws Exception;
 
-	public List<MenuDto> getMenuAllList() throws Exception;
+	public List<MenuDto> getMenuAllList(String category) throws Exception;
 
 	public String uploadFile(MultipartFile file) throws Exception;
 
