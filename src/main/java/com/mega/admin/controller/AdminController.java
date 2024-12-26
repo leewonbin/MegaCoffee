@@ -3,6 +3,7 @@ package com.mega.admin.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,11 +48,11 @@ public class AdminController {
 
 	@GetMapping("/moveModify")
 	public String moveModify(@RequestParam("menu_id") int menu_id, Model model) throws Exception {
-		MenuNutrientDto mnDto = menuService.getMenuNutrient(menu_id);
+		Map<String, Object> mnDto = menuService.getMenuNutrient(menu_id);
 		List<TypeDto> typeList = menuService.getType(menu_id);
 		List<AllergenDto> allergenList = menuService.getAllergen(menu_id);
 
-		model.addAttribute("mnDto", mnDto);
+		model.addAllAttributes(mnDto);
 		model.addAttribute("selectTypeList", typeList);
 		model.addAttribute("selectAllergenList", allergenList);
 
@@ -76,10 +77,10 @@ public class AdminController {
 
 	@GetMapping("/productDetail")
 	public String movePDetail(@RequestParam("menu_id") int menu_id, Model model) throws Exception {
-		MenuNutrientDto mnDto = menuService.getMenuNutrient(menu_id);
+		Map<String, Object> mnDto = menuService.getMenuNutrient(menu_id);
 		List<TypeDto> typeList = menuService.getType(menu_id);
 		List<AllergenDto> allergenList = menuService.getAllergen(menu_id);
-		model.addAttribute("mnDto", mnDto);
+		model.addAllAttributes(mnDto);
 		model.addAttribute("typeList", typeList);
 		model.addAttribute("allergenList", allergenList);
 		return "/admin/productDetail";

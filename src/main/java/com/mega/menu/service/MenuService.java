@@ -7,7 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mega.menu.dto.AllergenDto;
 import com.mega.menu.dto.MenuDto;
-import com.mega.menu.dto.MenuInfoDto;
 import com.mega.menu.dto.MenuNutrientDto;
 import com.mega.menu.dto.NutrientDto;
 import com.mega.menu.dto.TypeDto;
@@ -17,7 +16,7 @@ public interface MenuService {
 //	public List<MenuDto> menuList() throws Exception;
 
 //	public MenuInfoDto menuRead(int menu_id) throws Exception;
-	
+
 	public NutrientDto getNutrient(int menu_id) throws Exception;//
 
 	public Map<String, Object> getMenuNutrient(int menu_id) throws Exception;

@@ -30,16 +30,15 @@ function fileSelect(f) {
 
 function typeDisabled(category) {
 	let types = document.getElementsByName("type_id");
+	
 	switch (category) {
 		case "1":
 			for (let type of types) {
-				type.checked = false;
 				type.disabled = !drinkType.includes(Number(type.value));
 			}
 			break;
 		case "2":
 			for (let type of types) {
-				type.checked = false;
 				type.disabled = !foodType.includes(Number(type.value));
 			}
 			break;

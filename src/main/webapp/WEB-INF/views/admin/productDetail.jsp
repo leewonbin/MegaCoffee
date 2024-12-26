@@ -165,6 +165,9 @@ h2.pageInfo {
 </style>
 </head>
 <body>
+<script>
+	console.log("${MENU_FILE_ID}");
+</script>
 	<div class="topbar">
 		<%@include file="./common/topbar.jsp"%>
 	</div>
@@ -175,9 +178,9 @@ h2.pageInfo {
 		<h2 class="pageInfo">상품 정보</h2>
 		<div class="product-container">
 			<div class="img-wrap">
-				<img class="product-image" src="/img/${mnDto.menu_file_id }" />
-				<c:if test="${mnDto.menu_ice_hot ne null }">
-					<div class="iceOrHot ${mnDto.menu_ice_hot}">${mnDto.menu_ice_hot }</div>
+				<img class="product-image" src="/img/${MENU_FILE_ID }" />
+				<c:if test="${MENU_ICE_HOT ne null }">
+					<div class="iceOrHot ${MENU_ICE_HOT}">${MENU_ICE_HOT}</div>
 				</c:if>
 			</div>
 			<!-- 상품 이미지 -->
@@ -185,10 +188,10 @@ h2.pageInfo {
 			<div class="product-details">
 				<div class="details-header">
 					<div>
-						<h2 class="menuKName">${mnDto.menu_title }</h2>
-						<p class="menuEName">${mnDto.menu_eng_title }${mnDto.menu_onesize != 'N' ? '[OneSize]' : ''}</p>
+						<h2 class="menuKName">${MENU_TITLE }</h2>
+						<p class="menuEName">${MENU_ENG_TITLE }${MENU_ONESIZE != 'N' ? '[OneSize]' : ''}</p>
 					</div>
-					<p>${mnDto.menu_content }</p>
+					<p>${MENU_CONTENT }</p>
 				</div>
 				<div class="details-center">
 					<p>영양 성분</p>
@@ -196,37 +199,37 @@ h2.pageInfo {
 						<li>
 							<dl>
 								<dt>1회 제공량(kcal)</dt>
-								<dd>${mnDto.nut_calorie }</dd>
+								<dd>${NUT_CALORIE }</dd>
 							</dl>
 						</li>
 						<li>
 							<dl>
 								<dt>포화지방(g)</dt>
-								<dd>${mnDto.nut_saturated }</dd>
+								<dd>${NUT_SATURATED}</dd>
 							</dl>
 						</li>
 						<li>
 							<dl>
 								<dt>당류(g)</dt>
-								<dd>${mnDto.nut_sugar }</dd>
+								<dd>${NUT_SUGAR}</dd>
 							</dl>
 						</li>
 						<li>
 							<dl>
 								<dt>나트륨(mg)</dt>
-								<dd>${mnDto.nut_sodium }</dd>
+								<dd>${NUT_SODIUM}</dd>
 							</dl>
 						</li>
 						<li>
 							<dl>
 								<dt>단백질(g)</dt>
-								<dd>${mnDto.nut_protein }</dd>
+								<dd>${NUT_PROTEIN}</dd>
 							</dl>
 						</li>
 						<li>
 							<dl>
 								<dt>카페인(mg)</dt>
-								<dd>${mnDto.nut_caffeine }</dd>
+								<dd>${NUT_CAFFEINE }</dd>
 							</dl>
 						</li>
 					</ul>
@@ -265,8 +268,8 @@ h2.pageInfo {
 						</c:if>
 					</span><br>
 					<div style="float: right">
-						<button type="button" onclick="location.href='/admin/moveModify?menu_id=${mnDto.menu_id}'">수정</button>
-						<button type="button" onclick="productDelete(${mnDto.menu_id})">삭제</button>
+						<button type="button" onclick="location.href='/admin/moveModify?menu_id=${MENU_ID}'">수정</button>
+						<button type="button" onclick="productDelete(${MENU_ID})">삭제</button>
 					</div>
 				</div>
 			</div>
