@@ -1,67 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mega.board.mappers.BoardMapper">
+	<!--게시글 작성-->
 	<insert id="saveBoard" parameterType="com.mega.board.dto.BoardDto">
 		INSERT INTO BOARD (BOARD_ID,TITLE,CONTENT,SEPARATION,WRITER,UPLOAD_AT,DELETE_AT,DEL_YN,HITS,ADMIN_NUM,CATEGORY_ID)
 		VALUES(BOARD_NUM.NEXTVAL,#{title},#{content},#{separation},#{writer},SYSDATE,#{delete_at},#{del_yn},#{hits},#{admin_num},#{category_id})
 	</insert>		
 	
 	<!-- 게시글 갯수 -->
-	 <select id="countBoard" resultType="int">
-    	SELECT COUNT(*) FROM BOARD WHERE DEL_YN = 'N' AND SEPARATION ='일반'
-    </select>
-    
-     <select id="countBoardByCategory" parameterType="com.mega.board.dto.SearchDto" resultType="int">
-	    SELECT COUNT(BOARD_ID) 
+	<select id="countBoard"  resultType="int">
+	     SELECT COUNT(*)
 	    FROM BOARD
-	    WHERE CATEGORY_ID = #{category_id} AND SEPARATION ='일반'     	      
+	    WHERE DEL_YN = 'N' 
+      	AND SEPARATION = '일반'
+      <if test="CATEGORY_ID != null">
+          AND CATEGORY_ID = #{CATEGORY_ID}
+      </if>    	      
 	</select>
     
     <!-- 공지 조회 -->
     <select id="notice" resultType="com.mega.board.dto.BoardDto">
     	<![CDATA[select * from (select * from BOARD where SEPARATION = '공지' order by UPLOAD_AT desc) where ROWNUM <=2 order by BOARD_ID desc]]>
     </select>
-    <!-- 게시글 리스트 조회(페이징 처리 후) -->
-      <select id="boardList" resultType="com.mega.board.dto.BoardDto">
-    SELECT * FROM (
+    
+   <!-- 게시글 조회 -->
+	<select id="boardList" resultType="com.mega.board.dto.BoardDto">
+    SELECT * 
+    FROM (
         SELECT 
             b.BOARD_ID, 
             b.TITLE, 
             b.CONTENT,  
-            b.ADMIN_NUM , 
+            b.ADMIN_NUM, 
             b.UPLOAD_AT, 
             b.HITS,
             a.ADMIN_NAME AS writer,
-            ROW_NUMBER() OVER (ORDER BY b.UPLOAD_AT DESC) AS RNM 
-        FROM BOARD b 
-        JOIN ADMIN a ON a.ADMIN_NUM = b.ADMIN_NUM 
-        WHERE b.DEL_YN = 'N' AND SEPARATION ='일반'
-        <include refid="search1"></include>
+            ROW_NUMBER() OVER (ORDER BY b.UPLOAD_AT DESC) AS RNM
+        FROM BOARD b
+        JOIN ADMIN a ON a.ADMIN_NUM = b.ADMIN_NUM
+        WHERE b.DEL_YN = 'N' 
+          AND SEPARATION = '일반'
+          <if test="CATEGORY_ID != null">
+              AND b.CATEGORY_ID = #{CATEGORY_ID}
+          </if>
+          <include refid="search1" />
     ) t
     WHERE RNM BETWEEN #{pageDto.start} AND #{pageDto.end}
-    </select> 
-
-	<select id="boardListByCategory" resultType="com.mega.board.dto.BoardDto">
-	    SELECT * 
-	    FROM (
-	        SELECT 
-	            b.BOARD_ID, 
-	            b.TITLE, 
-	            b.CONTENT,  
-	            b.ADMIN_NUM, 
-	            b.UPLOAD_AT, 
-	            b.HITS,
-	            a.ADMIN_NAME AS writer,
-	            ROW_NUMBER() OVER (ORDER BY b.UPLOAD_AT DESC) AS RNM
-	        FROM BOARD b
-	        JOIN ADMIN a ON a.ADMIN_NUM = b.ADMIN_NUM
-	        WHERE b.CATEGORY_ID = #{category_id}
-	          AND b.DEL_YN = 'N' AND SEPARATION ='일반'
-	          <include refid="search1"></include>
-	    ) g
-	    WHERE RNM BETWEEN #{pageDto.start} AND #{pageDto.end}
 	</select>
-
+	
     <!-- 게시글 상세 -->
     <select id="boardDetail" parameterType="int" resultType="com.mega.board.dto.BoardDto">
     SELECT * FROM(
@@ -81,6 +67,7 @@
     WHERE BOARD_ID = #{BOARD_ID}      
     </select>
     
+    <!-- 조회수 -->
     <update id="boardHit" parameterType="int">
     	UPDATE BOARD SET
     	HITS = HITS+1
@@ -92,27 +79,8 @@
      	SELECT * FROM BOARD_CATEGORY ORDER BY CATEGORY_ID ASC
      </select>
      
-     <!-- 카테고리X 이전글 다음글 -->
-     <select id="movePageO" parameterType="int" resultType="com.mega.board.dto.MoveDto">
-     	SELECT * FROM 
-     	(SELECT
-     	   BOARD_ID,
-     	   LEAD(BOARD_ID,1,9999) OVER(ORDER BY BOARD_ID) AS next,
-     	   LAG(BOARD_ID,1,9999) OVER(ORDER BY BOARD_ID) AS last,
-     	   TITLE,
-     	   LEAD(TITLE,1,9999) OVER(ORDER BY BOARD_ID) AS nextTitle,
-     	   LAG(TITLE,1,9999) OVER(ORDER BY BOARD_ID) AS lastTitle,
-     	   UPLOAD_AT,
-     	   CATEGORY_ID,     	   
-     	   ROW_NUMBER() OVER (ORDER BY UPLOAD_AT DESC) AS RNM
-     	   FROM BOARD
-     	   WHERE CATEGORY_ID = #{category_id} 
-     	   ORDER BY BOARD_ID DESC    	    
-     	)k
-     	WHERE BOARD_ID = #{board_id}      	
-     </select>
-     <!-- 카테고리O 이전글 다음글 -->
-     <select id="movePageX" parameterType="int" resultType="com.mega.board.dto.MoveDto">
+     <!-- 이전글 다음글 -->
+     <select id="movePage" parameterType="int" resultType="com.mega.board.dto.MoveDto">
      	SELECT * FROM 
      	(SELECT
      	   BOARD_ID,
@@ -125,20 +93,22 @@
      	   CATEGORY_ID,     	   
      	   ROW_NUMBER() OVER (ORDER BY UPLOAD_AT DESC) AS RNM
      	   FROM BOARD 
+     	   WHERE DEL_YN = 'N'
+     	    <if test="CATEGORY_ID != null">
+            AND CATEGORY_ID = #{CATEGORY_ID}
+          </if>
      	   ORDER BY BOARD_ID DESC     	    
      	)k
      	WHERE BOARD_ID = #{board_id}      	
      </select>
      
+     <!-- 검색시 게시글 갯수 -->
     <select id="selectSearchCount" parameterType="com.mega.board.dto.SearchDto" resultType="int">
-    	SELECT COUNT(BOARD_ID) FROM BOARD WHERE CATEGORY_ID = #{category_id}
+    	SELECT COUNT(BOARD_ID) FROM BOARD WHERE DEL_YN = 'N' 
+    	<if test="CATEGORY_ID != null">
+            AND CATEGORY_ID = #{CATEGORY_ID}
+         </if>
     	<include refid="search1"></include>    	
-    </select>
-    
-    <select id="selectSearchCountAll" parameterType="com.mega.board.dto.SearchDto" resultType="int">
-    	SELECT COUNT(BOARD_ID) FROM BOARD WHERE DEL_YN = 'N'
-    	<include refid="search1"></include>    	
-    	
     </select>
 
     <sql id="search1">

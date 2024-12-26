@@ -34,30 +34,12 @@ public class BoardController {
 	                        @RequestParam(value="keyword", required=false) String keyword) throws Exception {
 	    int total;
 		
-	    if (category_id != null) {	       
-	        if(keyword != null && searchType != null) {
-	        	total = boardService.selectSearchCount(searchType, keyword,category_id);
-	        	//System.out.println("1: "+total);
-	        }
-	        else {
-	        	// 카테고리별 게시글 총 개수
-		        total = boardService.countBoardByCategory(category_id);
-		       System.out.println("2: "+total);
-	        }       
+	    if(keyword != null && searchType != null) {
+	        total = boardService.selectSearchCount(searchType, keyword,category_id);   	
 	    }
-	    else {	       
-	        if(keyword != null && searchType != null) {
-	        	total = boardService.selectSearchCountAll(searchType,keyword);
-	        	//System.out.println("3: "+total);
-	        }
-	        else {
-	        	// 전체 게시글 총 개수
-		        total = boardService.countBoard();
-		        System.out.println("4: "+total);
-		     
-	        }
-	        
-	    }
+	    else {
+		   total = boardService.countBoard(category_id);		       
+	    }       
 
 	    // 기본값 설정
 	    if (nowPage == null && cntPerPage == null) {
@@ -79,22 +61,7 @@ public class BoardController {
 
 	    List<BoardDto> boardList;
 	    List<BoardCategoryDto> boardCategoryList;
-	    
-	    if (category_id != null) {
-	        	    	
-	        boardList = boardService.boardListByCategory(pageDto, category_id,searchType,keyword);
-	        //System.out.println("cid O: "+category_id);
-	        //System.out.println("type1: "+searchType);
-    		//System.out.println("keyword1: "+keyword);
-	    } 
-	    else {
-	        // 전체 게시글 조회
-	        boardList = boardService.boardList(pageDto,searchType,keyword);
-	        //System.out.println("cid x: "+category_id);
-	        //System.out.println("type2: "+searchType);
-    		//System.out.println("keyword2: "+keyword);
-    		System.out.println("카테고리 없는 키워드 갯수: "+pageDto.getTotal());
-	    }
+	    boardList = boardService.boardList(pageDto, category_id,searchType,keyword);
 	        
 	    boardCategoryList = boardService.boardCategoryList(boardCategoryDto);
 	    model.addAttribute("notice", boardService.notice());
@@ -105,9 +72,6 @@ public class BoardController {
 	    model.addAttribute("keyword",keyword);
 	    return "board/board";
 	}
-
-
-
 	
 	//게시글 작성 페이지 이동
 	@GetMapping("/boardwrite")
@@ -131,8 +95,7 @@ public class BoardController {
 	@GetMapping("/boardDetail")
 	public String boardDeatil(@RequestParam(value="id",required = false) int boardId,
 							  @RequestParam(value = "CATEGORY_ID", required = false) Integer category_id, 
-							  Model model
-							  ) {
+							  Model model) {
 		
 		BoardDto boardDto = boardService.boardDetail(boardId);
 		System.out.println("??: "+category_id);
@@ -140,13 +103,7 @@ public class BoardController {
 		System.out.println("제목: "+boardDto.getTitle());
 		System.out.println("내용: "+boardDto.getContent());
 		System.out.println("카테고리Id: "+boardDto.getCategory_id());
-		MoveDto moveDto;
-		if(category_id != null) {
-			moveDto = boardService.movePageO(boardId, category_id);
-		}
-		else {
-			moveDto = boardService.movePageX(boardId);
-		}
+		MoveDto moveDto = boardService.movePage(boardId, category_id);
 		model.addAttribute("boardDetail", boardDto);
 		model.addAttribute("move",moveDto); 
 		
