@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.mega.menu.dto.AllergenDto;
 import com.mega.menu.dto.MenuDto;
+import com.mega.menu.dto.MenuInfoDto;
 import com.mega.menu.dto.MenuNutrientDto;
 import com.mega.menu.dto.NutrientDto;
 import com.mega.menu.dto.TypeDto;
@@ -20,7 +21,7 @@ public interface MenuMapper {
 
 	public NutrientDto getNutrient(int menu_id) throws Exception;//
 
-	public List<MenuInfoDto> menuList(Integer category_id) throws Exception;
+	public List<Map<String,Object>> menuList(Integer category_id) throws Exception;
 
 	public List<AllergenDto> getAllegenList() throws Exception;
 
@@ -30,7 +31,7 @@ public interface MenuMapper {
 
 	public List<AllergenDto> getAllergen(int menu_id) throws Exception;
 
-	public List<MenuInfoDto> filterType(int category_id, String typeIdStr) throws Exception;
+	public int[] filterType(int category_id, String typeIdStr) throws Exception;
 
 	public List<TypeDto> getTypeList() throws Exception;
 

@@ -248,6 +248,7 @@ ng\:form {
 </script>
 </head>
 <body data-aos-easing="ease" data-aos-duration="1200" data-aos-delay="0">
+	<jsp:include page="../common/header.jsp"/>
 	<div class="overlay none"></div>
 	<div class="modal">
 		<div class="modal-dialog">
@@ -476,6 +477,5 @@ ng\:form {
 	</div>
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp"/>
-	<jsp:include page="../common/header.jsp"/>
 </body>
 </html>

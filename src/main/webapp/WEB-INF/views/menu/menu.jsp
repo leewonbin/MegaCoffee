@@ -72,19 +72,15 @@ ng\:form {
 	src="/common/js/mdtimepicker.js?ver=202307100845"></script>
 
 <!-- fullPage -->
-<script type="text/javascript"
-	src="https://img.79plus.co.kr/megahp/common/js/jquery.fullPage.js"></script>
+<!-- <script type="text/javascript"
+	src="https://img.79plus.co.kr/megahp/common/js/jquery.fullPage.js"></script> -->
 
 <!-- swiper -->
-<link rel="stylesheet" type="text/css"
+<!-- <link rel="stylesheet" type="text/css"
 	href="/css/swiper.min.css?ver=202307100845">
 <script type="text/javascript"
-	src="https://img.79plus.co.kr/megahp/common/js/swiper.min.js"></script>
+	src="https://img.79plus.co.kr/megahp/common/js/swiper.min.js"></script> -->
 
-
-
-<script src="/js/menu.js"></script>
-<!-- -------------------------------------마지막에 작업할거------------------------------------- -->
 
 
 <script>
@@ -92,12 +88,10 @@ $(document).ready(function () {
     const allCheckbox = $("input[name='list_checkbox_all']");
     const checkbox = $("input[name='list_checkbox']");
 
-    loadList();						//전체 리스트 표시
-
     allCheckbox.on('change', function () {
         if (allCheckbox.is(':checked')) {
             checkbox.prop('checked', false);
-            select(["0"]); 					//전체 보기
+            $("#menu_list li").show() 					//전체 보기
         } else {
             hideLi(); 				//전체 선택 해제= 리스트 숨기기
         }
@@ -119,27 +113,8 @@ $(document).ready(function () {
             select(selectType);
         }
     });
-
-    function loadList() {
-        $.ajax({
-            url: '/filterType',
-            type: 'GET',
-            data: {
-                category_id: "${param.category_id}",
-                type_id: ["0"] 				//처음엔 전체선택으로 전체 리스트가 나옴
-            },
-            traditional: true,
-            success: function (response) {
-                displayItems(response);
-            },
-            error: function (error) {
-                console.error("초기 로딩 오류 발생:", error);
-            }
-        });
-    }
-
     function select(selectType) {
-        console.log("선택된 타입:", selectType);
+        console.log("타입:", selectType);
 
         $.ajax({
             url: '/filterType',
@@ -150,19 +125,20 @@ $(document).ready(function () {
             },
             traditional: true,
             success: function (response) {
-                displayItems(response);
+                display(response);
+                console.log("메뉴:", response);
             },
             error: function (error) {
-                console.error("필터 오류 발생:", error);
+                console.error("오류 발생:", error);
             }
         });
     }
 
-    function displayItems(items) {
+    function display(items) {
         $("#menu_list li").hide();
 
-        items.forEach(function (menuInfo) {						//전달받은 데이터 표시
-            $("#menu_list li[data-key='" + menuInfo.menu_id + "']").show();
+        items.forEach(function (menuInfo) {						//데이터 값 표시
+            $("#menu_list li[data-key='" + menuInfo + "']").show();
         });
     }
 
@@ -173,64 +149,9 @@ $(document).ready(function () {
 
 </script>
 
-
-
-
-
-<!-- <script>
-$(document).ready(function() {
-    const allCheckbox = $("input[name='list_checkbox_all']");
-    const checkbox = $("input[name='list_checkbox']");
-
-    allCheckbox.on('change', function() {
-        if (allCheckbox.is(':checked')) {
-            checkbox.prop('checked', false);
-            select([0]);
-        }
-    });
-
-    checkbox.on('change', function() {
-        if (checkbox.is(':checked')) {
-            allCheckbox.prop('checked', false);
-        }
-
-        const selectType = [];
-        $("input[name='list_checkbox']:checked").each(function() {
-            selectType.push($(this).val());
-        });
-
-        if (selectType.length === 0) {
-            selectType.push('0');
-        }
-        select(selectType);
-    });
-
-    function select(selectType) {
-        console.log("선택된 타입:", selectType);
-
-        $.ajax({
-            url: '/filterType',
-            type: 'GET',
-            data: {
-                category_id: ${param.category_id},
-                type_id: selectType
-            },
-            traditional: true,
-            success: function(response) {
-                console.log("메뉴:", response);
-            },
-            error: function(error) {
-                console.log("오류:", error);
-            }
-        });
-    }
-});
-</script>
- -->
-
-
 </head>
 <body data-aos-easing="ease" data-aos-duration="1200" data-aos-delay="0">
+<jsp:include page="../common/header.jsp" />
 	<div class="overlay none"></div>
 	<div class="modal">
 		<div class="modal-dialog">
@@ -268,7 +189,7 @@ $(document).ready(function() {
 							</div>
 							<div class="checkbox_wrap">
 								<label class="checkbox"> <input type="checkbox" id=""
-									name="list_checkbox_all" value="0" checked=""> <span
+									name="list_checkbox_all" value="0" checked="checked"> <span
 									class="check_mark"></span>
 									<div class="checkbox_text">전체 상품보기</div>
 								</label>
@@ -289,49 +210,40 @@ $(document).ready(function() {
 				</c:choose>
 
 				<div class="cont_text_wrap">
-					<div
-						class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2">
-						<ul id="menu_list">
-							<div
-								class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2 wfull">
-
+					<div class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2">
+						<!-- <ul id="menu_list"> -->
+							<div class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2 wfull">
 								<ul id="menu_list">
-									<c:forEach var="menuInfo" items="${menuList}">
-										<li data-key="${menuInfo.menu_id}" style="display: none;"><a
-											class="inner_modal_open">
+									<c:forEach var="menu" items="${menuList}">
+										<li data-key="${menu['MENU_ID']}" >
+											<a class="inner_modal_open">
 												<div class="cont_gallery_list_box">
-													<div class="cont_gallery_list_img"
-														style="width: 305px; height: 305px;">
+													<div class="cont_gallery_list_img" style="width: 305px; height: 305px;">
 														<c:choose>
-															<c:when test="${menuInfo.menu_ice_hot == 'ICE'}">
-																<div
-																	class="cont_gallery_list_label cont_gallery_list_label2">${menuInfo.menu_ice_hot}</div>
+															<c:when test="${menu['MENU_ICE_HOT'] == 'ICE'}">
+																<div class="cont_gallery_list_label cont_gallery_list_label2">${menu['MENU_ICE_HOT']}</div>
 															</c:when>
-															<c:when test="${menuInfo.menu_ice_hot == 'HOT'}">
-																<div
-																	class="cont_gallery_list_label cont_gallery_list_label1">${menuInfo.menu_ice_hot}</div>
+															<c:when test="${menu['MENU_ICE_HOT'] == 'HOT'}">
+																<div class="cont_gallery_list_label cont_gallery_list_label1">${menu['MENU_ICE_HOT']}</div>
 															</c:when>
-															<c:otherwise>
-																<div class="default">${menuInfo.menu_ice_hot}</div>
-															</c:otherwise>
 														</c:choose>
-														<img src="/img/${menuInfo.menu_file_id}">
+														<img src="/img/${menu['MENU_FILE_ID']}">
 													</div>
 													<!-- 여기가 이미지 나오는 부분 -->
 													<div class="cont_text_box">
 														<div class="cont_text">
 															<div class="cont_text_inner text_wrap cont_text_title">
 																<div class="text text1">
-																	<b>${menuInfo.menu_title}</b>
+																	<b>${menu['MENU_TITLE']}</b>
 																</div>
 															</div>
 															<div class="cont_text_inner text_wrap cont_text_info">
-																<div class="text text1">${menuInfo.menu_eng_title}</div>
+																<div class="text text1">${menu['MENU_ENG_TITLE']}</div>
 															</div>
 														</div>
 														<div class="cont_text cont_text_info">
 															<div class="text_wrap">
-																<div class="text text2">${menuInfo.menu_content}</div>
+																<div class="text text2">${menu['MENU_CONTENT']}</div>
 															</div>
 														</div>
 													</div>
@@ -341,45 +253,44 @@ $(document).ready(function() {
 												<div class="cont_text_box">
 													<div class="cont_text inner_modal_title">
 														<div class="cont_text_inner cont_text_title">
-															<b>${menuInfo.menu_title}</b>
+															<b>${menu['MENU_TITLE']}</b>
 														</div>
 														<div class="cont_text_inner cont_text_info">
-															${menuInfo.menu_eng_title}</div>
+															${menu['MENU_ENG_TITLE']}</div>
 														<div class="close_wrap">
 															<div class="close"></div>
 														</div>
 													</div>
 													<div class="cont_text">
 														<c:choose>
-															<c:when test="${menuInfo.menu_onesize == 'N'}">
-																<div class="cont_text_inner"></div>
-																<%-- ${menuInfo.nut_size}${menuInfo.nut_unit} --%>
+															<c:when test="${menu['MENU_ONESIZE'] == 'N'}">
+																<div class="cont_text_inner">${menu['NUT_SIZE']}${menu['NUT_UNIT']}</div>
 															</c:when>
-															<c:when test="${menuInfo.menu_onesize == 'Y'}">
-																<div class="cont_text_inner">One size</div>
+															<c:when test="${menu['MENU_ONESIZE'] == 'Y'}">
+																<div class="cont_text_inner">One size/${menu['NUT_SIZE']}${menu['NUT_UNIT']}</div>
 															</c:when>
 															<c:otherwise>
 															</c:otherwise>
 														</c:choose>
-														<%-- <div class="cont_text_inner">${menuInfo.menu_onesize}</div> --%>
-														<%-- <div class="cont_text_inner">${menuInfo.nut_calorie}</div> --%>
+														<div class="cont_text_inner">${menu['NUT_CALORIE']}kcal</div>
 													</div>
-													<div class="cont_text">${menuInfo.menu_content}</div>
-													<%-- <div class="cont_text cont_text_info">알레르기 성분 :${menuInfo.all_name}</div> --%>
+													<div class="cont_text">${menu['MENU_CONTENT']}</div>
+													<div class="cont_text cont_text_info">알레르기 성분 : ${menu['ALL_NAME']}</div>
 												</div>
 												<div
 													class="cont_list cont_list2 cont_list_small cont_list_small2">
 													<ul>
-														<li>포화지방 ${menuInfo.nut_saturated}g</li>
-														<li>당류 ${menuInfo.nut_sugar}g</li>
-														<li>나트륨 ${menuInfo.nut_sodium}mg</li>
-														<li>단백질 ${menuInfo.nut_protein}g</li>
-														<li>카페인 ${menuInfo.nut_caffeine}mg</li>
+														<li>포화지방 ${menu['NUT_SATURATED']}g</li>
+														<li>당류 ${menu['NUT_SUGAR']}g</li>
+														<li>나트륨 ${menu['NUT_SODIUM']}mg</li>
+														<li>단백질 ${menu['NUT_PROTEIN']}g</li>
+														<li>카페인 ${menu['NUT_CAFFEINE']}mg</li>
 													</ul>
 
 
 												</div>
-											</div></li>
+											</div>
+										</li>
 									</c:forEach>
 								</ul>
 
@@ -388,7 +299,7 @@ $(document).ready(function() {
 							<div class="board_page_wrap">
 								<div class="board_page"></div>
 							</div>
-						</ul>
+						<!-- </ul> -->
 					</div>
 				</div>
 
@@ -472,6 +383,5 @@ $(document).ready(function() {
 		</script> -->
 	<!-- footer -->
 	<jsp:include page="../common/footer.jsp" />
-	<jsp:include page="../common/header.jsp" />
 </body>
 </html>

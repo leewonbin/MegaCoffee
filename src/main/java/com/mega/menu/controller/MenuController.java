@@ -57,13 +57,10 @@ public class MenuController {
 
 	@GetMapping("/menu")
 	public String getCategory(@RequestParam(required = false) Integer category_id, Model model) throws Exception {
-		
-		
-		List<MenuInfoDto> menuList = menuService.menuList(category_id);
+		List<Map<String,Object>> menuList = menuService.menuList(category_id);
 		List<TypeDto> typeList = menuService.getTypeList();
-
 		List<TypeDto> filterList = new ArrayList<>();
-
+		
 		if (category_id != null) {
 			if (category_id == 1) {
 				for (TypeDto type : typeList) {
@@ -87,37 +84,37 @@ public class MenuController {
 		System.out.println(menuList);
 		return "menu/menu";
 	}
+	
+	@ResponseBody
+	@GetMapping("/filterType")
+	public int[] filterType(@RequestParam int category_id, @RequestParam List<String> type_id) throws Exception {
+		System.out.println("필터아이디: " + type_id);
 
-//	@ResponseBody
-//	@GetMapping("/filterType")
-//	public List<MenuInfoDto> filterType(@RequestParam int category_id, @RequestParam List<String> type_id) throws Exception {
-//		System.out.println("필터아이디: " + type_id);
-//
 //		if (type_id.isEmpty() || type_id.contains("0")) {
 //			System.out.println("전체 메뉴 불러오는지 테스트");
 //			return menuService.menuList(category_id);
 //		}
-//
-//		String typeArr = type_id.toString().replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "");
-//		return menuService.filterType(category_id, typeArr);
-//	}
-	@ResponseBody
-	@GetMapping("/filterType")
-	public List<MenuInfoDto> filterType(@RequestParam int category_id, @RequestParam List<String> type_id) throws Exception {
-	    System.out.println("필터아이디: " + type_id);
 
-	    List<MenuInfoDto> menuList;
-
-	    if (type_id.isEmpty() || type_id.contains("0")) {
-	        System.out.println("전체 메뉴 불러오는지 테스트");
-	        menuList = menuService.menuList(category_id); // 전체 메뉴 가져오기
-	    } else {
-	        String typeArr = type_id.toString().replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "");
-	        menuList = menuService.filterType(category_id, typeArr); // 필터링된 메뉴 가져오기
-	    }
-
-	    return menuList;
+		String typeArr = type_id.toString().replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "");
+		return menuService.filterType(category_id, typeArr);
 	}
+//	@ResponseBody
+//	@GetMapping("/filterType")
+//	public List<MenuInfoDto> filterType(@RequestParam int category_id, @RequestParam List<String> type_id) throws Exception {
+//	    System.out.println("필터아이디: " + type_id);
+//
+//	    List<MenuInfoDto> menuList;
+//
+//	    if (type_id.isEmpty() || type_id.contains("0")) {
+//	        System.out.println("전체 메뉴 불러오는지 테스트");
+//	        menuList = menuService.menuList(category_id); // 전체 메뉴 가져오기
+//	    } else {
+//	        String typeArr = type_id.toString().replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "");
+//	        menuList = menuService.filterType(category_id, typeArr); // 필터링된 메뉴 가져오기
+//	    }
+//
+//	    return menuList;
+//	}
 
 
 }
