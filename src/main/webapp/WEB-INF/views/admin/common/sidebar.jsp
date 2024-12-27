@@ -62,7 +62,7 @@ div.childrenMenu a {
 			<li class="parentMenu">게시판</li>
 			<div class="childrenMenu" style="display: none;">
 				<ul>
-					<li data-category='faq'><a href="${path}/tables">FAQ</a></li>
+					<li data-category='faq'><a href="/tables">FAQ</a></li>
 					<li data-category='notice'><a>공지사항</a></li>
 					<li data-category='voc'><a>고객의 소리</a></li>
 				</ul>

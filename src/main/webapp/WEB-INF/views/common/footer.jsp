@@ -11,10 +11,16 @@
 		<div class="foot_menu">
 			<div class="cont_list">
 				<ul>
-					<li><a class="modal_open modal_open_policy1"> <b>이용약관</b>
-					</a></li>
-					<li><a class="modal_open modal_open_policy2"> <b>개인정보처리방침</b>
-					</a></li>
+					<li>
+						<a class="modal_open modal_open_policy1">
+							 <b>이용약관</b>
+						</a>
+					</li>
+					<li>
+						<a class="modal_open modal_open_policy2"> 
+							<b>개인정보처리방침</b>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -57,11 +63,6 @@
 														target="_blank"> <img
 															src="https://img.79plus.co.kr/megahp/common/img/sns/sns_smartstore.png">
 													</a></li>
-													<!-- <li> -->
-													<!-- <a href="/manager/" target="_blank"> -->
-													<!-- <img src="https://img.79plus.co.kr/megahp/common/img/sns/sns_mng.png"> -->
-													<!-- </a> -->
-													<!-- </li> -->
 												</ul>
 											</div>
 										</div>
