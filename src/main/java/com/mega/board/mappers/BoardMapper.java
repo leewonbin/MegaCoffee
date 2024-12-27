@@ -13,7 +13,7 @@ import com.mega.board.dto.PageDto;
 @Mapper
 public interface BoardMapper {
 	//게시글 작성
-	public int saveBoard(BoardDto boardDto);
+	public boolean saveBoard(BoardDto boardDto);
 	
 	//게시글 조회
 	public List<BoardDto> boardList(PageDto pageDto, @Param("CATEGORY_ID")Integer category_id,@Param("searchType")String searchType,@Param("keyword")String keyword);

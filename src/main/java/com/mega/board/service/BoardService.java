@@ -1,6 +1,5 @@
 package com.mega.board.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +20,15 @@ public class BoardService {
 	private BoardMapper boardMapper;
 
 	//게시글 저장
-	public void saveWrite(BoardDto boardDto) {
-		boardMapper.saveBoard(boardDto);
+	public boolean saveWrite(BoardDto boardDto) {
+		System.out.println("1: "+boardDto.getAdmin_num());
+		System.out.println("2: "+boardDto.getCategory_id());
+		System.out.println("3: "+boardDto.getContent());
+		System.out.println("4: "+boardDto.getTitle());
+		System.out.println("5: "+boardDto.getWriter());
+		System.out.println("6: "+boardDto.getSeparation());
+		boolean success = boardMapper.saveBoard(boardDto);
+		return success;
 	}
 	
 	//게시글 갯수

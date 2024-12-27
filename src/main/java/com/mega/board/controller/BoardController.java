@@ -1,11 +1,14 @@
 package com.mega.board.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,12 +56,6 @@ public class BoardController {
 
 	    pageDto = new PageDto(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 
-	    //int start = (Integer.parseInt(nowPage) - 1) * Integer.parseInt(cntPerPage) + 1;
-	    //int end = Integer.parseInt(nowPage) * Integer.parseInt(cntPerPage);
-
-	    //pageDto.setStart(start);
-	    //pageDto.setEnd(end);
-
 	    List<BoardDto> boardList;
 	    List<BoardCategoryDto> boardCategoryList;
 	    boardList = boardService.boardList(pageDto, category_id,searchType,keyword);
@@ -75,20 +72,32 @@ public class BoardController {
 	
 	//게시글 작성 페이지 이동
 	@GetMapping("/boardwrite")
-	public String boardWrite() {
+	public String boardWrite(BoardCategoryDto boardCategoryDto,Model model) {
+		 List<BoardCategoryDto>boardCategoryList = boardService.boardCategoryList(boardCategoryDto);
+		 model.addAttribute("categoryList",boardCategoryList);
 		return "board/boardwrite";
 	}
 	
 	//게시글 작성 
 	@PostMapping("/boardwrite")
 	@ResponseBody
-	public String saveWrite(@RequestBody BoardDto boardDto,Model model) {
-		 System.out.println("sss: "+boardDto.toString());
+	public Map<String, Object>saveWrite(@ModelAttribute BoardDto boardDto,Model model) {
 		 System.out.println("제목: "+boardDto.getTitle());
          System.out.println("내용: "+boardDto.getContent());
-         boardService.saveWrite(boardDto);
+         System.out.println("카테고리ID: "+boardDto.getCategory_id());
+         System.out.println("구분: "+boardDto.getSeparation());
+         
+         int adminId = 1;
+         String writer = "어드민";
+         String del = "N";
+         boardDto.setAdmin_num(adminId);
+         boardDto.setWriter(writer);
+         boardDto.setDelYN(del);
+         Map<String, Object> result = new HashMap<String,Object>();
+         boolean success = boardService.saveWrite(boardDto);
+         result.put("data", success);
          model.addAttribute("board",boardDto);
-		return "redirect:/main";
+		return result;
 	}
 	
 	//게시글 상세 페이지
@@ -98,15 +107,9 @@ public class BoardController {
 							  Model model) {
 		
 		BoardDto boardDto = boardService.boardDetail(boardId);
-		System.out.println("??: "+category_id);
-		System.out.println("게시글 ID: "+boardDto.getBoardId());
-		System.out.println("제목: "+boardDto.getTitle());
-		System.out.println("내용: "+boardDto.getContent());
-		System.out.println("카테고리Id: "+boardDto.getCategory_id());
 		MoveDto moveDto = boardService.movePage(boardId, category_id);
 		model.addAttribute("boardDetail", boardDto);
-		model.addAttribute("move",moveDto); 
-		
+		model.addAttribute("move",moveDto); 		
 		return "board/boardDetail";
 	}
 	
