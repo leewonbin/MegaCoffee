@@ -7,11 +7,12 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mega.menu.dto.AllergenDto;
 import com.mega.menu.dto.MenuDto;
-import com.mega.menu.dto.MenuNutrientDto;
+import com.mega.menu.dto.MenuInfoDto;
 import com.mega.menu.dto.NutrientDto;
 import com.mega.menu.dto.TypeDto;
 import com.mega.menu.mapper.MenuMapper;
@@ -23,20 +24,10 @@ public class MenuServiceImpl implements MenuService {
 	@Autowired
 	private MenuMapper menuMapper;
 
-//	@Override
-//	public List<MenuDto> menuList() throws Exception {
-//		return menuMapper.menuList();
-//	}
-
-//	@Override
-//	public MenuInfoDto menuRead(int menu_id) throws Exception {
-//		return menuMapper.menuRead(menu_id);
-//	}
-
 	@Override
 	public NutrientDto getNutrient(int menu_id) throws Exception {
 		return menuMapper.getNutrient(menu_id);
-	}//
+	}
 
 	@Override
 	public List<AllergenDto> getAllegenList() throws Exception {
@@ -74,6 +65,7 @@ public class MenuServiceImpl implements MenuService {
 		return menuMapper.getTypeList();
 	}
 
+	@Transactional
 	@Override
 	public String uploadFile(MultipartFile file) throws Exception {
 		String saveName = UUID.randomUUID() + file.getOriginalFilename();
@@ -92,14 +84,14 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public int insertMenu(MenuNutrientDto menuNutrientDto, List<String> typeIdList, List<String> allergenIdList)
+	public int insertMenu(Map<String, Object> menuInfo, List<String> typeIdList, List<String> allergenIdList)
 			throws Exception {
-		return menuMapper.insertMenu(menuNutrientDto, typeIdList, allergenIdList);
+		return menuMapper.insertMenu(menuInfo, typeIdList, allergenIdList);
 	}
 
 	@Override
-	public int modifyMenu(MenuNutrientDto menuNutrientDto) throws Exception {
-		return menuMapper.modifyMenu(menuNutrientDto);
+	public int modifyMenu(Map<String, Object> menuInfo) throws Exception {
+		return menuMapper.modifyMenu(menuInfo);
 	}
 
 	@Override
@@ -120,7 +112,6 @@ public class MenuServiceImpl implements MenuService {
 
 	@Override
 	public int deleteMenu(int menu_id) throws Exception {
-		// TODO Auto-generated method stub
 		return menuMapper.deleteMenu(menu_id);
 	}
 

@@ -291,25 +291,19 @@ $(document).ready(function() {
 				<div class="cont_text_wrap">
 					<div
 						class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2">
-						<ul id="menu_list">
-							<div
-								class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2 wfull">
-
+							<div class="cont_gallery_list cont_gallery_list2 cont_list cont_list4 cont_list_m cont_list_m2 wfull">
 								<ul id="menu_list">
 									<c:forEach var="menuInfo" items="${menuList}">
-										<li data-key="${menuInfo.menu_id}" style="display: none;"><a
-											class="inner_modal_open">
+										<li data-key="${menuInfo.menu_id}" style="display: none;">
+											<a class="inner_modal_open">
 												<div class="cont_gallery_list_box">
-													<div class="cont_gallery_list_img"
-														style="width: 305px; height: 305px;">
+													<div class="cont_gallery_list_img" style="width: 305px; height: 305px;">
 														<c:choose>
 															<c:when test="${menuInfo.menu_ice_hot == 'ICE'}">
-																<div
-																	class="cont_gallery_list_label cont_gallery_list_label2">${menuInfo.menu_ice_hot}</div>
+																<div class="cont_gallery_list_label cont_gallery_list_label2">${menuInfo.menu_ice_hot}</div>
 															</c:when>
 															<c:when test="${menuInfo.menu_ice_hot == 'HOT'}">
-																<div
-																	class="cont_gallery_list_label cont_gallery_list_label1">${menuInfo.menu_ice_hot}</div>
+																<div class="cont_gallery_list_label cont_gallery_list_label1">${menuInfo.menu_ice_hot}</div>
 															</c:when>
 															<c:otherwise>
 																<div class="default">${menuInfo.menu_ice_hot}</div>
@@ -376,8 +370,6 @@ $(document).ready(function() {
 														<li>단백질 ${menuInfo.nut_protein}g</li>
 														<li>카페인 ${menuInfo.nut_caffeine}mg</li>
 													</ul>
-
-
 												</div>
 											</div></li>
 									</c:forEach>

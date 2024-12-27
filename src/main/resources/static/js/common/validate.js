@@ -1,18 +1,22 @@
+let validations = [];
+
 $("form").on("submit", function(e) {
+	let formData = new FormData($("#form").get(0));
+	console.log(formData);
 	let isValid = true;
 
 	function validateInput(selector, errorMsg) {
-		let value = $("[name="+selector+"]").val();
+		let value = $("[name=" + selector + "]").val();
 		if (value == "" || value < 0) {
 			showAlert(errorMsg);
-			$("[name="+selector+"]").focus();
+			$("[name=" + selector + "]").focus();
 			return false;
 		}
 		return true;
 	}
-
+	
 	function validateCheckedInput(selector, errorMsg) {
-		if ($('[name='+selector+']:checked').length == 0) {
+		if ($('[name=' + selector + ']:checked').length == 0) {
 			showAlert(errorMsg);
 			return false;
 		}
@@ -41,13 +45,11 @@ $("form").on("submit", function(e) {
 		}
 	}
 
-	if ($("[name='menu_img']").val() == "" && $("[name='menu_file_id']").val() == "") {
+	if ($("[name='menu_img']").val() == "" && $("[name=menu_name]").val() == "") {
 		showAlert("이미지를 업로드해주세요.");
 		isValid = false;
 		return false;
 	}
-	
-	// 널 허용 값 처리
 
 	if (!isValid) {
 		e.preventDefault();

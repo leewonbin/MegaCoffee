@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.mega.menu.dto.AllergenDto;
 import com.mega.menu.dto.MenuDto;
+import com.mega.menu.dto.MenuInfoDto;
 import com.mega.menu.dto.MenuNutrientDto;
 import com.mega.menu.dto.NutrientDto;
 import com.mega.menu.dto.TypeDto;
@@ -38,9 +39,10 @@ public interface MenuMapper {
 
 	public int insertNutrient(MenuNutrientDto menuNutrientDto) throws Exception;
 
-	public int insertMenu(MenuNutrientDto mnDto, List<String> typeIdList, List<String> allergenIdList) throws Exception;
+	public int insertMenu(Map<String, Object> menuInfo, List<String> typeIdList, List<String> allergenIdList)
+			throws Exception;
 
-	public int modifyMenu(MenuNutrientDto menuNutrientDto) throws Exception;
+	public int modifyMenu(Map<String, Object> menuInfo) throws Exception;
 
 	public int modifyType(int menu_id, List<String> typeIdList) throws Exception;
 

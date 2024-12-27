@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +19,6 @@ import com.mega.admin.dto.AdminDto;
 import com.mega.admin.service.AdminService;
 import com.mega.menu.dto.AllergenDto;
 import com.mega.menu.dto.MenuDto;
-import com.mega.menu.dto.MenuNutrientDto;
 import com.mega.menu.dto.TypeDto;
 import com.mega.menu.service.MenuService;
 
@@ -99,38 +97,36 @@ public class AdminController {
 	}
 
 	@PostMapping("/productInsert")
-	public String saveMenu(@ModelAttribute MenuNutrientDto menuNutrientDto,
+	public String saveMenu(@RequestParam Map<String, Object> menuInfo,
 			@RequestParam(value = "type_id", required = false) String[] typeIds,
 			@RequestParam(value = "all_id", required = false) String[] allergenIds,
 			@RequestParam(value = "menu_img") MultipartFile menuFile) throws Exception {
 		String fileSaveName = menuService.uploadFile(menuFile);
-		menuNutrientDto.setMenu_file_id(fileSaveName);
+		menuInfo.put("menu_file_id", fileSaveName);
 		List<String> typeIdList = typeIds == null ? new ArrayList<String>() : Arrays.asList(typeIds);
 		List<String> allergenIdList = allergenIds == null ? new ArrayList<String>() : Arrays.asList(allergenIds);
-
-		int result = menuService.insertMenu(menuNutrientDto, typeIdList, allergenIdList);
-		System.out.println(result);
+		menuService.insertMenu(menuInfo, typeIdList, allergenIdList);
 		return "redirect:/admin/product";
 	}
 
 	@PostMapping("/productModify")
-	public String modifyMenu(@ModelAttribute MenuNutrientDto menuNutrientDto,
+	public String modifyMenu(@RequestParam Map<String, Object> menuInfo,
 			@RequestParam(value = "type_id") String[] typeIds,
 			@RequestParam(value = "all_id", required = false) String[] allergenIds,
 			@RequestParam(value = "menu_img", required = false) MultipartFile menuFile) throws Exception {
 
-		if (menuFile != null) {
-			menuService.deleteFile(menuNutrientDto.getMenu_file_id());
+		if (!menuFile.isEmpty()) {
+			menuService.deleteFile((String) menuInfo.get("menu_file_id"));
 			String fileSaveName = menuService.uploadFile(menuFile);
-			menuNutrientDto.setMenu_file_id(fileSaveName);
+			menuInfo.put("menu_file_id", fileSaveName);
 		}
 
 		List<String> typeIdList = typeIds == null ? new ArrayList<String>() : Arrays.asList(typeIds);
 		List<String> allergenIdList = allergenIds == null ? new ArrayList<String>() : Arrays.asList(allergenIds);
 
-		menuService.modifyMenu(menuNutrientDto);
-		menuService.modifyType(menuNutrientDto.getMenu_id(), typeIdList);
-		menuService.modifyallergen(menuNutrientDto.getMenu_id(), allergenIdList);
+		menuService.modifyMenu(menuInfo);
+		menuService.modifyType(Integer.parseInt((String) menuInfo.get("menu_id")), typeIdList);
+		menuService.modifyallergen(Integer.parseInt((String) menuInfo.get("menu_id")), allergenIdList);
 		return "redirect:/admin/product";
 	}
 

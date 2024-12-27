@@ -117,7 +117,7 @@ input:focus, textarea:focus {
 		<h2 id="content-title">${mnDto eq null ? '상품 추가' : '상품 수정' }</h2>
 
 		<!-- 폼 태그 시작 -->
-		<form action="${MENU_ID eq null ? '/admin/productInsert' : '/admin/productModify'}" method="post" enctype="multipart/form-data">
+		<form id="form" action="${MENU_ID eq null ? '/admin/productInsert' : '/admin/productModify'}" method="post" enctype="multipart/form-data">
 			<div class="product-info info-wrap">
 				<span class="wrap-Info"> 상품 정보 </span>
 				<c:if test="${MENU_ID ne null }">
@@ -193,13 +193,16 @@ input:focus, textarea:focus {
 					<tr>
 						<td>원사이즈 여부</td>
 						<td>
-							<input type="checkbox" name="menu_onesize" value="Y" ${MENU_ONESIZE == 'Y' ? 'checked="checked"' : '' } />
+							<input type="radio" name="menu_onesize" value="N" ${empty MENU_ONESIZE || MENU_ONESIZE == 'N' ? 'checked="checked"' : '' } />
+							<label>N</label>
+							<input type="radio" name="menu_onesize" value="Y" ${MENU_ONESIZE == 'Y' ? 'checked="checked"' : '' } />
+							<label>Y</label>
 						</td>
 					</tr>
 					<tr>
 						<td>이미지</td>
 						<td>
-							<input type="text" name="menu_file_id" value="${MENU_FILE_ID }" readonly />
+							<input type="text" name="menu_name" value="${MENU_FILE_ID }" readonly />
 							<input type="file" name="menu_img" onchange="fileSelect(this)" />
 						</td>
 					</tr>
@@ -231,7 +234,10 @@ input:focus, textarea:focus {
 					<tr>
 						<td>고카페인 여부</td>
 						<td>
-							<input type="checkbox" name="nut_high_caffeine" value="Y" ${NUT_HIGH_CAFFEINE == 'Y' ? 'checked="checked"' : '' } />
+							<input type="radio" name="nut_high_caffeine" value="N" ${empty NUT_HIGH_CAFFEINE || NUT_HIGH_CAFFEINE == 'N' ? 'checked="checked"' : '' } />
+							<label>N</label>
+							<input type="radio" name="nut_high_caffeine" value="Y" ${NUT_HIGH_CAFFEINE == 'Y' ? 'checked="checked"' : '' } />
+							<label>Y</label>
 						</td>
 					</tr>
 					<tr>
@@ -328,10 +334,10 @@ input:focus, textarea:focus {
 		<!-- 폼 태그 끝 -->
 	</div>
 
-	<!-- validate JavsScript -->
+	<!-- Validate JavsScript -->
 	<script src="/js/common/validate.js"></script>
 
-	<!-- optionSet JavaScript -->
+	<!-- OptionSet JavaScript -->
 	<script src="/js/common/optionSet.js"></script>
 </body>
 </html>

@@ -82,15 +82,15 @@
 		select * from type
 	</select>
 
-	<update id="insertMenu">
+	<update id="insertMenu" parameterType="map">
 		BEGIN
 		insert into menu
 		values
-		(menu_num.nextval,#{mnDto.menu_title},#{mnDto.menu_eng_title},#{mnDto.menu_content},sysdate,sysdate,#{mnDto.menu_del},#{mnDto.menu_ice_hot},#{mnDto.menu_onesize},#{mnDto.menu_file_id},1,#{mnDto.category_id});
+		(menu_num.nextval,#{menu_title},#{menu_eng_title},#{menu_content},sysdate,sysdate,#{menu_del},#{menu_ice_hot},#{menu_onesize},#{menu_file_id},1,#{category_id});
 
 		insert into nutrient
 		values
-		(nutrient_num.nextval,#{mnDto.nut_saturated},#{mnDto.nut_sugar},#{mnDto.nut_sodium},#{mnDto.nut_protein},#{mnDto.nut_caffeine},#{mnDto.nut_calorie},#{mnDto.nut_high_caffeine},#{mnDto.nut_size},#{mnDto.nut_unit},menu_num.currval);
+		(nutrient_num.nextval,#{nut_saturated},#{nut_sugar},#{nut_sodium},#{nut_protein},#{nut_caffeine},#{nut_calorie},#{nut_high_caffeine},#{nut_size},#{nut_unit},menu_num.currval);
 
 		<if test="typeIdList != null or typeIdList.size != 0">
 			<foreach item="type" collection="typeIdList"
@@ -110,7 +110,7 @@
 		END;
 	</update>
 
-	<update id="modifyMenu">
+	<update id="modifyMenu" parameterType="map">
 		BEGIN
 		update menu
 		set

@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mega.menu.dto.AllergenDto;
-import com.mega.menu.dto.MenuDto;
 import com.mega.menu.dto.MenuInfoDto;
-import com.mega.menu.dto.MenuNutrientDto;
-import com.mega.menu.dto.NutrientDto;
 import com.mega.menu.dto.TypeDto;
 import com.mega.menu.service.MenuService;
 
@@ -57,8 +54,7 @@ public class MenuController {
 
 	@GetMapping("/menu")
 	public String getCategory(@RequestParam(required = false) Integer category_id, Model model) throws Exception {
-		
-		
+
 		List<MenuInfoDto> menuList = menuService.menuList(category_id);
 		List<TypeDto> typeList = menuService.getTypeList();
 
@@ -80,7 +76,7 @@ public class MenuController {
 					}
 				}
 			}
-		} 
+		}
 
 		model.addAttribute("menuList", menuList);
 		model.addAttribute("typeList", filterList);
@@ -103,21 +99,21 @@ public class MenuController {
 //	}
 	@ResponseBody
 	@GetMapping("/filterType")
-	public List<MenuInfoDto> filterType(@RequestParam int category_id, @RequestParam List<String> type_id) throws Exception {
-	    System.out.println("필터아이디: " + type_id);
+	public List<MenuInfoDto> filterType(@RequestParam int category_id, @RequestParam List<String> type_id)
+			throws Exception {
+		System.out.println("필터아이디: " + type_id);
 
-	    List<MenuInfoDto> menuList;
+		List<MenuInfoDto> menuList;
 
-	    if (type_id.isEmpty() || type_id.contains("0")) {
-	        System.out.println("전체 메뉴 불러오는지 테스트");
-	        menuList = menuService.menuList(category_id); // 전체 메뉴 가져오기
-	    } else {
-	        String typeArr = type_id.toString().replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "");
-	        menuList = menuService.filterType(category_id, typeArr); // 필터링된 메뉴 가져오기
-	    }
+		if (type_id.isEmpty() || type_id.contains("0")) {
+			System.out.println("전체 메뉴 불러오는지 테스트");
+			menuList = menuService.menuList(category_id); // 전체 메뉴 가져오기
+		} else {
+			String typeArr = type_id.toString().replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "");
+			menuList = menuService.filterType(category_id, typeArr); // 필터링된 메뉴 가져오기
+		}
 
-	    return menuList;
+		return menuList;
 	}
-
 
 }

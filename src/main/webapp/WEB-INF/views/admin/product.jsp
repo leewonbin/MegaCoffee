@@ -44,7 +44,7 @@
 					<th>활성 여부</th>
 				</tr>
 				<c:choose>
-					<c:when test="${menuList ne null }">
+					<c:when test="${menuList.size() ne 0 }">
 						<c:forEach items="${menuList }" var="menu">
 							<tr onclick='location.href="/admin/productDetail?menu_id=${menu.menu_id }"'>
 								<td>${menu.menu_id }</td>
@@ -57,7 +57,11 @@
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
-						<p>메뉴 없음</p>
+						<tr>
+							<td colspan="6">
+								<p style="text-align: center;">- 메뉴 없음 -</p>
+							</td>
+						</tr>
 					</c:otherwise>
 				</c:choose>
 			</table>

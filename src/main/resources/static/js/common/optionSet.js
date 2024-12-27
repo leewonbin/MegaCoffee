@@ -24,7 +24,7 @@ function fileSelect(f) {
 		return false;
 	}
 	
-	$("input[name=menu_file_id]").val(fileName);
+	$("[name=menu_name]").val(fileName);
 }
 
 
