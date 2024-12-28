@@ -52,7 +52,7 @@ div.childrenMenu a {
 	<nav>
 		<ul class="menu">
 			<li class="parentMenu">메뉴</li>
-			<div class="childrenMenu" style="display: none;">
+			<div class="childrenMenu product_menu" style="display: none;">
 				<ul>
 					<li data-category='drink'><a>음료</a></li>
 					<li data-category='food'><a>푸드</a></li>
@@ -60,9 +60,9 @@ div.childrenMenu a {
 				</ul>
 			</div>
 			<li class="parentMenu">게시판</li>
-			<div class="childrenMenu" style="display: none;">
+			<div class="childrenMenu board_menu" style="display: none;">
 				<ul>
-					<li data-category='faq'><a href="/tables">FAQ</a></li>
+					<li data-category='faq'><a>FAQ</a></li>
 					<li data-category='notice'><a>공지사항</a></li>
 					<li data-category='voc'><a>고객의 소리</a></li>
 				</ul>
@@ -80,10 +80,16 @@ div.childrenMenu a {
 	    }
 	})
 	
-	$(".childrenMenu li").on("click",function(e) {
+	$(".product_menu li").on("click",function(e) {
 	    let category = $(e.target).attr("data-category");
-	    location.href='/admin/moveMenu?category=' + category;
+	    location.href='/admin/product?category=' + category;
 	})
+	
+	$(".board_menu li").on("click",function(e) {
+	    let category = $(e.target).attr("data-category");
+	    location.href='/admin/board?category=' + category;
+	})
+	
 	$(".parentMenu").on("click",function(e) {
 	    let element = $(e.target); 
 	    

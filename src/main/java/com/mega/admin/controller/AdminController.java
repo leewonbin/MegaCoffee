@@ -59,11 +59,6 @@ public class AdminController {
 		return "/admin/productManage";
 	}
 
-	@GetMapping("/moveMenu")
-	public String moveMenu(@RequestParam("category") String category) throws Exception {
-		return "redirect:/admin/product?category=" + category;
-	}
-
 	@GetMapping("/product")
 	public String moveProduct(@RequestParam(value = "category", required = false) String category, Model model)
 			throws Exception {
@@ -71,6 +66,15 @@ public class AdminController {
 		List<MenuDto> menuList = menuService.getMenuAllList(category);
 		model.addAttribute("menuList", menuList);
 		return "/admin/product";
+	}
+
+	@GetMapping("/board")
+	public String moveBoard(@RequestParam(value = "category", required = false) String category, Model model)
+			throws Exception {
+		category = category == null ? "" : category;
+		List<MenuDto> menuList = menuService.getMenuAllList(category);
+		model.addAttribute("menuList", menuList);
+		return "/admin/board";
 	}
 
 	@GetMapping("/productDetail")
