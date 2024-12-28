@@ -21,7 +21,7 @@ public interface MenuMapper {
 
 	public NutrientDto getNutrient(int menu_id) throws Exception;//
 
-	public List<MenuInfoDto> menuList(Integer category_id) throws Exception;
+	public List<Map<String,Object>> menuList(Integer category_id) throws Exception;
 
 	public List<AllergenDto> getAllegenList() throws Exception;
 
@@ -31,7 +31,7 @@ public interface MenuMapper {
 
 	public List<AllergenDto> getAllergen(int menu_id) throws Exception;
 
-	public List<MenuInfoDto> filterType(int category_id, String typeIdStr) throws Exception;
+	public int[] filterType(int category_id, String typeIdStr) throws Exception;
 
 	public List<TypeDto> getTypeList() throws Exception;
 

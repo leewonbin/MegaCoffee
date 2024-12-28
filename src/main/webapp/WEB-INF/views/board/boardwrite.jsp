@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -122,136 +123,10 @@ ng\:form {
 <script type="text/javascript"
 	src="https://img.79plus.co.kr/megahp/common/js/swiper.min.js"></script>
 
-<script>
-	$(document).ready(
-			function() {
-				$(".datepickertime_wrap input").mdtimepicker();
-				$(".detail_flex_slider_wrap").flexslider(
-						{
-							animation : "slide",
-							controlNav : "thumbnails",
-							start : function() {
-								$(".detail_flex_slider_wrap img").css(
-										"visibility", "visible");
-							},
-						});
-				//head_down_menu start
-				$(".head_wrap .head .head_menu > ul > li").hover(
-						function() {
-							if ($(".head_menu_wrap").is(".right0") == false) {
-								$(".head_wrap .head .head_menu > ul > li")
-										.removeClass("check");
-								$(this).addClass("check");
-								$(".head_menu_down_menu").stop().slideDown(
-										"fast");
-							}
-							;
-						},
-						function() {
-							$(".head_wrap .head .head_menu > ul > li")
-									.removeClass("check");
-						});
-
-				$(".head_wrap").hover(
-						function() {
-							$(this).addClass("head_over");
-						},
-						function() {
-							if ($(".head_menu_wrap").is(".right0") == false) {
-								$(this).removeClass("head_over");
-								$(".head_wrap .head .head_menu > ul > li")
-										.removeClass("check");
-								$(".head_menu_down_menu").stop()
-										.slideUp("fast");
-							}
-						});
-				//head_down_menu end
-				//mobile start
-				$(".mobile_menu_icon").click(function() {
-					$(".head_wrap").addClass("head_over");
-					$(this).toggleClass("mobile_menu_icon_open");
-					if ($(this).is(".mobile_menu_icon_open")) {
-						$(".head_menu_wrap").addClass("right0");
-					} else {
-						$(".head_menu_wrap").removeClass("right0");
-					}
-				});
-				$(".head_menu_down").click(
-						function() {
-							$(this).toggleClass("head_menu_down_open");
-							if ($(this).is(".head_menu_down_open")) {
-								$(this).next(".head_menu_down_menu").find("ul")
-										.slideDown("fast");
-							} else {
-								$(this).next(".head_menu_down_menu").find("ul")
-										.slideUp("fast");
-							}
-						});
-				//mobile end
-				cont_gallery_list_img();
-				$(window).resize(
-						function() {
-							$(".head_menu_down_menu > ul").css("display",
-									"block");
-							if ($(window).width() < 760) {
-								$(".head_menu_down_menu > ul").css("display",
-										"none");
-							}
-							;
-							$(".head_menu_down").removeClass(
-									"head_menu_down_open");
-							if ($(window).width() >= 1280) {
-								$(".head_wrap").removeClass("head_over");
-								$(".head_menu_wrap").removeClass("right0");
-								$(".mobile_menu_icon").removeClass(
-										"mobile_menu_icon_open");
-							}
-							;
-							cont_gallery_list_img();
-						});
-			});
-	$(window).scroll(function() {
-		if ($(document).scrollTop() > $(".cont_wrap").offset().top) {
-			$(".head_wrap").addClass("head_fixed");
-		} else {
-			$(".head_wrap").removeClass("head_fixed");
-		}
-	});
-	function cont_gallery_list_img() {
-		$(".cont_gallery_list > ul > li").each(
-				function() {
-					if ($(this).find(".cont_gallery_list_img").length) {
-						$(this).find(".cont_gallery_list_img").css("width",
-								$(this).width());
-					}
-					;
-
-					if ($(this).find(".cont_gallery_list_img_height").length) {
-						$(this).find(".cont_gallery_list_img_height").css(
-								"height", $(this).width());
-					} else {
-						$(this).find(".cont_gallery_list_img").css("height",
-								$(this).width());
-					}
-					;
-				});
-	};
-
-	function login() {
-		location.href = "/login/?ReturnPage=" + window.location.pathname;
-	};
-	function logout() {
-		location.href = "/login/logout.php?ReturnPage="
-				+ window.location.pathname;
-	};
-	function quick(ele) {
-		$(ele).parents(".nav_wrap").find(".nav").fadeToggle("fast");
-		$(".nav_wrap .nav_quick_title, .nav_wrap .nav_quick_close")
-				.slideToggle("fast");
-	}
-</script>
+<script src="/js/menu.js"></script>  
 </head>
 <body data-aos-easing="ease" data-aos-duration="1200" data-aos-delay="0">
+<jsp:include page="../common/header.jsp"/>
 	<div class="overlay none"></div>
 	<div class="modal">
 		<div class="modal-dialog">
@@ -281,7 +156,7 @@ ng\:form {
 						<div class="db">
 							<div class="cont_text_wrap text_center">
 								<div class="cont_text">
-									<a href="/bbs/?bbs_category=4">
+									<a href="/tables">
 										<div class="input_width">
 											<div class="input_btn_wrap input_wrap2">
 												<input type="button" value="FAQ 바로가기"
@@ -291,34 +166,63 @@ ng\:form {
 									</a>
 								</div>
 							</div>
-							<form name="submit_form" id="submit_form" method="post"
-								enctype="multipart/form-data">
-								<input type="hidden" name="customer_category"
-									id="customer_category" value="3"> <input type="hidden"
-									name="customer_tbl_area1_erp" id="customer_tbl_area1_erp"
-									value=""> <input type="hidden"
-									name="customer_tbl_area2_erp" id="customer_tbl_area2_erp"
-									value=""> <input type="hidden"
-									name="customer_tbl_price_erp" id="customer_tbl_price_erp"
-									value=""> <input type="hidden"
-									name="customer_tbl_category_erp" id="customer_tbl_category_erp"
-									value=""> <input type="hidden"
-									name="customer_tbl_store_erp" id="customer_tbl_store_erp"
-									value=""> <input type="hidden"
-									name="customer_tbl_email_code" id="customer_tbl_email_code"
-									value="">
+							<form name="submit_form" id="submit_form" method="post" enctype="multipart/form-data">													
 								<div class="cont_text_wrap">
 									<div class="table_info table_info1">
 										<table>
 											<tbody>
+											<tr>
+												<th>
+													공지 여부 <span class="red">*<span> </span></span>
+												</th>
+												<td>
+												<div class="checkbox_wrap checkbox_wrap_bottom radio_wrap">
+													<label class="checkbox">
+														<input type="radio" id="separation" name="separation" value="공지" >
+														<span class="check_mark"></span>
+															<div class="checkbox_text">
+																공지
+															</div>
+													</label>
+												</div>
+												<div class="checkbox_wrap checkbox_wrap_bottom radio_wrap">
+													<label class="checkbox">
+														<input type="radio" id="separation" name="separation" value="일반" >
+														<span class="check_mark"></span>
+															<div class="checkbox_text">
+																일반
+															</div>
+													</label>
+												</div>
+												</td>
+											</tr>
+											<tr>
+												<th>
+													카테고리 <span class="red">*<span> </span></span>
+												</th>
+												<td>
+												<c:forEach var="category" items="${categoryList}">
+													<div class="checkbox_wrap checkbox_wrap_bottom radio_wrap">
+														<label class="checkbox">
+															<input type="radio" id="categoryId" name="category_id" value="${category.category_id}" >
+															<span class="check_mark"></span>
+																<div class="checkbox_text">
+																	${category.categoryNm}
+																</div>
+														</label>
+													</div>
+													</c:forEach>
+													
+													</td>
+												</tr>												
 												<tr>
 													<th>제목 <span class="red">*<span> </span></span></th>
 													<td>
 														<div class="input_text_wrap input_wrap2">
 															<label> <input type="text" name="title"
 																id="customer_tbl_title" required="required"
-																oninput="decodeHTMLEntities(this.value,this)"> <span>제목을
-																	입력하세요</span>
+																oninput="decodeHTMLEntities(this.value,this)"> 
+																<span>제목을 입력하세요</span>
 															</label>
 														</div>
 													</td>
@@ -349,7 +253,7 @@ ng\:form {
 								<div class="cont_text_wrap">
 									<div class="cont_text">
 										<div class="input_btn_wrap input_wrap2">
-											<input type="button" value="접수하기" class="btn btn1 btn_ani"
+											<input type="button" value="등록하기" class="btn btn1 btn_ani"
 												id="submit">
 										</div>
 									</div>
@@ -360,146 +264,56 @@ ng\:form {
 				</div>
 			</div>
 		</div>
+		<script src="js/common/ajaxCall.js"></script>
 		<script type="text/javascript">
-			$(document)
-					.on(
-							"change",
-							"#customer_tbl_area1",
-							function() {
-								var area_sido = $(
-										"select[name='customer_tbl_area1'] option:selected")
-										.val();
-								search = location.search
-								var params = new URLSearchParams(search);
-								var db_category = params.get('db_category');
-								$.ajax({
-									url : "area_search.php?area_sido="
-											+ area_sido + "&db_category="
-											+ db_category,
-									type : "GET",
-									success : function(result) {
-										$("#customer_tbl_area2").html(result);
-									}
-								});
-							});
-			$(document)
-					.on(
-							"change",
-							"#customer_tbl_menu1",
-							function() {
-								var menu_category = $(
-										"select[name='customer_tbl_menu1'] option:selected")
-										.val();
-								$
-										.ajax({
-											url : "menu_search1.php?menu_category="
-													+ menu_category,
-											type : "GET",
-											success : function(result) {
-												$("#customer_tbl_menu2").html(
-														result);
-
-												var menu_category2 = $(
-														"select[name='customer_tbl_menu2'] option:selected")
-														.val();
-												$
-														.ajax({
-															url : "menu_search2.php?menu_category="
-																	+ menu_category2,
-															type : "GET",
-															success : function(
-																	result) {
-																$(
-																		"#customer_tbl_menu")
-																		.html(
-																				result);
-															}
-														});
-											}
-										});
-							});
-			$(document)
-					.on(
-							"change",
-							"#customer_tbl_menu2",
-							function() {
-								var menu_category = $(
-										"select[name='customer_tbl_menu2'] option:selected")
-										.val();
-								$.ajax({
-									url : "menu_search2.php?menu_category="
-											+ menu_category,
-									type : "GET",
-									success : function(result) {
-										$("#customer_tbl_menu").html(result);
-									}
-								});
-							});
-
-			search = location.search
-			var params = new URLSearchParams(search);
-			var db_category = params.get('db_category');
-
-			var bSend_ing = false;
-
-			$(document).on(
-					"click",
-					"#submit",
-					function(e) {
-
-						if (db_category !== '7') {
+			
+			var ok = true;
+			$(document).on("click","#submit",function(e) {
+				
+							$("input:radio[name='separation']:checked").val();
+							$("input:radio[name='category_id']:checked").val();
+							
+							if(!$('input:radio[name=separation]').is(':checked')) {   
+								   alert("공지여부를 선택해 주세요.");
+								   return false;
+							}
+							if(!$('input:radio[name=category_id]').is(':checked')) {   
+								   alert("카테고리를 선택해 주세요.");
+								   return false;
+							}
+						
 							if ($("input[name='title']").val() == "") {
 								alert("제목을 입력하세요");
 								$("input[name='title']").focus();
 								return false;
 							}
-						}
-
-						if (db_category !== '7') {
+												
 							if ($("textarea[name='content']").val() == "") {
 								alert("내용을 입력하세요");
 								$("textarea[name='content']").focus();
 								return false;
 							}
+						
+						if(ok){
+							if(confirm("작성 하시겠습니까?")){        		
+				       			ajaxCall("/boardwrite","POST","submit_form",boardwriteCallbackFnc);
+				        	}
 						}
-
-						var formdata = new FormData($("#submit_form")[0]);
-
-						if (db_category == '7') {
-							var customer_tbl_price = uncomma($(
-									"#customer_tbl_price").val());
-							console.log(customer_tbl_price)
-							formdata.append("customer_tbl_price",
-									customer_tbl_price);
-						}
-
-						$.ajax({
-							type : "POST",
-							url : "/boardwrite",
-							processData : false,
-							contentType : false,
-							//data: $("form[name=submit_form]").serialize(),
-							data : formdata,
-							success : function(data) {
-								if (data == "success") {
-									alert("신청이 정상 처리되었습니다");
-									location.href = "main";
-								} else if (data == "captcha") {
-									alert("자동등록 방지코드를 입력하세요");
-									bSend_ing = false;
-								} else {
-									alert("신청 접수가 실패했습니다!");
-									bSend_ing = false;
-								}
-
-							},
-						});
-
+						
 					});
+			
+			function boardwriteCallbackFnc(callbackData){
+		  		if(callbackData.data == true){
+			  		alert("작성이 완료되었습니다.");
+			  		location.href = "/tables";  			
+		  		}
+		  		else{
+			  		alert("작성이 실패되었습니다.");  			
+		  		}
+		  	}
 		</script>
 		<!-- footer -->
 	<jsp:include page="../common/footer.jsp"/>
-	<jsp:include page="../common/header.jsp"/>
 
 </body>
 </html>

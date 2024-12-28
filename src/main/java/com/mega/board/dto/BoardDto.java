@@ -9,7 +9,7 @@ public class BoardDto {
 	private String writer;
 	private String separation;
 	private LocalDate upload_at;
-	private LocalDate delete_at;
+	private LocalDate deleteAt;
 	private String del_yn;
 	private int hits;
 	private int admin_num;
@@ -20,14 +20,14 @@ public class BoardDto {
 	}
 	
 	public BoardDto(int board_id, String title, String content, String separation, LocalDate upload_at,
-			LocalDate delete_at, String del_yn, int hits, int admin_num, int category_id,String writer) {
+			LocalDate deleteAt, String del_yn, int hits, int admin_num, int category_id,String writer) {
 		super();
 		this.board_id = board_id;
 		this.title = title;
 		this.content = content;
 		this.separation = separation;
 		this.upload_at = upload_at;
-		this.delete_at = delete_at;
+		this.deleteAt = deleteAt;
 		this.del_yn = del_yn;
 		this.hits = hits;
 		this.admin_num = admin_num;
@@ -66,12 +66,15 @@ public class BoardDto {
 	public void setUpload_at(LocalDate upload_at) {
 	    this.upload_at = upload_at;
 	}
+	
 	public LocalDate getDeleteAt() {
-		return delete_at;
+		return deleteAt;
 	}
-	public void setDeleteAt(LocalDate delete_at) {
-		this.delete_at = delete_at;
+
+	public void setDeleteAt(LocalDate deleteAt) {
+		this.deleteAt = deleteAt;
 	}
+
 	public String getDelYN() {
 		return del_yn;
 	}
@@ -103,6 +106,13 @@ public class BoardDto {
 
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+
+	@Override
+	public String toString() {
+		return "BoardDto [board_id=" + board_id + ", title=" + title + ", content=" + content + ", writer=" + writer
+				+ ", separation=" + separation + ", upload_at=" + upload_at + ", deleteAt=" + deleteAt + ", del_yn="
+				+ del_yn + ", hits=" + hits + ", admin_num=" + admin_num + ", category_id=" + category_id + "]";
 	}
 	
 	
